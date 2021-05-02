@@ -370,7 +370,7 @@
     <package id="168" parent="1" name="rtree"/>
     <package id="169" parent="1" name="rtree_i32"/>
     <table id="170" parent="2" name="Booking"/>
-    <table id="171" parent="2" name="User"/>
+    <table id="171" parent="2" name="Employee"/>
     <table id="172" parent="2" name="sqlite_master">
       <System>1</System>
     </table>
