@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="assignment" uuid="a0658d0a-0e25-418e-b03f-55ad94db965e">
+    <data-source source="LOCAL" name="assignment" uuid="70c9c911-1066-429f-81ad-68b2759ae070">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\prumm\OneDrive - RMIT University\myRMIT\Year 3\Further Programming\Assignments\Assignment 2\FP_A2\assignment.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/assignment.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
+      <libraries>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.34.0/sqlite-jdbc-3.34.0.jar</url>
+        </library>
+      </libraries>
     </data-source>
   </component>
 </project>
