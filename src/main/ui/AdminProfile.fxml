@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="441.0" prefWidth="501.0" xmlns="http://javafx.com/javafx/8.0.202-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.AdminController">
+    <children>
+        <Label layoutX="219.0" layoutY="37.0" text="Admin">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+        <Button layoutX="189.0" layoutY="93.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="123.0" style="-fx-background-radius: 8; -fx-background-color: #0f73fb;" text="Manage Booking" textFill="WHITE" AnchorPane.topAnchor="100.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <Button layoutX="189.0" layoutY="183.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="123.0" style="-fx-background-radius: 8; -fx-background-color: #0f73fb; -fx-font-weight: bold;" text="Manage Users" textFill="WHITE" AnchorPane.topAnchor="180.0" />
+        <Button layoutX="189.0" layoutY="259.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="123.0" style="-fx-background-radius: 8; -fx-background-color: #0f73fb; -fx-font-weight: bold;" text="Update Account" textFill="WHITE" AnchorPane.topAnchor="259.0" />
+        <Button layoutX="405.0" layoutY="391.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="82.0" style="-fx-background-radius: 8; -fx-background-color: #dc2430; -fx-font-weight: bold;" text="Sign Out" textFill="WHITE" />
+    </children>
+</AnchorPane>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.ActionDesk">
+   <children>
+      <Label layoutX="190.0" layoutY="14.0" text="Confirm Booking">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="42.0" layoutY="88.0" text="Booking date:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="42.0" layoutY="138.0" text="Seat number:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="158.0" layoutY="88.0" text="N/A">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="158.0" layoutY="138.0" text="N/A">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button layoutX="130.0" layoutY="221.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="105.0" style="-fx-background-radius: 8; -fx-background-color: #dc2430,        linear-gradient(#eb3349  0%, #f45c43 20%, #f45c43 100%),        linear-gradient(#eb3349, #f45c43); -fx-font-weight: bold;" text="Back" textFill="WHITE" />
+      <Button layoutX="259.0" layoutY="221.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="105.0" style="-fx-background-radius: 8; -fx-background-color: #57C84D,        linear-gradient(#83D475  0%, #83D475 20%, #57C84D 100%),        linear-gradient(#83D475, #57C84D); -fx-font-weight: bold;" text="Confirm" textFill="WHITE" />
+   </children>
+</AnchorPane>
