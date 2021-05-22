@@ -1,10 +1,8 @@
 package main.controller;
 
-import javafx.collections.transformation.TransformationList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -48,13 +46,16 @@ public class LoginController implements Initializable {
         }
     }
 
-
     public void Login(ActionEvent event){
         try {
             if (loginModel.isLogin(txtUsername.getText(), txtPassword.getText())){
                 user = user.getInstance(txtUsername.getText(), txtPassword.getText());
                 Stage stage = (Stage) btnRegister.getScene().getWindow();
-                openHomePage(stage);
+                if (loginModel.admin == true){
+                    openAdminHomePage(stage);
+                }else{
+                    openUserHomePage(stage);
+                }
             }else{
                 isConnected.setTextFill(Color.web("red"));
                 isConnected.setText("Username or Password is incorrect");
@@ -79,8 +80,15 @@ public class LoginController implements Initializable {
         window.show();
     }
 
-    public void openHomePage(Stage window) throws IOException {
+    public void openUserHomePage(Stage window) throws IOException {
         Parent root = FXMLLoader.load(Main.class.getResource("ui/UserProfile.fxml"));
+        Scene scene =  new Scene(root);
+        window.setScene(scene);
+        window.show();
+    }
+
+    public void openAdminHomePage(Stage window) throws IOException {
+        Parent root = FXMLLoader.load(Main.class.getResource("ui/AdminProfile.fxml"));
         Scene scene =  new Scene(root);
         window.setScene(scene);
         window.show();

@@ -24,19 +24,19 @@ public class RegisterModel {
 
     public boolean isRegistered(String firstName, String lastName, String role, String userName, String password, String question, String answer) {
         connection = SQLConnection.connect();
-        boolean done = false;
+        boolean Success = false;
         try {
             Statement statement = connection.createStatement();
-            int status = statement.executeUpdate("insert into Employee (firstname, lastname, role, username, password, question, answer) values ('"+firstName+"','"+lastName+"','"+role+"','"+userName+"','"+password+"','"+question+"','"+answer+"') ");
+            int status = statement.executeUpdate("insert into Employee (firstname, lastname, role, username, password, admin, question, answer) values ('"+firstName+"','"+lastName+"','"+role+"','"+userName+"','"+password+"','"+false+"','"+question+"','"+answer+"') ");
             if (status > 0) {
-                done = true;
+                Success = true;
             } else {
-                done = false;
+                Success = false;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return done;
+        return Success;
     }
 
 }

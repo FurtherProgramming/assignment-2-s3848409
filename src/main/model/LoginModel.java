@@ -10,6 +10,7 @@ import java.sql.SQLException;
 
 public class LoginModel {
     Connection connection;
+    public boolean admin = false;
 
     public LoginModel(){
         connection = SQLConnection.connect();
@@ -35,6 +36,7 @@ public class LoginModel {
             preparedStatement.setString(2, pass);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
+                admin = resultSet.getInt("admin") > 0;
                 return true;
             } else{
                 return false;

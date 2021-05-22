@@ -14,6 +14,7 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
+        primaryStage.setTitle("Arub HotDesk");
     }
 
     public static void main(String[] args) {

@@ -3,27 +3,23 @@ package main.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.event.ActionEvent;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import main.Main;
-import main.model.LoginModel;
 import main.model.RegisterModel;
+import main.model.UserSession;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
     public RegisterModel RegisterModel = new RegisterModel();
+    UserSession userSession;
+
     @FXML
     private TextField txtFirstname;
     @FXML
@@ -57,11 +53,15 @@ public class RegisterController implements Initializable {
         setupQuestion();
     }
 
-    public void Register(ActionEvent event){
+    public void Register(ActionEvent event) throws IOException {
         if (RegisterModel.isRegistered(txtFirstname.getText(), txtLastname.getText(), txtRole.getText(), txtUsername.getText(), txtPassword.getText(), String.valueOf(txtQuestion.getValue()), txtAnswer.getText())){
-            System.out.println("Success");
+            userSession.getInstance(txtUsername.getText(), txtPassword.getText());
+            Stage stage = (Stage) btnRegister.getScene().getWindow();
+            GoToHomePage(stage);
         }else{
-            System.out.println("Failed");
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setContentText("There is a problem when registering your account. Please try again...");
+            errorAlert.showAndWait();
         }
     }
 
@@ -72,6 +72,13 @@ public class RegisterController implements Initializable {
 
     public void Cancel(Stage window) throws IOException {
         Parent root = FXMLLoader.load(Main.class.getResource("ui/Login.fxml"));
+        Scene scene =  new Scene(root);
+        window.setScene(scene);
+        window.show();
+    }
+
+    public void GoToHomePage(Stage window) throws IOException {
+        Parent root = FXMLLoader.load(Main.class.getResource("ui/UserProfile.fxml"));
         Scene scene =  new Scene(root);
         window.setScene(scene);
         window.show();

@@ -25,7 +25,7 @@ public final class UserSession {
         return userName;
     }
 
-    public static String getPrivileges() {
+    public static String getPassword() {
         return password;
     }
 

@@ -13,7 +13,7 @@
         </Label>
         <TextField fx:id="txtFirstname" layoutX="176.0" layoutY="100.0" promptText="First Name" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="100.0" />
         <TextField fx:id="txtLastname" layoutX="176.0" layoutY="151.0" promptText="Last Name" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="151.0" />
-        <TextField fx:id="txtRole" layoutX="177.0" layoutY="200.0" prefHeight="25.0" prefWidth="74.0" promptText="Role" AnchorPane.rightAnchor="249.0" AnchorPane.topAnchor="200.0" />
+        <TextField fx:id="txtRole" layoutX="177.0" layoutY="200.0" prefHeight="25.0" prefWidth="149.0" promptText="Role" AnchorPane.rightAnchor="174.0" AnchorPane.topAnchor="200.0" />
         <TextField fx:id="txtUsername" layoutX="176.0" layoutY="253.0" promptText="Username" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="253.0" />
         <PasswordField fx:id="txtPassword" layoutX="176.0" layoutY="301.0" promptText="Password" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="301.0" />
         <ComboBox fx:id="txtQuestion" layoutX="147.0" layoutY="352.0" prefHeight="25.0" prefWidth="209.0" promptText="Secret Question" AnchorPane.rightAnchor="144.0" />
