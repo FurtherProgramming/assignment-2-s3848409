@@ -49,11 +49,12 @@ public class LoginController implements Initializable {
     public void Login(ActionEvent event){
         try {
             if (loginModel.isLogin(txtUsername.getText(), txtPassword.getText())){
-                user = user.getInstance(txtUsername.getText(), txtPassword.getText());
                 Stage stage = (Stage) btnRegister.getScene().getWindow();
                 if (loginModel.admin == true){
+                    user = user.getInstance(txtUsername.getText(), txtPassword.getText(), true);
                     openAdminHomePage(stage);
                 }else{
+                    user = user.getInstance(txtUsername.getText(), txtPassword.getText(), false);
                     openUserHomePage(stage);
                 }
             }else{

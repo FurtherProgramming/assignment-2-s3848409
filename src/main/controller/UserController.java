@@ -47,7 +47,7 @@ public class UserController implements Initializable {
     }
 
     public void GoToBook(Stage window) throws IOException {
-        Parent root = FXMLLoader.load(Main.class.getResource("ui/Login.fxml"));
+        Parent root = FXMLLoader.load(Main.class.getResource("ui/UserBooking.fxml"));
         Scene scene =  new Scene(root);
         window.setScene(scene);
         window.show();
@@ -59,7 +59,7 @@ public class UserController implements Initializable {
     }
 
     public void GoToViewBooking(Stage window) throws IOException {
-        Parent root = FXMLLoader.load(Main.class.getResource("ui/Login.fxml"));
+        Parent root = FXMLLoader.load(Main.class.getResource("ui/UserViewBooking.fxml"));
         Scene scene =  new Scene(root);
         window.setScene(scene);
         window.show();

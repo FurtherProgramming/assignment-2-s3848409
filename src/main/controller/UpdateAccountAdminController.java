@@ -83,7 +83,7 @@ public class UpdateAccountAdminController implements Initializable {
 
     public void SaveChanges(ActionEvent event) throws Exception {
         if(adminModel.UpdateDetail(txtFirstName.getText(), txtLastName.getText(), txtRole.getText(), txtUsername.getText(), txtPassword.getText(), chkAdmin.isSelected(), String.valueOf(secretQuestion.getValue()), txtAnswer.getText())){
-            userSession.getInstance(txtUsername.getText(), txtPassword.getText());
+            userSession.getInstance(txtUsername.getText(), txtPassword.getText(), true);
             Stage stage = (Stage) btnSaveChanges.getScene().getWindow();
             GoToAdminHome(stage);
         }else{
@@ -106,7 +106,7 @@ public class UpdateAccountAdminController implements Initializable {
             }
         }else{
             if(adminModel.DeleteAcc(txtUsername.getText())){
-                userSession.getInstance(txtUsername.getText(), txtPassword.getText());
+                userSession.getInstance(txtUsername.getText(), txtPassword.getText(), true);
                 Stage stage = (Stage) btnSaveChanges.getScene().getWindow();
                 GoToAdminHome(stage);
             }else{

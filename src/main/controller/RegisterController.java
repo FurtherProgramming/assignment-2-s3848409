@@ -55,7 +55,7 @@ public class RegisterController implements Initializable {
 
     public void Register(ActionEvent event) throws IOException {
         if (RegisterModel.isRegistered(txtFirstname.getText(), txtLastname.getText(), txtRole.getText(), txtUsername.getText(), txtPassword.getText(), String.valueOf(txtQuestion.getValue()), txtAnswer.getText())){
-            userSession.getInstance(txtUsername.getText(), txtPassword.getText());
+            userSession.getInstance(txtUsername.getText(), txtPassword.getText(), false);
             Stage stage = (Stage) btnRegister.getScene().getWindow();
             GoToHomePage(stage);
         }else{

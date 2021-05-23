@@ -78,7 +78,7 @@ public class UpdateAccountUserController implements Initializable {
 
     public void SaveChanges(ActionEvent event) throws Exception {
         if(userModel.UpdateDetail(txtFirstName.getText(), txtLastName.getText(), txtRole.getText(), txtUsername.getText(), txtPassword.getText(), String.valueOf(secretQuestion.getValue()), txtAnswer.getText())){
-            userSession.getInstance(txtUsername.getText(), txtPassword.getText());
+            userSession.getInstance(txtUsername.getText(), txtPassword.getText(), false);
             Stage stage = (Stage) btnSaveChanges.getScene().getWindow();
             GoToUserHome(stage);
         }else{
