@@ -17,7 +17,7 @@
         </Label>
 
         <Button fx:id="btnLogin" layoutX="142.0" layoutY="195.0" mnemonicParsing="false" onAction="#Login" prefHeight="30.0" prefWidth="100.0" style="-fx-background-radius: 8; -fx-background-color: #3ab63e; -fx-font-weight: bold;" text="Login" textFill="WHITE" AnchorPane.leftAnchor="142.0" AnchorPane.topAnchor="195.0" />
-        <Button fx:id="btnForgetPassword" layoutX="270.0" layoutY="288.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Reset Password" textFill="#006fff" />
+        <Button fx:id="btnResetPassword" layoutX="270.0" layoutY="288.0" mnemonicParsing="false" onAction="#ResetPassword" style="-fx-background-color: transparent;" text="Reset Password" textFill="#006fff" />
         <Button fx:id="btnRegister" layoutX="14.0" layoutY="288.0" mnemonicParsing="false" onAction="#Register" style="-fx-background-color: transparent;" text="Not a user?" textFill="#006fff" />
 
     </children>

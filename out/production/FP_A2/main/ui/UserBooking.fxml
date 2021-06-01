@@ -5,7 +5,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="620.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.202-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.BookingController">
+<AnchorPane prefHeight="620.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.BookingController">
    <children>
       <Label layoutX="244.0" layoutY="14.0" text="Choose your seat">
          <font>
@@ -52,7 +52,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="293.0" layoutY="263.0" text="COVID_Locked" AnchorPane.bottomAnchor="330.0" AnchorPane.leftAnchor="300.0">
+      <Label layoutX="293.0" layoutY="263.0" text="COVID-Locked" AnchorPane.bottomAnchor="330.0" AnchorPane.leftAnchor="300.0">
          <font>
             <Font size="15.0" />
          </font>
@@ -61,7 +61,7 @@
       <Button layoutX="415.0" layoutY="207.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #dc2430;" AnchorPane.bottomAnchor="388.0" AnchorPane.leftAnchor="420.0" />
       <Button layoutX="415.0" layoutY="267.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #ff8c00;" AnchorPane.bottomAnchor="328.0" AnchorPane.leftAnchor="420.0" />
 
-      <Button fx:id="btnBackUserBooking" onAction="#BackUserBooking" layoutX="30.0" layoutY="570.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="105.0" style="-fx-background-radius: 8; -fx-background-color: #dc2430; -fx-font-weight: bold;" text="Back" textFill="WHITE" />
-      <Button fx:id="btnNextUserBooking" onAction="#GoToConfirmBooking" layoutX="465.0" layoutY="570.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="105.0" style="-fx-background-radius: 8; -fx-background-color: #006fff; -fx-font-weight: bold;" text="Next" textFill="WHITE" />
+      <Button fx:id="btnBackUserBooking" layoutX="30.0" layoutY="570.0" mnemonicParsing="false" onAction="#BackUserBooking" prefHeight="36.0" prefWidth="105.0" style="-fx-background-radius: 8; -fx-background-color: #dc2430; -fx-font-weight: bold;" text="Back" textFill="WHITE" />
+      <Button fx:id="btnNextUserBooking" layoutX="465.0" layoutY="570.0" mnemonicParsing="false" onAction="#GoToConfirmBooking" prefHeight="36.0" prefWidth="105.0" style="-fx-background-radius: 8; -fx-background-color: #006fff; -fx-font-weight: bold;" text="Next" textFill="WHITE" />
    </children>
 </AnchorPane>

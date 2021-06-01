@@ -35,7 +35,7 @@ public class AdminModel {
                 userObject.put("role", resultSet.getString("role"));
                 userObject.put("username", resultSet.getString("username"));
                 userObject.put("password", resultSet.getString("password"));
-                if (Integer.valueOf(resultSet.getString("admin")) == 1){
+                if (Integer.parseInt(resultSet.getString("admin")) == 1){
                     userObject.put("admin", "true");
                 }else{
                     userObject.put("admin", "false");
