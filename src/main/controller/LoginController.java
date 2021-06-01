@@ -23,7 +23,7 @@ import main.model.UserSession;
 
 public class LoginController implements Initializable {
     public LoginModel loginModel = new LoginModel();
-    UserSession user;
+    UserSession userSession;
 
     @FXML
     private AnchorPane loginScene;
@@ -54,11 +54,11 @@ public class LoginController implements Initializable {
         try {
             if (loginModel.isLogin(txtUsername.getText(), txtPassword.getText())){
                 Stage stage = (Stage) btnLogin.getScene().getWindow();
-                if (loginModel.admin == true){
-                    user = user.getInstance(txtUsername.getText(), txtPassword.getText(), true);
+                if (loginModel.admin){
+                    userSession = UserSession.getInstance(txtUsername.getText(), txtPassword.getText(), true);
                     openAdminHomePage(stage);
                 }else{
-                    user = user.getInstance(txtUsername.getText(), txtPassword.getText(), false);
+                    userSession = UserSession.getInstance(txtUsername.getText(), txtPassword.getText(), false);
                     openUserHomePage(stage);
                 }
             }else{

@@ -8,9 +8,9 @@ public final class UserSession {
     private static boolean admin;
 
     private UserSession(String userName, String password, boolean admin) {
-        this.userName = userName;
-        this.password = password;
-        this.admin = admin;
+        UserSession.userName = userName;
+        UserSession.password = password;
+        UserSession.admin = admin;
     }
 
     public static UserSession getInstance(String userName, String password, boolean admin) {

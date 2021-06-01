@@ -1,8 +1,6 @@
 package main.model;
 
 import main.SQLConnection;
-import org.sqlite.SQLiteConnection;
-
 import java.sql.*;
 
 public class RegisterModel {

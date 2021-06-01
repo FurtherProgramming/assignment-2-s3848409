@@ -3,63 +3,88 @@ package main.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import main.Main;
+import main.model.Booking;
+import main.model.BookingModel;
+import main.model.UserSession;
 
 import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
 
-public class BookingController {
+public class BookingController implements Initializable {
+    BookingModel bookingModel = new BookingModel();
+    Booking booking;
+    UserSession userSession;
 
     @FXML
-    private Button btnBackUserViewBooking;
+    private Button btnBack;
     @FXML
-    private Button btnBackConfirmBooking;
+    private Button btnNext;
     @FXML
-    private Button btnConfirmBookingUser;
+    private ToggleButton btnSeat1;
     @FXML
-    private Button btnBackUserBooking;
+    private ToggleButton btnSeat2;
     @FXML
-    private Button btnNextUserBooking;
+    private ToggleButton btnSeat3;
     @FXML
-    private Button btnSeat1;
+    private ToggleButton btnSeat4;
     @FXML
-    private Button btnSeat2;
+    private ToggleButton btnSeat5;
     @FXML
-    private Button btnSeat3;
+    private ToggleButton btnSeat6;
     @FXML
-    private Button btnSeat4;
+    private ToggleButton btnSeat7;
     @FXML
-    private Button btnSeat5;
+    private ToggleButton btnSeat8;
     @FXML
-    private Button btnSeat6;
+    private ToggleButton btnSeat9;
     @FXML
-    private Button btnSeat7;
+    private ToggleButton btnSeat10;
     @FXML
-    private Button btnSeat8;
+    private ToggleButton btnSeat11;
     @FXML
-    private Button btnSeat9;
+    private ToggleButton btnSeat12;
     @FXML
-    private Button btnSeat10;
+    private ToggleButton btnSeat13;
     @FXML
-    private Button btnSeat11;
+    private ToggleButton btnSeat14;
     @FXML
-    private Button btnSeat12;
-    @FXML
-    private Button btnSeat13;
-    @FXML
-    private Button btnSeat14;
-    @FXML
-    private Button btnSeat15;
+    private ToggleButton btnSeat15;
     @FXML
     private DatePicker bookDate;
+    @FXML
+    private ToggleGroup seatGroup;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        bookDate.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
+                setDisable(empty || date.compareTo(today) < 0 );
+            }
+        });
+    }
 
     public void GoToConfirmBooking(ActionEvent event) throws Exception {
-        Stage stage = (Stage) btnNextUserBooking.getScene().getWindow();
-        openConfirmBooking(stage);
+        ToggleButton selectedToggleButton = (ToggleButton) seatGroup.getSelectedToggle();
+        if (selectedToggleButton != null && bookDate.getValue() != null){
+            booking = new Booking(selectedToggleButton.getText(), bookDate.getValue(), UserSession.getUserName());
+            Stage stage = (Stage) btnNext.getScene().getWindow();
+            openConfirmBooking(stage);
+        }else{
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setContentText("Please select a seat and date.");
+            errorAlert.showAndWait();
+        }
+
     }
 
     public void openConfirmBooking(Stage window) throws IOException {
@@ -69,13 +94,8 @@ public class BookingController {
         window.show();
     }
 
-    public void BackUserViewBooking(ActionEvent event) throws Exception {
-        Stage stage = (Stage) btnBackUserViewBooking.getScene().getWindow();
-        openUserHome(stage);
-    }
-
-    public void BackUserBooking(ActionEvent event) throws Exception {
-        Stage stage = (Stage) btnBackUserBooking.getScene().getWindow();
+    public void Back(ActionEvent event) throws Exception {
+        Stage stage = (Stage) btnBack.getScene().getWindow();
         openUserHome(stage);
     }
 
@@ -84,21 +104,6 @@ public class BookingController {
         Scene scene =  new Scene(root);
         window.setScene(scene);
         window.show();
-    }
-
-    public void BackToUserBooking(ActionEvent event) throws Exception {
-        Stage stage = (Stage) btnBackConfirmBooking.getScene().getWindow();
-        openUserBooking(stage);
-    }
-
-    public void openUserBooking(Stage window) throws IOException {
-        Parent root = FXMLLoader.load(Main.class.getResource("ui/UserBooking.fxml"));
-        Scene scene =  new Scene(root);
-        window.setScene(scene);
-        window.show();
-    }
-    public void ConfirmBooking(ActionEvent event) throws Exception {
-
     }
 
 }
