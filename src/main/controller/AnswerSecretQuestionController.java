@@ -21,13 +21,14 @@ import java.util.ResourceBundle;
 
 public class AnswerSecretQuestionController implements Initializable {
     ResetPasswordModel resetPasswordModel = new ResetPasswordModel();
+    SceneController sceneController = new SceneController();
 
     @FXML
     private TextField txtQuestion;
     @FXML
     private TextField txtAnswer;
     @FXML
-    private Button btnBack2;
+    private Button btnBack;
     @FXML
     private Button btnDone;
 
@@ -40,16 +41,8 @@ public class AnswerSecretQuestionController implements Initializable {
         }
     }
 
-    public void Back2(ActionEvent event) throws Exception {
-        Stage stage = (Stage) btnBack2.getScene().getWindow();
-        openResetPassword(stage);
-    }
-
-    public void openResetPassword(Stage window) throws IOException {
-        Parent root = FXMLLoader.load(Main.class.getResource("ui/ResetPassword.fxml"));
-        Scene scene =  new Scene(root);
-        window.setScene(scene);
-        window.show();
+    public void Back(ActionEvent event) throws Exception {
+        sceneController.openScene(btnBack, "ui/ResetPassword.fxml");
     }
 
     public void Done(ActionEvent event) throws Exception {
@@ -68,17 +61,13 @@ public class AnswerSecretQuestionController implements Initializable {
                 successAlert.getDialogPane().setContent(gridPane);
 
                 Optional<ButtonType> result = successAlert.showAndWait();
-                if(!((Optional<?>) result).isPresent()){
-                    Stage stage = (Stage) btnDone.getScene().getWindow();
-                    goToLogin(stage);
-                } else if(result.get() == ButtonType.OK){
-                    Stage stage = (Stage) btnDone.getScene().getWindow();
-                    goToLogin(stage);
+                if(!((Optional<?>) result).isPresent() || result.get() == ButtonType.OK){
+                    sceneController.openScene(btnDone, "ui/Login.fxml");
                 }
                 UserSession.cleanUserSession();
             }else{
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                errorAlert.setContentText("Username not found, please try again.");
+                errorAlert.setContentText("Incorrect Answer to your secret question.");
                 errorAlert.showAndWait();
             }
         } catch (SQLException e) {
@@ -87,12 +76,5 @@ public class AnswerSecretQuestionController implements Initializable {
             errorAlert.setContentText("Unable to change your password.");
             errorAlert.showAndWait();
         }
-    }
-
-    public void goToLogin(Stage window) throws IOException {
-        Parent root = FXMLLoader.load(Main.class.getResource("ui/Login.fxml"));
-        Scene scene =  new Scene(root);
-        window.setScene(scene);
-        window.show();
     }
 }

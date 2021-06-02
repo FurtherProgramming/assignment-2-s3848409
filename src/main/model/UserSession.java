@@ -17,9 +17,9 @@ public final class UserSession {
         if(instance == null) {
             instance = new UserSession(userName, password, admin);
         }else{
-            instance.userName = userName;
-            instance.password = password;
-            instance.admin = admin;
+            UserSession.userName = userName;
+            UserSession.password = password;
+            UserSession.admin = admin;
         }
         return instance;
     }

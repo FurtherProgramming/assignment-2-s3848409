@@ -20,31 +20,23 @@ import java.util.ResourceBundle;
 
 public class ResetPasswordController {
     public ResetPasswordModel resetPasswordModel = new ResetPasswordModel();
+    SceneController sceneController = new SceneController();
 
     @FXML
     private TextField txtUsername;
     @FXML
     private Button btnContinue;
     @FXML
-    private Button btnBack1;
+    private Button btnBack;
 
-    public void Back1(ActionEvent event) throws Exception {
-        Stage stage = (Stage) btnBack1.getScene().getWindow();
-        openLogin(stage);
-    }
-
-    public void openLogin(Stage window) throws IOException {
-        Parent root = FXMLLoader.load(Main.class.getResource("ui/Login.fxml"));
-        Scene scene =  new Scene(root);
-        window.setScene(scene);
-        window.show();
+    public void Back(ActionEvent event) throws Exception {
+        sceneController.openScene(btnBack, "ui/Login.fxml");
     }
 
     public void Continue(ActionEvent event) throws Exception {
         try {
             if (resetPasswordModel.userFound(txtUsername.getText())){
-                Stage stage = (Stage) btnContinue.getScene().getWindow();
-                openSecretQuestion(stage);
+                sceneController.openScene(btnContinue, "ui/AnswerSecretQuestion.fxml");
             }else{
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                 errorAlert.setContentText("Username not found, please try again.");
@@ -54,12 +46,4 @@ public class ResetPasswordController {
             e.printStackTrace();
         }
     }
-
-    public void openSecretQuestion(Stage window) throws IOException {
-        Parent root = FXMLLoader.load(Main.class.getResource("ui/AnswerSecretQuestion.fxml"));
-        Scene scene =  new Scene(root);
-        window.setScene(scene);
-        window.show();
-    }
-
 }

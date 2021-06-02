@@ -24,9 +24,8 @@ import main.model.UserSession;
 public class LoginController implements Initializable {
     public LoginModel loginModel = new LoginModel();
     UserSession userSession;
+    SceneController sceneController = new SceneController();
 
-    @FXML
-    private AnchorPane loginScene;
     @FXML
     private Label isConnected;
     @FXML
@@ -53,13 +52,13 @@ public class LoginController implements Initializable {
     public void Login(ActionEvent event){
         try {
             if (loginModel.isLogin(txtUsername.getText(), txtPassword.getText())){
-                Stage stage = (Stage) btnLogin.getScene().getWindow();
+
                 if (loginModel.admin){
                     userSession = UserSession.getInstance(txtUsername.getText(), txtPassword.getText(), true);
-                    openAdminHomePage(stage);
+                    sceneController.openScene(btnLogin, "ui/AdminProfile.fxml");
                 }else{
                     userSession = UserSession.getInstance(txtUsername.getText(), txtPassword.getText(), false);
-                    openUserHomePage(stage);
+                    sceneController.openScene(btnLogin, "ui/UserProfile.fxml");
                 }
             }else{
                 isConnected.setTextFill(Color.web("red"));
@@ -74,40 +73,11 @@ public class LoginController implements Initializable {
     }
 
     public void Register(ActionEvent event) throws Exception {
-        Stage stage = (Stage) btnRegister.getScene().getWindow();
-        openRegister(stage);
-    }
-
-    public void openRegister(Stage window) throws IOException {
-        Parent root = FXMLLoader.load(Main.class.getResource("ui/Register.fxml"));
-        Scene scene =  new Scene(root);
-        window.setScene(scene);
-        window.show();
-    }
-
-    public void openUserHomePage(Stage window) throws IOException {
-        Parent root = FXMLLoader.load(Main.class.getResource("ui/UserProfile.fxml"));
-        Scene scene =  new Scene(root);
-        window.setScene(scene);
-        window.show();
-    }
-
-    public void openAdminHomePage(Stage window) throws IOException {
-        Parent root = FXMLLoader.load(Main.class.getResource("ui/AdminProfile.fxml"));
-        Scene scene =  new Scene(root);
-        window.setScene(scene);
-        window.show();
+        sceneController.openScene(btnRegister, "ui/Register.fxml");
     }
 
     public void ResetPassword(ActionEvent event) throws Exception {
-        Stage stage = (Stage) btnResetPassword.getScene().getWindow();
-        openResetPassword(stage);
+        sceneController.openScene(btnResetPassword, "ui/ResetPassword.fxml");
     }
 
-    public void openResetPassword(Stage window) throws IOException {
-        Parent root = FXMLLoader.load(Main.class.getResource("ui/ResetPassword.fxml"));
-        Scene scene =  new Scene(root);
-        window.setScene(scene);
-        window.show();
-    }
 }

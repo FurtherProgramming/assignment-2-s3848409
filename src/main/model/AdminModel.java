@@ -19,8 +19,8 @@ public class AdminModel {
             System.exit(1);
     }
 
-    public Map<String, String> getUserDetail(String user, String pass) throws SQLException {
-        Map<String, String> userObject = new HashMap<>();
+    public Map<String, String> getAdminDetail(String user, String pass) throws SQLException {
+        Map<String, String> adminObject = new HashMap<>();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         String query = "select * from employee where username = ? and password= ?";
@@ -30,18 +30,18 @@ public class AdminModel {
             preparedStatement.setString(2, pass);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                userObject.put("firstname", resultSet.getString("firstname"));
-                userObject.put("lastname", resultSet.getString("lastname"));
-                userObject.put("role", resultSet.getString("role"));
-                userObject.put("username", resultSet.getString("username"));
-                userObject.put("password", resultSet.getString("password"));
+                adminObject.put("firstname", resultSet.getString("firstname"));
+                adminObject.put("lastname", resultSet.getString("lastname"));
+                adminObject.put("role", resultSet.getString("role"));
+                adminObject.put("username", resultSet.getString("username"));
+                adminObject.put("password", resultSet.getString("password"));
                 if (Integer.parseInt(resultSet.getString("admin")) == 1){
-                    userObject.put("admin", "true");
+                    adminObject.put("admin", "true");
                 }else{
-                    userObject.put("admin", "false");
+                    adminObject.put("admin", "false");
                 }
-                userObject.put("question", resultSet.getString("question"));
-                userObject.put("answer", resultSet.getString("answer"));
+                adminObject.put("question", resultSet.getString("question"));
+                adminObject.put("answer", resultSet.getString("answer"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,12 +49,12 @@ public class AdminModel {
             preparedStatement.close();
             resultSet.close();
         }
-        return userObject;
+        return adminObject;
     }
 
     public boolean UpdateDetail(String firstName, String lastName, String role, String userName, String password, Boolean admin, String question, String answer) throws SQLException {
         boolean Success = false;
-        String user = userSession.getUserName();
+        String user = UserSession.getUserName();
         String sql = "UPDATE Employee SET firstname = ? , "
                 + "lastname = ?, "
                 + "role = ?, "
@@ -72,15 +72,14 @@ public class AdminModel {
             statement.setString(3, role);
             statement.setString(4, userName);
             statement.setString(5, password);
-            statement.setBoolean(5, admin);
-            statement.setString(6, question);
-            statement.setString(7, answer);
-            statement.setString(8, user);
+            statement.setBoolean(6, admin);
+            statement.setString(7, question);
+            statement.setString(8, answer);
+            statement.setString(9, user);
 
             statement.executeUpdate();
             Success = true;
         } catch (SQLException e) {
-            Success = false;
             System.out.println(e.getMessage());
         }
         return Success;
@@ -97,7 +96,6 @@ public class AdminModel {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
         return Success;
     }
 }

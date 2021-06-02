@@ -2,24 +2,18 @@ package main.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
-import main.Main;
+
 import main.model.Booking;
-import main.model.BookingModel;
 import main.model.UserSession;
 
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class BookingController implements Initializable {
-    BookingModel bookingModel = new BookingModel();
+    SceneController sceneController = new SceneController();
     Booking booking;
     UserSession userSession;
 
@@ -77,8 +71,7 @@ public class BookingController implements Initializable {
         ToggleButton selectedToggleButton = (ToggleButton) seatGroup.getSelectedToggle();
         if (selectedToggleButton != null && bookDate.getValue() != null){
             booking = new Booking(selectedToggleButton.getText(), bookDate.getValue(), UserSession.getUserName());
-            Stage stage = (Stage) btnNext.getScene().getWindow();
-            openConfirmBooking(stage);
+            sceneController.openScene(btnNext, "ui/UserConfirmBooking.fxml");
         }else{
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setContentText("Please select a seat and date.");
@@ -87,23 +80,8 @@ public class BookingController implements Initializable {
 
     }
 
-    public void openConfirmBooking(Stage window) throws IOException {
-        Parent root = FXMLLoader.load(Main.class.getResource("ui/UserConfirmBooking.fxml"));
-        Scene scene =  new Scene(root);
-        window.setScene(scene);
-        window.show();
-    }
-
     public void Back(ActionEvent event) throws Exception {
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        openUserHome(stage);
-    }
-
-    public void openUserHome(Stage window) throws IOException {
-        Parent root = FXMLLoader.load(Main.class.getResource("ui/UserProfile.fxml"));
-        Scene scene =  new Scene(root);
-        window.setScene(scene);
-        window.show();
+        sceneController.openScene(btnBack, "ui/UserProfile.fxml");
     }
 
 }

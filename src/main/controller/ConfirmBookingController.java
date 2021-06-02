@@ -23,6 +23,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ConfirmBookingController implements Initializable {
+    SceneController sceneController = new SceneController();
     BookingModel bookingModel = new BookingModel();
     Booking booking;
 
@@ -45,22 +46,7 @@ public class ConfirmBookingController implements Initializable {
     }
 
     public void BackToUserBooking(ActionEvent event) throws Exception {
-        Stage stage = (Stage) btnBack.getScene().getWindow();
-        openUserBooking(stage);
-    }
-
-    public void openUserBooking(Stage window) throws IOException {
-        Parent root = FXMLLoader.load(Main.class.getResource("ui/UserBooking.fxml"));
-        Scene scene =  new Scene(root);
-        window.setScene(scene);
-        window.show();
-    }
-
-    public void openUserProfile(Stage window) throws IOException {
-        Parent root = FXMLLoader.load(Main.class.getResource("ui/UserProfile.fxml"));
-        Scene scene =  new Scene(root);
-        window.setScene(scene);
-        window.show();
+        sceneController.openScene(btnBack, "ui/UserBooking.fxml");
     }
 
     public void ConfirmBooking(ActionEvent event) throws Exception {
@@ -70,12 +56,8 @@ public class ConfirmBookingController implements Initializable {
                 successAlert.setHeaderText("Success");
                 successAlert.setContentText("Your booking has been made...");
                 Optional<ButtonType> result = successAlert.showAndWait();
-                if(!((Optional<?>) result).isPresent()){
-                    Stage stage = (Stage) btnConfirmBooking.getScene().getWindow();
-                    openUserProfile(stage);
-                } else if(result.get() == ButtonType.OK){
-                    Stage stage = (Stage) btnConfirmBooking.getScene().getWindow();
-                    openUserProfile(stage);
+                if(!((Optional<?>) result).isPresent() || result.get() == ButtonType.OK){
+                    sceneController.openScene(btnConfirmBooking, "ui/UserProfile.fxml");
                 }
                 Booking.deleteBookingObject();
             }else{
