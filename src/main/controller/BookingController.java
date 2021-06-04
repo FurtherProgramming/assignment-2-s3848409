@@ -5,16 +5,23 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-import main.model.Booking;
+import main.model.BookingSession;
+import main.model.UserModel;
 import main.model.UserSession;
 
 import java.net.URL;
+import java.sql.Date;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class BookingController implements Initializable {
+    Map<String, String> userObject = new HashMap<>();
     SceneController sceneController = new SceneController();
-    Booking booking;
+    UserModel userModel = new UserModel();
+    BookingSession bookingSession;
     UserSession userSession;
 
     @FXML
@@ -70,7 +77,10 @@ public class BookingController implements Initializable {
     public void GoToConfirmBooking(ActionEvent event) throws Exception {
         ToggleButton selectedToggleButton = (ToggleButton) seatGroup.getSelectedToggle();
         if (selectedToggleButton != null && bookDate.getValue() != null){
-            booking = new Booking(selectedToggleButton.getText(), bookDate.getValue(), UserSession.getUserName());
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
+            userObject = userModel.getUserDetail(UserSession.getUserName(), UserSession.getPassword());
+            bookingSession = new BookingSession(selectedToggleButton.getText(), Date.valueOf(bookDate.getValue()), userObject.get("firstname") + " " + userObject.get("lastname"), false);
             sceneController.openScene(btnNext, "ui/UserConfirmBooking.fxml");
         }else{
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);

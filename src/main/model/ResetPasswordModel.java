@@ -35,8 +35,10 @@ public class ResetPasswordModel {
         } catch (Exception e) {
             userFound = false;
         }finally {
-            preparedStatement.close();
-            resultSet.close();
+            if (preparedStatement != null && resultSet != null) {
+                preparedStatement.close();
+                resultSet.close();
+            }
         }
         return userFound;
     }
@@ -56,8 +58,10 @@ public class ResetPasswordModel {
             secretQuestion = "null";
             e.printStackTrace();
         }finally {
-            preparedStatement.close();
-            resultSet.close();
+            if (preparedStatement != null && resultSet != null) {
+                preparedStatement.close();
+                resultSet.close();
+            }
         }
         return secretQuestion;
     }
@@ -75,8 +79,10 @@ public class ResetPasswordModel {
         } catch (Exception e) {
             return false;
         }finally {
-            preparedStatement.close();
-            resultSet.close();
+            if (preparedStatement != null && resultSet != null) {
+                preparedStatement.close();
+                resultSet.close();
+            }
         }
     }
 
@@ -96,7 +102,7 @@ public class ResetPasswordModel {
     }
 
     public String generatePassword() {
-        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~!@#$%^&*()-=+[{]}<.>/?";
-        return RandomStringUtils.random( 15, characters );
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&()[{]}<>/?";
+        return RandomStringUtils.random( 10, characters );
     }
 }

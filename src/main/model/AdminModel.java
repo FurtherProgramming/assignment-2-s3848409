@@ -46,8 +46,10 @@ public class AdminModel {
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
-            preparedStatement.close();
-            resultSet.close();
+            if (preparedStatement != null && resultSet != null) {
+                preparedStatement.close();
+                resultSet.close();
+            }
         }
         return adminObject;
     }

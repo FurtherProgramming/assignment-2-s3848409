@@ -1353,7 +1353,7 @@
       <DataType>TEXT|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="497" parent="170" name="confirmation">
+    <column id="497" parent="170" name="status">
       <Position>5</Position>
       <DataType>boolean|0s</DataType>
     </column>

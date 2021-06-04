@@ -1,25 +1,22 @@
 package main.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import main.Main;
+
 import main.model.LoginModel;
+import main.model.UserSession;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import javafx.stage.Stage;
-import main.model.UserSession;
+
 
 public class LoginController implements Initializable {
     public LoginModel loginModel = new LoginModel();

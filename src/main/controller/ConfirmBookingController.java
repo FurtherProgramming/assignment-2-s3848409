@@ -2,30 +2,23 @@ package main.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
-import main.Main;
-import main.model.Booking;
-import main.model.BookingModel;
-import main.model.UserSession;
 
-import java.io.IOException;
+import main.model.BookingSession;
+import main.model.BookingModel;
+
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ConfirmBookingController implements Initializable {
     SceneController sceneController = new SceneController();
     BookingModel bookingModel = new BookingModel();
-    Booking booking;
+    BookingSession bookingSession;
 
     @FXML
     private Button btnBack;
@@ -40,9 +33,9 @@ public class ConfirmBookingController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        lblOwner.setText(Booking.getBookingOwner());
-        lblSeat.setText(Booking.getBookingSeat());
-        lblDate.setText(Booking.getBookingDateAsString());
+        lblOwner.setText(BookingSession.getBookingOwner());
+        lblSeat.setText(BookingSession.getBookingSeat());
+        lblDate.setText(BookingSession.getBookingDateAsString());
     }
 
     public void BackToUserBooking(ActionEvent event) throws Exception {
@@ -51,7 +44,7 @@ public class ConfirmBookingController implements Initializable {
 
     public void ConfirmBooking(ActionEvent event) throws Exception {
         try{
-            if(bookingModel.isBooked(Booking.getBookingSeat(), Booking.getBookingDate(), Booking.getBookingOwner())){
+            if(bookingModel.isBooked(BookingSession.getBookingSeat(), BookingSession.getBookingDate(), BookingSession.getBookingOwner(), false)){
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                 successAlert.setHeaderText("Success");
                 successAlert.setContentText("Your booking has been made...");
@@ -59,7 +52,7 @@ public class ConfirmBookingController implements Initializable {
                 if(!((Optional<?>) result).isPresent() || result.get() == ButtonType.OK){
                     sceneController.openScene(btnConfirmBooking, "ui/UserProfile.fxml");
                 }
-                Booking.deleteBookingObject();
+                BookingSession.deleteBookingObject();
             }else{
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                 errorAlert.setHeaderText("Error...");

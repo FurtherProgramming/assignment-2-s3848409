@@ -1,7 +1,6 @@
 package main.model;
 
 import main.SQLConnection;
-import org.sqlite.SQLiteConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -44,8 +43,10 @@ public class LoginModel {
         } catch (Exception e) {
             return false;
         }finally {
-           preparedStatement.close();
-           resultSet.close();
+            if (preparedStatement != null && resultSet != null) {
+                preparedStatement.close();
+                resultSet.close();
+            }
         }
     }
 

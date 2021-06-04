@@ -38,15 +38,17 @@ public class UserModel {
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
-            preparedStatement.close();
-            resultSet.close();
+            if (preparedStatement != null && resultSet != null) {
+                preparedStatement.close();
+                resultSet.close();
+            }
         }
         return userObject;
     }
 
     public boolean UpdateDetail(String firstName, String lastName, String role, String userName, String password, String question, String answer) throws SQLException {
         boolean Success = false;
-        String user = userSession.getUserName();
+        String user = UserSession.getUserName();
         String sql = "UPDATE Employee SET firstname = ? , "
                 + "lastname = ?, "
                 + "role = ?, "
@@ -70,7 +72,6 @@ public class UserModel {
             statement.executeUpdate();
             Success = true;
         } catch (SQLException e) {
-            Success = false;
             System.out.println(e.getMessage());
         }
         return Success;

@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="292.0" prefWidth="366.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.BookingController">
+<AnchorPane prefHeight="292.0" prefWidth="366.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.UserBookingItemController">
    <children>
       <Label layoutX="123.0" layoutY="28.0" text="Friday, 28 June">
          <font>

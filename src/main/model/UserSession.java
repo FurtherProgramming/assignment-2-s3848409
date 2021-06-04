@@ -1,7 +1,6 @@
 package main.model;
 
 public final class UserSession {
-
     private static UserSession instance;
     private static String userName;
     private static String password;

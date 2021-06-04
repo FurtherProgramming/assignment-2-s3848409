@@ -3,6 +3,7 @@ package main.model;
 import main.SQLConnection;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
@@ -24,17 +25,12 @@ public class BookingModel {
         }
     }
 
-    public boolean isBooked(String seat, LocalDate bookingDate, String ownerName) {
-        connection = SQLConnection.connect();
+    public boolean isBooked(String seat, Date bookingDate, String ownerName, boolean confirmation) {
         boolean Success = false;
         try {
             Statement statement = connection.createStatement();
-            int status = statement.executeUpdate("insert into Booking (bookingDate, seat, ownerName, confirmation) values ('"+bookingDate+"','"+seat+"','"+ownerName+"','"+false+"') ");
-            if (status > 0) {
-                Success = true;
-            } else {
-                Success = false;
-            }
+            int status = statement.executeUpdate("insert into Booking (bookingDate, seat, ownerName, status) values ('"+bookingDate+"','"+seat+"','"+ownerName+"','"+confirmation+"') ");
+            Success = status > 0;
         } catch (SQLException e) {
             e.printStackTrace();
         }
