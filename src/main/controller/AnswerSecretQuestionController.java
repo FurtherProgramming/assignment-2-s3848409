@@ -61,15 +61,11 @@ public class AnswerSecretQuestionController implements Initializable {
                 }
                 UserSession.cleanUserSession();
             }else{
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                errorAlert.setContentText("Incorrect Answer to your secret question.");
-                errorAlert.showAndWait();
+                sceneController.showError("Error", "Incorrect Answer to your secret question.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-            errorAlert.setContentText("Unable to change your password.");
-            errorAlert.showAndWait();
+            sceneController.showError("Error", "Unable to change your password.");
         }
     }
 }

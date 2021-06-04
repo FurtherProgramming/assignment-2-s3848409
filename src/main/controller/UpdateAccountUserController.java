@@ -60,11 +60,9 @@ public class UpdateAccountUserController implements Initializable {
     public void SaveChanges(ActionEvent event) throws Exception {
         if(userModel.UpdateDetail(txtFirstName.getText(), txtLastName.getText(), txtRole.getText(), txtUsername.getText(), txtPassword.getText(), String.valueOf(secretQuestion.getValue()), txtAnswer.getText())){
             UserSession.getInstance(txtUsername.getText(), txtPassword.getText(), false);
-            sceneController.openScene(btnSaveChanges, "ui/UserProfile.fxml");
+            sceneController.showInfo("Success", "Your account detail has been changed.", btnSaveChanges, "ui/UserProfile.fxml");
         }else{
-            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-            errorAlert.setContentText("Unable to update your account detail.");
-            errorAlert.showAndWait();
+            sceneController.showError("Error", "Unable to update your account details.");
         }
     }
 

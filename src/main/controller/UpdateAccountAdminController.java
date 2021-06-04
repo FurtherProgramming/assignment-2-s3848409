@@ -64,11 +64,9 @@ public class UpdateAccountAdminController implements Initializable {
     public void SaveChanges(ActionEvent event) throws Exception {
         if(adminModel.UpdateDetail(txtFirstName.getText(), txtLastName.getText(), txtRole.getText(), txtUsername.getText(), txtPassword.getText(), chkAdmin.isSelected(), String.valueOf(secretQuestion.getValue()), txtAnswer.getText())){
             UserSession.getInstance(txtUsername.getText(), txtPassword.getText(), true);
-            sceneController.openScene(btnSaveChanges, "ui/AdminProfile.fxml");
+            sceneController.showInfo("Success", "Your account detail has been changed.", btnSaveChanges, "ui/AdminProfile.fxml");
         }else{
-            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-            errorAlert.setContentText("Unable to update account detail...");
-            errorAlert.showAndWait();
+            sceneController.showError("Error", "Unable to update account detail at the moment.");
         }
     }
 
@@ -78,18 +76,14 @@ public class UpdateAccountAdminController implements Initializable {
                 sceneController.openScene(btnSaveChanges, "ui/Login.fxml");
                 UserSession.cleanUserSession();
             }else{
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                errorAlert.setContentText("Unable to delete account...");
-                errorAlert.showAndWait();
+                sceneController.showError("Error", "Unable to delete this account.");
             }
         }else{
             if(adminModel.DeleteAcc(txtUsername.getText())){
                 UserSession.getInstance(txtUsername.getText(), txtPassword.getText(), true);
                 sceneController.openScene(btnSaveChanges, "ui/AdminProfile.fxml");
             }else{
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                errorAlert.setContentText("Unable to delete account...");
-                errorAlert.showAndWait();
+                sceneController.showError("Error", "Unable to delete this account.");
             }
         }
     }

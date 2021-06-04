@@ -2,7 +2,6 @@ package main.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
@@ -31,9 +30,7 @@ public class ResetPasswordController {
             if (resetPasswordModel.userFound(txtUsername.getText())){
                 sceneController.openScene(btnContinue, "ui/AnswerSecretQuestion.fxml");
             }else{
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                errorAlert.setContentText("Username not found, please try again.");
-                errorAlert.showAndWait();
+                sceneController.showError("Error", "Username not found, please try again.");
             }
         } catch (SQLException | IOException e) {
             e.printStackTrace();

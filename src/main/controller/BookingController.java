@@ -83,9 +83,7 @@ public class BookingController implements Initializable {
             bookingSession = new BookingSession(selectedToggleButton.getText(), Date.valueOf(bookDate.getValue()), userObject.get("firstname") + " " + userObject.get("lastname"), false);
             sceneController.openScene(btnNext, "ui/UserConfirmBooking.fxml");
         }else{
-            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-            errorAlert.setContentText("Please select a seat and date.");
-            errorAlert.showAndWait();
+            sceneController.showError("Error", "Please select a seat and date.");
         }
 
     }

@@ -45,19 +45,10 @@ public class ConfirmBookingController implements Initializable {
     public void ConfirmBooking(ActionEvent event) throws Exception {
         try{
             if(bookingModel.isBooked(BookingSession.getBookingSeat(), BookingSession.getBookingDate(), BookingSession.getBookingOwner(), false)){
-                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                successAlert.setHeaderText("Success");
-                successAlert.setContentText("Your booking has been made...");
-                Optional<ButtonType> result = successAlert.showAndWait();
-                if(!((Optional<?>) result).isPresent() || result.get() == ButtonType.OK){
-                    sceneController.openScene(btnConfirmBooking, "ui/UserProfile.fxml");
-                }
+                sceneController.showInfo("Success","Your booking has been made...", btnConfirmBooking, "ui/UserProfile.fxml");
                 BookingSession.deleteBookingObject();
             }else{
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                errorAlert.setHeaderText("Error...");
-                errorAlert.setContentText("Booking failed, please try again.");
-                errorAlert.showAndWait();
+                sceneController.showError("Error", "Booking failed, please try again.");
             }
         }catch (Exception e){
             e.printStackTrace();
