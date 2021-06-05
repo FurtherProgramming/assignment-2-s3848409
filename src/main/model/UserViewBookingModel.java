@@ -1,12 +1,13 @@
 package main.model;
 
 import main.SQLConnection;
+import main.object.BookingObject;
+import main.session.UserSession;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class UserViewBookingModel {

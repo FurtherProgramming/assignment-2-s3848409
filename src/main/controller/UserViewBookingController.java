@@ -2,22 +2,19 @@ package main.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Callback;
-import main.Main;
 import main.model.*;
+import main.object.BookingObject;
+import main.session.BookingSession;
+import main.session.UserSession;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.*;
 
 public class UserViewBookingController implements Initializable {

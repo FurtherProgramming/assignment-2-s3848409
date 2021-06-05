@@ -11,7 +11,6 @@ import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.Main;
-import main.model.BookingSession;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -72,5 +71,13 @@ public class SceneController {
         if(!((Optional<?>) result).isPresent() || result.get() == ButtonType.OK){
             openScene(btn, resource);
         }
+    }
+
+    public boolean showConfirmation(String headerText, String contentText) {
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setHeaderText(headerText);
+        confirmAlert.setContentText(contentText);
+        final Optional<ButtonType> result = confirmAlert.showAndWait();
+        return ((Optional<?>) result).isPresent() && result.get() == ButtonType.OK;
     }
 }

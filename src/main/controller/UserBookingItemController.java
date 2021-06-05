@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import main.model.BookingSession;
+import main.session.BookingSession;
 
 import java.io.IOException;
 import java.net.URL;
@@ -36,6 +36,8 @@ public class UserBookingItemController implements Initializable {
     }
 
     public void CancelBooking(ActionEvent event) {
+        boolean cancel = sceneController.showConfirmation("Cancel Booking", "Do you want to cancel this booking?");
+        System.out.println(cancel);
     }
 
     public void CheckInBooking(ActionEvent event) {

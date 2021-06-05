@@ -9,7 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.paint.Color;
 
 import main.model.LoginModel;
-import main.model.UserSession;
+import main.session.UserSession;
 
 import java.io.IOException;
 import java.net.URL;

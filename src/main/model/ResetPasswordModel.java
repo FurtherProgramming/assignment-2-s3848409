@@ -1,6 +1,7 @@
 package main.model;
 
 import main.SQLConnection;
+import main.session.UserSession;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.sql.Connection;

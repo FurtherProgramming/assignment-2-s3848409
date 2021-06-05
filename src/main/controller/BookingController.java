@@ -5,9 +5,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-import main.model.BookingSession;
+import main.session.BookingSession;
 import main.model.UserModel;
-import main.model.UserSession;
+import main.session.UserSession;
 
 import java.net.URL;
 import java.sql.Date;

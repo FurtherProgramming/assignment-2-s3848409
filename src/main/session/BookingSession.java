@@ -1,9 +1,8 @@
-package main.model;
+package main.session;
 
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 
 public final class BookingSession {
     public static String bookingSeat;

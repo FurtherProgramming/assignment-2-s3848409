@@ -1,6 +1,7 @@
 package main.model;
 
 import main.SQLConnection;
+import main.session.UserSession;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

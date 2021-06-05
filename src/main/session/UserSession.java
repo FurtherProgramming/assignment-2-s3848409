@@ -1,4 +1,4 @@
-package main.model;
+package main.session;
 
 public final class UserSession {
     private static UserSession instance;

@@ -7,7 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
 import main.model.ResetPasswordModel;
-import main.model.UserSession;
+import main.session.UserSession;
 
 import java.net.URL;
 import java.sql.SQLException;

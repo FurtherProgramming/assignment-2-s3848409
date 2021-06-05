@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import main.model.AdminModel;
-import main.model.UserSession;
+import main.session.UserSession;
 
 import java.net.URL;
 import java.sql.SQLException;

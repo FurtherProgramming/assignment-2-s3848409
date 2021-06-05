@@ -5,7 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import main.model.RegisterModel;
-import main.model.UserSession;
+import main.session.UserSession;
 
 import java.io.IOException;
 import java.net.URL;
