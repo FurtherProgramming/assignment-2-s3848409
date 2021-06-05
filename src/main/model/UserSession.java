@@ -32,8 +32,8 @@ public final class UserSession {
     public static boolean getAdmin() { return admin; }
 
     public static void cleanUserSession() {
-        userName = "";
-        password = "";
+        userName = null;
+        password = null;
         admin = false;
     }
 

@@ -1,6 +1,6 @@
 package main.model;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
@@ -9,13 +9,13 @@ public final class BookingSession {
     public static String bookingSeat;
     public static Date bookingDate;
     public static String bookingOwner;
-    public static boolean confirmation;
+    public static boolean bookingStatus;
 
-    public BookingSession(String bookingSeat, Date bookingDate, String bookingOwner, boolean confirmation){
+    public BookingSession(String bookingSeat, Date bookingDate, String bookingOwner, boolean bookingStatus){
         BookingSession.bookingSeat = bookingSeat;
         BookingSession.bookingDate = bookingDate;
         BookingSession.bookingOwner = bookingOwner;
-        BookingSession.confirmation = confirmation;
+        BookingSession.bookingStatus = bookingStatus;
     }
 
     public static String getBookingSeat() {
@@ -35,16 +35,25 @@ public final class BookingSession {
         return bookingOwner;
     }
 
-    public static boolean getBookingConfirmation() { return confirmation; }
+    public static boolean getBookingStatus() {
+        return bookingStatus;
+    }
+
+    public static String getBookingStatusAsString() {
+        String status;
+        if(bookingStatus){
+            status = "Approved";
+        }else{
+            status = "Not Approved";
+        }
+        return status;
+    }
 
     public static void deleteBookingObject() {
         BookingSession.bookingSeat = null;
         BookingSession.bookingDate = null;
         BookingSession.bookingOwner = null;
-        BookingSession.confirmation = false;
+        BookingSession.bookingStatus = false;
     }
 
-    public static void showData(){
-        System.out.println(getBookingSeat()+getBookingOwner()+getBookingDate());
-    }
 }

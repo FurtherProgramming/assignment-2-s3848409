@@ -2,19 +2,22 @@ package main.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import main.Main;
 import main.model.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.*;
 
 public class UserViewBookingController implements Initializable {
@@ -28,19 +31,19 @@ public class UserViewBookingController implements Initializable {
     @FXML
     private Button btnBack;
     @FXML
-    private TableView bookingViewTable;
+    private TableView<BookingObject> bookingViewTable;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        TableColumn<String, BookingObject> date = new TableColumn<>("Date");
+        TableColumn<BookingObject, String> date = new TableColumn<>("Date");
         date.setCellValueFactory(new PropertyValueFactory<>("bookingDate"));
         date.setStyle( "-fx-alignment: CENTER;");
 
-        TableColumn<String, BookingObject> seat = new TableColumn<>("Seat");
+        TableColumn<BookingObject, String> seat = new TableColumn<>("Seat");
         seat.setCellValueFactory(new PropertyValueFactory<>("bookingSeat"));
         seat.setStyle( "-fx-alignment: CENTER;");
 
-        TableColumn<String, BookingObject> status = new TableColumn<>("Status");
+        TableColumn<BookingObject, String> status = new TableColumn<>("Status");
         status.setCellValueFactory(new PropertyValueFactory<>("bookingStatus"));
         status.setStyle( "-fx-alignment: CENTER;");
 
@@ -71,6 +74,8 @@ public class UserViewBookingController implements Initializable {
                     {
                         btn.setOnAction((ActionEvent event) -> {
                             try {
+                                BookingObject bookingItem = (BookingObject) getTableRow().getItem();
+                                BookingSession bookingSession = new BookingSession(bookingItem.getBookingSeat(), bookingItem.getBookingDateAsDate(), bookingItem.getBookingOwner(), bookingItem.getBookingStatusAsBool());
                                 sceneController.openScene(btn, "ui/UserBookingItem.fxml");
                             } catch (IOException e) {
                                 e.printStackTrace();

@@ -9,22 +9,23 @@ public class BookingObject {
     String bookingSeat;
     String bookingDate;
     String bookingOwner;
-    String bookingStatus;
+    boolean bookingStatus;
+    Date tempDate;
 
-    public BookingObject(String bookingSeat, String bookingDate, String bookingOwner, String bookingStatus) throws ParseException {
+    public BookingObject(String bookingSeat, String bookingDate, String bookingOwner, boolean bookingStatus) throws ParseException {
         this.bookingSeat = bookingSeat;
         this.bookingOwner = bookingOwner;
-        Date tempDate = new SimpleDateFormat("yyyy-MM-dd").parse(bookingDate);
+        tempDate = new SimpleDateFormat("yyyy-MM-dd").parse(bookingDate);
         this.bookingDate = newFormat.format(tempDate);
-        if(bookingStatus.equals("1") || bookingStatus.equals("true")){
-            this.bookingStatus = "Approved";
-        }else{
-            this.bookingStatus = "Not Approved";
-        }
+        this.bookingStatus = bookingStatus;
     }
 
     public String getBookingSeat() {
         return bookingSeat;
+    }
+
+    public Date getBookingDateAsDate() {
+        return tempDate;
     }
 
     public String getBookingDate() {
@@ -35,13 +36,23 @@ public class BookingObject {
         return bookingOwner;
     }
 
-    public String getBookingStatus() { return bookingStatus; }
+    public String getBookingStatus() {
+        String bookingStatusAsString;
+        if(bookingStatus){
+            bookingStatusAsString = "Approved";
+        }else{
+            bookingStatusAsString = "Not Approved";
+        }
+        return bookingStatusAsString;
+    }
+
+    public boolean getBookingStatusAsBool() { return bookingStatus; }
 
     public void deleteBookingObject() {
         this.bookingSeat = null;
         this.bookingDate = null;
         this.bookingOwner = null;
-        this.bookingStatus = null;
+        this.bookingStatus = false;
     }
 
 }

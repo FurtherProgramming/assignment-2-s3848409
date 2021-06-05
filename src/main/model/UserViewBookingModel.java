@@ -21,7 +21,6 @@ public class UserViewBookingModel {
     }
 
     public ArrayList<BookingObject> getBookings (String owner) throws SQLException {
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         String query = "SELECT * FROM Booking WHERE ownerName = ?";
@@ -30,7 +29,7 @@ public class UserViewBookingModel {
             preparedStatement.setString(1, owner);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                bookingObject.add(new BookingObject(resultSet.getString("seat"), resultSet.getString("bookingDate"), resultSet.getString("ownerName"), resultSet.getString("status")));
+                bookingObject.add(new BookingObject(resultSet.getString("seat"), resultSet.getString("bookingDate"), resultSet.getString("ownerName"), resultSet.getBoolean("status")));
             }
         } catch (Exception e) {
             e.printStackTrace();

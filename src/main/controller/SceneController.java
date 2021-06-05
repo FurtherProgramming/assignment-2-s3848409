@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import main.Main;
 import main.model.BookingSession;
 
@@ -25,9 +26,26 @@ public class SceneController {
             window.setScene(scene);
             window.setResizable(false);
             window.show();
-        }catch (Exception e){
-            e.printStackTrace();
+        }catch (IOException e){
+            showError("Error", "Cannot open requested scene at the moment.");
         }
+    }
+
+    public void openSceneNewWindow(String resource) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource(resource));
+            Stage stage = new Stage(StageStyle.DECORATED);
+            stage.setScene(new Scene(loader.load()));
+            stage.show();
+        }catch (IOException e){
+            showError("Error", "Cannot open requested scene at the moment.");
+        }
+
+    }
+
+    public void closeScene(Button btn){
+        Stage stage = (Stage) btn.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
