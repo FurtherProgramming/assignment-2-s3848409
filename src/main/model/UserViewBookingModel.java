@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class UserViewBookingModel {
     ArrayList<BookingObject> bookingObject = new ArrayList<>();
@@ -41,6 +42,39 @@ public class UserViewBookingModel {
             }
         }
         return bookingObject;
+    }
+
+    public boolean CancelBooking(String seat, Date bookingDate){
+        boolean success = false;
+        java.sql.Date sqlDate = new java.sql.Date(bookingDate.getTime());
+        String sql = "DELETE FROM Booking WHERE ( seat = ? AND bookingDate = ? )";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, seat);
+            statement.setString(2, String.valueOf(sqlDate));
+            statement.executeUpdate();
+            success = true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return success;
+    }
+
+    public boolean CheckInBooking(String seat, Date bookingDate){
+        boolean success = false;
+        java.sql.Date sqlDate = new java.sql.Date(bookingDate.getTime());
+        String sql = "UPDATE Booking SET checkIn = ? WHERE ( seat = ? AND bookingDate = ? )";
+        try{
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setBoolean(1, true);
+            statement.setString(2, seat);
+            statement.setString(3, String.valueOf(sqlDate));
+            statement.executeUpdate();
+            success = true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return success;
     }
 
 }

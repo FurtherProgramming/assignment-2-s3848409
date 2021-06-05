@@ -5,13 +5,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import main.model.UserViewBookingModel;
 import main.session.BookingSession;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class UserBookingItemController implements Initializable {
+    UserViewBookingModel userViewBookingModel = new UserViewBookingModel();
     SceneController sceneController = new SceneController();
     BookingSession object;
 
@@ -35,12 +38,26 @@ public class UserBookingItemController implements Initializable {
         lblStatus.setText(lblStatus.getText() + "  " + BookingSession.getBookingStatusAsString());
     }
 
-    public void CancelBooking(ActionEvent event) {
+    public void CancelBooking(ActionEvent event) throws IOException {
         boolean cancel = sceneController.showConfirmation("Cancel Booking", "Do you want to cancel this booking?");
-        System.out.println(cancel);
+        if(cancel){
+            if(userViewBookingModel.CancelBooking(BookingSession.getBookingSeat(), BookingSession.getBookingDate())){
+                sceneController.showInfo("Success", "Your booking has been cancelled.", btnCancel, "ui/UserViewBooking.fxml");
+            }else {
+                sceneController.showError("Database Error", "Cannot cancel the booking at the moment");
+            }
+        }
     }
 
-    public void CheckInBooking(ActionEvent event) {
+    public void CheckInBooking(ActionEvent event) throws IOException {
+        boolean cancel = sceneController.showConfirmation("Check-In", "Do you want to check-in this booking?");
+        if(cancel){
+            if(userViewBookingModel.CheckInBooking(BookingSession.getBookingSeat(), BookingSession.getBookingDate())){
+                sceneController.showInfo("Success", "You have checked-in this booking", btnCheckIn, "ui/UserViewBooking.fxml");
+            }else {
+                sceneController.showError("Database Error", "Cannot check-in at the moment");
+            }
+        }
     }
 
     public void Back(ActionEvent event) throws IOException {

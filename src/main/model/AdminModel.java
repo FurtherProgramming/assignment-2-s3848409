@@ -89,16 +89,16 @@ public class AdminModel {
     }
 
     public boolean DeleteAcc(String userName){
-        boolean Success = false;
+        boolean success = false;
         String sql = "DELETE FROM Employee WHERE username = ?";
         try{
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, userName);
             statement.executeUpdate();
-            Success = true;
+            success = true;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return Success;
+        return success;
     }
 }
