@@ -57,7 +57,7 @@ public class RegisterController implements Initializable {
         }else{
             if (RegisterModel.isRegistered(firstName, lastName, role, userName, password, question, answer)){
                 UserSession.getInstance(txtUsername.getText(), txtPassword.getText(), false);
-                sceneController.showInfo("Success", "Your account has been created", btnRegister, "ui/UserProfile.fxml");
+                sceneController.showInfo("Success", "Your account has been created", btnRegister, "ui/user/UserProfile.fxml");
             }else{
                 sceneController.showError("Error", "There is a problem when registering your account. Please try again...");
             }

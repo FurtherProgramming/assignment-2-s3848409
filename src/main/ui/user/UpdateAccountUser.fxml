@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="530.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.202-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.user.UpdateAccountUserController">
+    <children>
+        <TextField fx:id="txtFirstName" layoutX="240.0" layoutY="102.0" AnchorPane.rightAnchor="111.0" AnchorPane.topAnchor="102.0" />
+        <TextField fx:id="txtLastName" layoutX="239.0" layoutY="152.0" AnchorPane.rightAnchor="112.0" AnchorPane.topAnchor="152.0" />
+        <TextField fx:id="txtUsername" layoutX="239.0" layoutY="252.0" AnchorPane.rightAnchor="112.0" AnchorPane.topAnchor="252.0" />
+        <PasswordField fx:id="txtPassword" layoutX="240.0" layoutY="302.0" AnchorPane.rightAnchor="111.0" AnchorPane.topAnchor="302.0" />
+        <TextField fx:id="txtRole" layoutX="239.0" layoutY="202.0" AnchorPane.rightAnchor="112.0" AnchorPane.topAnchor="202.0" />
+        <TextField fx:id="txtAnswer" layoutX="239.0" layoutY="402.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.rightAnchor="112.0" AnchorPane.topAnchor="402.0" />
+        <Label alignment="CENTER" layoutX="161.0" layoutY="33.0" prefHeight="45.0" prefWidth="198.0" text="Update Account Detail" textAlignment="CENTER">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label alignment="TOP_RIGHT" layoutX="116.0" layoutY="101.0" prefHeight="26.0" prefWidth="80.0" text="First Name:" AnchorPane.leftAnchor="116.0" AnchorPane.topAnchor="101.0">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Label alignment="CENTER_RIGHT" layoutX="116.0" layoutY="151.0" prefHeight="26.0" prefWidth="80.0" text="Last Name:" AnchorPane.leftAnchor="116.0" AnchorPane.topAnchor="151.0">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Label alignment="CENTER_RIGHT" layoutX="116.0" layoutY="201.0" prefHeight="26.0" prefWidth="80.0" text="Role:" AnchorPane.leftAnchor="116.0" AnchorPane.topAnchor="201.0">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Label alignment="CENTER_RIGHT" layoutX="116.0" layoutY="251.0" prefHeight="26.0" prefWidth="80.0" text="Username:" AnchorPane.leftAnchor="116.0" AnchorPane.topAnchor="251.0">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Label alignment="CENTER_RIGHT" layoutX="116.0" layoutY="301.0" prefHeight="26.0" prefWidth="80.0" text="Password:" textAlignment="RIGHT" AnchorPane.leftAnchor="116.0" AnchorPane.topAnchor="301.0">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Label alignment="CENTER_RIGHT" layoutX="116.0" layoutY="401.0" prefHeight="26.0" prefWidth="80.0" text="Answer:" AnchorPane.leftAnchor="116.0" AnchorPane.topAnchor="401.0">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Label alignment="CENTER_RIGHT" layoutX="81.0" layoutY="351.0" prefHeight="26.0" prefWidth="115.0" text="Secret Question:" AnchorPane.leftAnchor="81.0" AnchorPane.topAnchor="351.0">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <ComboBox fx:id="secretQuestion" layoutX="239.0" layoutY="352.0" prefHeight="25.0" prefWidth="198.0" promptText="Choose one" AnchorPane.rightAnchor="63.0" />
+        <Button fx:id="btnCancel" layoutX="165.0" layoutY="461.0" mnemonicParsing="false" onAction="#Cancel" prefHeight="31.0" prefWidth="74.0" style="-fx-background-radius: 8; -fx-background-color: #0f73fb; " text="Cancel" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+        <Button fx:id="btnSaveChanges" layoutX="260.0" layoutY="461.0" mnemonicParsing="false" onAction="#SaveChanges" prefHeight="31.0" prefWidth="74.0" style="-fx-background-radius: 8; -fx-background-color: #3ab63e; -fx-font-weight: bold;" text="Confirm" textFill="WHITE" />
+
+    </children>
+
+</AnchorPane>

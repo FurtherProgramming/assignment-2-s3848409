@@ -50,10 +50,10 @@ public class LoginController implements Initializable {
             if (loginModel.isLogin(txtUsername.getText(), txtPassword.getText())){
                 if (loginModel.admin){
                     userSession = UserSession.getInstance(txtUsername.getText(), txtPassword.getText(), true);
-                    sceneController.openScene(btnLogin, "ui/AdminProfile.fxml");
+                    sceneController.openScene(btnLogin, "ui/admin/AdminProfile.fxml");
                 }else{
                     userSession = UserSession.getInstance(txtUsername.getText(), txtPassword.getText(), false);
-                    sceneController.openScene(btnLogin, "ui/UserProfile.fxml");
+                    sceneController.openScene(btnLogin, "ui/user/UserProfile.fxml");
                 }
             }else{
                 isConnected.setTextFill(Color.web("red"));

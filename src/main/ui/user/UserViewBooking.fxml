@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="416.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/8.0.202-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.user.UserViewBookingController">
+   <children>
+      <Label layoutX="143.0" layoutY="26.0" text="Your Bookings">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+
+      <Button fx:id="btnBack" layoutX="15.0" layoutY="366.0" mnemonicParsing="false" onAction="#Back" prefHeight="36.0" prefWidth="79.0" style="-fx-background-radius: 8; -fx-background-color: #006fff; -fx-font-weight: bold;" text="Back" textFill="WHITE" />
+      <TableView fx:id="bookingViewTable" layoutX="34.0" layoutY="62.0" prefHeight="286.0" prefWidth="318.0" />
+   </children>
+</AnchorPane>

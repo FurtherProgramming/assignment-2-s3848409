@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="343.0" prefWidth="366.0" xmlns="http://javafx.com/javafx/8.0.202-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.user.UserBookingItemController">
+   <Label fx:id="lblDate" alignment="CENTER" contentDisplay="CENTER" layoutX="131.0" layoutY="30.0" text="Friday, 12 June" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="30.0">
+      <font>
+         <Font name="System Bold" size="15.0" />
+      </font>
+   </Label>
+   <Label fx:id="lblSeat" alignment="CENTER" layoutX="143.0" layoutY="75.0" prefHeight="21.0" prefWidth="82.0" text="Seat:" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="80.0">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </Label>
+   <Label fx:id="lblStatus" alignment="CENTER" layoutX="93.0" layoutY="115.0" prefHeight="21.0" prefWidth="180.0" text="Status:" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="93.0" AnchorPane.topAnchor="115.0">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </Label>
+   <Button fx:id="btnCancel" layoutX="138.0" layoutY="223.0" mnemonicParsing="false" onAction="#CancelBooking" prefHeight="36.0" prefWidth="91.0" style="-fx-background-radius: 8; -fx-background-color: #dc2430; -fx-font-weight: bold;" text="Cancel" textFill="WHITE" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="220.0" />
+   <Button fx:id="btnCheckIn" layoutX="139.0" layoutY="163.0" mnemonicParsing="false" onAction="#CheckInBooking" prefHeight="36.0" prefWidth="91.0" style="-fx-background-radius: 8; -fx-background-color: #11cb53; -fx-font-weight: bold;" text="Check-In" textFill="WHITE" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="160.0" />
+   <Button fx:id="btnBack" layoutX="14.0" layoutY="293.0" mnemonicParsing="false" onAction="#Back" prefHeight="36.0" prefWidth="82.0" style="-fx-background-radius: 8; -fx-background-color: #0f73fb; -fx-font-weight: bold;" text="Back" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" />
+</AnchorPane>

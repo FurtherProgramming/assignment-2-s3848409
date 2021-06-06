@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="441.0" prefWidth="501.0" xmlns="http://javafx.com/javafx/8.0.202-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.user.UserController">
+    <children>
+        <Label fx:id="userName" alignment="CENTER" layoutX="109.0" layoutY="44.0" prefHeight="30.0" prefWidth="284.0" text="User">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+        <Button fx:id="btnBook" layoutX="190.0" layoutY="100.0" mnemonicParsing="false" onAction="#Book" prefHeight="54.0" prefWidth="123.0" style="-fx-background-radius: 8; -fx-background-color: #11cb53; -fx-font-weight: bold;" text="Book" textFill="WHITE" AnchorPane.topAnchor="100.0" />
+        <Button fx:id="btnViewBooking" layoutX="190.0" layoutY="180.0" mnemonicParsing="false" onAction="#ViewBooking" prefHeight="54.0" prefWidth="123.0" style="-fx-background-radius: 8; -fx-background-color: #0f73fb; -fx-font-weight: bold;" text="View Bookings" textFill="WHITE" AnchorPane.topAnchor="180.0" />
+        <Button fx:id="btnUpdateAcc" layoutX="190.0" layoutY="259.0" mnemonicParsing="false" onAction="#UpdateAccount" prefHeight="54.0" prefWidth="123.0" style="-fx-background-radius: 8; -fx-background-color: #0f73fb; -fx-font-weight: bold;" text="Update Account" textFill="WHITE" AnchorPane.topAnchor="259.0" />
+        <Button fx:id="btnSignOut" layoutX="405.0" layoutY="391.0" mnemonicParsing="false" onAction="#SignOut" prefHeight="36.0" prefWidth="82.0" style="-fx-background-radius: 8; -fx-background-color: #dc2430; -fx-font-weight: bold;" text="Sign Out" textFill="WHITE" />
+    </children>
+</AnchorPane>
