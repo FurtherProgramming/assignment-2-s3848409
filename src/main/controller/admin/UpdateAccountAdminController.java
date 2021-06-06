@@ -37,7 +37,7 @@ public class UpdateAccountAdminController implements Initializable {
     @FXML
     private CheckBox chkAdmin;
     @FXML
-    private Button btnSaveChanges;
+    private Button btnSave;
     @FXML
     private Button btnCancel;
     @FXML
@@ -65,7 +65,7 @@ public class UpdateAccountAdminController implements Initializable {
     public void SaveChanges(ActionEvent event) throws Exception {
         if(adminModel.UpdateDetail(txtFirstName.getText(), txtLastName.getText(), txtRole.getText(), txtUsername.getText(), txtPassword.getText(), chkAdmin.isSelected(), String.valueOf(secretQuestion.getValue()), txtAnswer.getText())){
             UserSession.getInstance(txtUsername.getText(), txtPassword.getText(), true);
-            sceneController.showInfo("Success", "Your account detail has been changed.", btnSaveChanges, "ui/admin/AdminProfile.fxml");
+            sceneController.showInfo("Success", "Your account detail has been changed.", btnSave, "ui/admin/AdminProfile.fxml");
         }else{
             sceneController.showError("Error", "Unable to update account detail at the moment.");
         }

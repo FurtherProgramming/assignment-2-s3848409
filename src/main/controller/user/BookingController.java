@@ -6,21 +6,27 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import main.controller.SceneController;
+import main.model.admin.AdminViewBookingModel;
+import main.model.user.UserViewBookingModel;
+import main.object.BookingObject;
 import main.session.BookingSession;
 import main.model.user.UserModel;
 import main.session.UserSession;
 
 import java.net.URL;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
 public class BookingController implements Initializable {
     Map<String, String> userObject = new HashMap<>();
+    UserViewBookingModel userViewBookingModel = new UserViewBookingModel();
     SceneController sceneController = new SceneController();
+    ArrayList<BookingObject> bookingObject = new ArrayList<>();
     UserModel userModel = new UserModel();
     BookingSession bookingSession;
     UserSession userSession;
@@ -73,20 +79,41 @@ public class BookingController implements Initializable {
                 setDisable(empty || date.compareTo(today) < 0 );
             }
         });
+        bookDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                final ToggleButton[] seatButtons = {btnSeat1, btnSeat2, btnSeat3, btnSeat4, btnSeat5, btnSeat6, btnSeat7, btnSeat8,
+                                                    btnSeat9, btnSeat10, btnSeat11, btnSeat12, btnSeat13, btnSeat14, btnSeat15};
+                bookingObject = userViewBookingModel.getAllBookingsOnDate(Date.valueOf(newValue));
+                for (BookingObject object : bookingObject){
+                    for(ToggleButton button : seatButtons){
+                        if(object.getBookingSeat().equals(button.getText())) {
+                            if(object.getCovidLocked()){
+                                button.setStyle("-fx-base: #ff8c00");
+                            }else{
+                                button.setStyle("-fx-base: #dc2430");
+                            }
+                            button.setDisable(true);
+                        }else {
+                            button.setStyle("-fx-base: #11cb53");
+                            button.setDisable(false);
+                        }
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public void GoToConfirmBooking(ActionEvent event) throws Exception {
         ToggleButton selectedToggleButton = (ToggleButton) seatGroup.getSelectedToggle();
         if (selectedToggleButton != null && bookDatePicker.getValue() != null){
-
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
             userObject = userModel.getUserDetail(UserSession.getUserName(), UserSession.getPassword());
-            bookingSession = new BookingSession(selectedToggleButton.getText(), Date.valueOf(bookDatePicker.getValue()), userObject.get("firstname") + " " + userObject.get("lastname"), false);
+            bookingSession = new BookingSession(selectedToggleButton.getText(), Date.valueOf(bookDatePicker.getValue()), userObject.get("firstname") + " " + userObject.get("lastname"), false, false);
             sceneController.openScene(btnNext, "ui/user/UserConfirmBooking.fxml");
         }else{
             sceneController.showError("Error", "Please select a seat and date.");
         }
-
     }
 
     public void Back(ActionEvent event) throws Exception {

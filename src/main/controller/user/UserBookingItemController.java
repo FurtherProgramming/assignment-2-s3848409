@@ -33,6 +33,9 @@ public class UserBookingItemController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if(BookingSession.getCheckIn()){
+            btnCheckIn.setDisable(true);
+        }
         lblDate.setText(BookingSession.getBookingDateAsString());
         lblSeat.setText(lblSeat.getText() + "  " + BookingSession.getBookingSeat());
         lblStatus.setText(lblStatus.getText() + "  " + BookingSession.getBookingStatusAsString());
@@ -50,8 +53,8 @@ public class UserBookingItemController implements Initializable {
     }
 
     public void CheckInBooking(ActionEvent event) throws IOException {
-        boolean cancel = sceneController.showConfirmation("Check-In", "Do you want to check-in this booking?");
-        if(cancel){
+        boolean checkIn = sceneController.showConfirmation("Check-In", "Do you want to check-in this booking?");
+        if(checkIn){
             if(userViewBookingModel.CheckInBooking(BookingSession.getBookingSeat(), BookingSession.getBookingDate())){
                 sceneController.showInfo("Success", "You have checked-in this booking", btnCheckIn, "ui/user/UserViewBooking.fxml");
             }else {

@@ -42,7 +42,7 @@ public class ConfirmBookingController implements Initializable {
 
     public void ConfirmBooking(ActionEvent event) throws Exception {
         try{
-            if(bookingModel.isBooked(BookingSession.getBookingSeat(), BookingSession.getBookingDate(), BookingSession.getBookingOwner(), false)){
+            if(bookingModel.isBooked(BookingSession.getBookingSeat(), BookingSession.getBookingDate(), BookingSession.getBookingOwner())){
                 sceneController.showInfo("Success","Your booking has been made...", btnConfirmBooking, "ui/user/UserProfile.fxml");
                 BookingSession.deleteBookingObject();
             }else{

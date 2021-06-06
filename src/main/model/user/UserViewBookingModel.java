@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 public class UserViewBookingModel {
     ArrayList<BookingObject> bookingObject = new ArrayList<>();
@@ -31,7 +31,12 @@ public class UserViewBookingModel {
             preparedStatement.setString(1, owner);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                bookingObject.add(new BookingObject(resultSet.getString("seat"), resultSet.getString("bookingDate"), resultSet.getString("ownerName"), resultSet.getBoolean("status")));
+                bookingObject.add(new BookingObject(resultSet.getString("seat"),
+                        resultSet.getString("bookingDate"),
+                        resultSet.getString("ownerName"),
+                        resultSet.getBoolean("status"),
+                        resultSet.getBoolean("checkIn"),
+                        resultSet.getBoolean("covidLocked")));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,4 +82,30 @@ public class UserViewBookingModel {
         return success;
     }
 
+    public ArrayList<BookingObject> getAllBookingsOnDate (Date bookingDate) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String query = "SELECT * FROM Booking WHERE bookingDate = ?";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, String.valueOf(bookingDate));
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                bookingObject.add(new BookingObject(resultSet.getString("seat"),
+                        resultSet.getString("bookingDate"),
+                        resultSet.getString("ownerName"),
+                        resultSet.getBoolean("status"),
+                        resultSet.getBoolean("checkIn"),
+                        resultSet.getBoolean("covidLocked")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (preparedStatement != null && resultSet != null) {
+                preparedStatement.close();
+                resultSet.close();
+            }
+        }
+        return bookingObject;
+    }
 }

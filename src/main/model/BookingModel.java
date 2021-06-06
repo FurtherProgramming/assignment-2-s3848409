@@ -25,11 +25,11 @@ public class BookingModel {
         }
     }
 
-    public boolean isBooked(String seat, Date bookingDate, String ownerName, boolean confirmation) {
+    public boolean isBooked(String seat, Date bookingDate, String ownerName) {
         boolean Success = false;
         try {
             Statement statement = connection.createStatement();
-            int status = statement.executeUpdate("insert into Booking (bookingDate, seat, ownerName, status) values ('"+bookingDate+"','"+seat+"','"+ownerName+"','"+confirmation+"') ");
+            int status = statement.executeUpdate("insert into Booking (bookingDate, seat, ownerName, status, checkIn, covidLocked) values ('"+bookingDate+"','"+seat+"','"+ownerName+"','"+false+"','"+false+"','"+false+"') ");
             Success = status > 0;
         } catch (SQLException e) {
             e.printStackTrace();

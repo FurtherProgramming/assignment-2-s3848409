@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="343.0" prefWidth="366.0" xmlns="http://javafx.com/javafx/8.0.202-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.admin.AdminBookingItemController">
+   <Label fx:id="lblDate" alignment="CENTER" contentDisplay="CENTER" layoutX="131.0" layoutY="30.0" text="Friday, 12 June" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="30.0">
+      <font>
+         <Font name="System Bold" size="15.0" />
+      </font>
+   </Label>
+   <Label fx:id="lblOwner" layoutX="40.0" layoutY="90.0" prefHeight="21.0" prefWidth="180.0" text="Owner:" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="146.0" AnchorPane.topAnchor="91.0">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </Label>
+   <Label fx:id="lblSeat" layoutX="227.0" layoutY="90.0" prefHeight="21.0" prefWidth="82.0" text="Seat:" AnchorPane.leftAnchor="227.0" AnchorPane.rightAnchor="53.0" AnchorPane.topAnchor="91.0">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </Label>
+   <Label fx:id="lblStatus" layoutX="40.0" layoutY="130.0" prefHeight="21.0" prefWidth="180.0" text="Status:" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="146.0" AnchorPane.topAnchor="135.0">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </Label>
+   <Label fx:id="lblCheckIn" layoutX="40.0" layoutY="170.0" prefHeight="21.0" prefWidth="145.0" text="Check-In:" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="181.0" AnchorPane.topAnchor="177.0">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </Label>
+   <Button fx:id="btnDeny" layoutX="75.0" layoutY="227.0" mnemonicParsing="false" onAction="#DenyBooking" prefHeight="36.0" prefWidth="85.0" style="-fx-background-radius: 8; -fx-background-color: #dc2430; -fx-font-weight: bold;" text="Deny" textFill="WHITE" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="195.0" AnchorPane.topAnchor="227.0" />
+   <Button fx:id="btnApprove" layoutX="188.0" layoutY="227.0" mnemonicParsing="false" onAction="#ApproveBooking" prefHeight="36.0" prefWidth="85.0" style="-fx-background-radius: 8; -fx-background-color: #11cb53; -fx-font-weight: bold;" text="Approve" textFill="WHITE" AnchorPane.leftAnchor="188.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="227.0" />
+   <Button fx:id="btnBack" layoutX="14.0" layoutY="293.0" mnemonicParsing="false" onAction="#Back" prefHeight="36.0" prefWidth="79.0" style="-fx-background-radius: 8; -fx-background-color: #0f73fb; -fx-font-weight: bold;" text="Back" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" />
+</AnchorPane>
