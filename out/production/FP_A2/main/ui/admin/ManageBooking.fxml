@@ -6,7 +6,7 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="581.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.202-ea"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.admin.AdminManageBookingController">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.admin.ManageBookingController">
    <Label layoutX="244.0" layoutY="14.0" text="Manage Bookings">
       <font>
          <Font name="System Bold" size="16.0" />

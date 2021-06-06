@@ -18,7 +18,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class AdminManageBookingController implements Initializable {
+public class ManageBookingController implements Initializable {
     AdminViewBookingModel adminViewBookingModel = new AdminViewBookingModel();
     SceneController sceneController = new SceneController();
     ArrayList<BookingObject> bookingObject = new ArrayList<>();

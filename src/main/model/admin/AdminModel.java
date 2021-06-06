@@ -1,18 +1,19 @@
 package main.model.admin;
 
 import main.SQLConnection;
+import main.object.BookingObject;
+import main.object.UserObject;
+import main.session.TempUserSession;
 import main.session.UserSession;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class AdminModel {
+    ArrayList<UserObject> userObject = new ArrayList<>();
     Connection connection;
-    UserSession userSession;
 
     public AdminModel(){
         connection = SQLConnection.connect();
@@ -20,29 +21,24 @@ public class AdminModel {
             System.exit(1);
     }
 
-    public Map<String, String> getAdminDetail(String user, String pass) throws SQLException {
-        Map<String, String> adminObject = new HashMap<>();
+    public Map<String, String> getAccountDetail(String userName) throws SQLException {
+        Map<String, String> accountObject = new HashMap<>();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        String query = "select * from employee where username = ? and password= ?";
+        String query = "select * from employee where username = ?";
         try {
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, user);
-            preparedStatement.setString(2, pass);
+            preparedStatement.setString(1, userName);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                adminObject.put("firstname", resultSet.getString("firstname"));
-                adminObject.put("lastname", resultSet.getString("lastname"));
-                adminObject.put("role", resultSet.getString("role"));
-                adminObject.put("username", resultSet.getString("username"));
-                adminObject.put("password", resultSet.getString("password"));
-                if (Integer.parseInt(resultSet.getString("admin")) == 1){
-                    adminObject.put("admin", "true");
-                }else{
-                    adminObject.put("admin", "false");
-                }
-                adminObject.put("question", resultSet.getString("question"));
-                adminObject.put("answer", resultSet.getString("answer"));
+                accountObject.put("firstname", resultSet.getString("firstname"));
+                accountObject.put("lastname", resultSet.getString("lastname"));
+                accountObject.put("role", resultSet.getString("role"));
+                accountObject.put("username", resultSet.getString("username"));
+                accountObject.put("password", resultSet.getString("password"));
+                accountObject.put("admin", resultSet.getString("admin"));
+                accountObject.put("question", resultSet.getString("question"));
+                accountObject.put("answer", resultSet.getString("answer"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,12 +48,12 @@ public class AdminModel {
                 resultSet.close();
             }
         }
-        return adminObject;
+        return accountObject;
     }
 
-    public boolean UpdateDetail(String firstName, String lastName, String role, String userName, String password, Boolean admin, String question, String answer) throws SQLException {
+    public boolean UpdateDetail(String thisUser, String firstName, String lastName, String role, String userName, String password, Boolean admin, String question, String answer) throws SQLException {
         boolean Success = false;
-        String user = UserSession.getUserName();
+
         String sql = "UPDATE Employee SET firstname = ? , "
                 + "lastname = ?, "
                 + "role = ?, "
@@ -78,14 +74,38 @@ public class AdminModel {
             statement.setBoolean(6, admin);
             statement.setString(7, question);
             statement.setString(8, answer);
-            statement.setString(9, user);
-
+            statement.setString(9, thisUser);
             statement.executeUpdate();
             Success = true;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return Success;
+    }
+
+    public ArrayList<UserObject> getAllUsers () throws SQLException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String query = "SELECT * FROM Employee";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                userObject.add(new UserObject(resultSet.getString("firstname"),
+                        resultSet.getString("lastname"),
+                        resultSet.getString("username"),
+                        resultSet.getString("role"),
+                        resultSet.getBoolean("admin")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (preparedStatement != null && resultSet != null) {
+                preparedStatement.close();
+                resultSet.close();
+            }
+        }
+        return userObject;
     }
 
     public boolean DeleteAcc(String userName){
@@ -101,4 +121,17 @@ public class AdminModel {
         }
         return success;
     }
+
+    public boolean CreateAccount(String firstName, String lastName, String role, String userName, String password, boolean admin, String question, String answer) {
+        boolean Success = false;
+        try {
+            Statement statement = connection.createStatement();
+            int status = statement.executeUpdate("insert into Employee (firstname, lastname, role, username, password, admin, question, answer) values ('"+firstName+"','"+lastName+"','"+role+"','"+userName+"','"+password+"','"+admin+"','"+question+"','"+answer+"') ");
+            Success = status > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Success;
+    }
+
 }

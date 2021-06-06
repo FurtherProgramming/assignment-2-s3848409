@@ -51,7 +51,7 @@ public class RegisterController implements Initializable {
         if(firstName.isEmpty() || lastName.isEmpty() || role.isEmpty() || userName.isEmpty() || password.isEmpty() || question.isEmpty() || answer.isEmpty()){
             sceneController.showError("Some fields may be blank", "Please complete all fields to continue.");
         }else if (!Character.isUpperCase(firstName.charAt(0)) || !Character.isUpperCase(lastName.charAt(0)) || !Character.isUpperCase(role.charAt(0)) ){
-            sceneController.showError("Missing uppercase letters.", "First name, last name, and role must have first uppercase letter.");
+            sceneController.showError("Missing uppercase letters.", "First Name, Last Name, and Role must have first uppercase letter.");
         }else if (password.length() < 5){
             sceneController.showError("Password is too short...", "Password must be more than five characters");
         }else{
@@ -62,7 +62,6 @@ public class RegisterController implements Initializable {
                 sceneController.showError("Error", "There is a problem when registering your account. Please try again...");
             }
         }
-
     }
 
     public void btnCancel(ActionEvent event)throws Exception{

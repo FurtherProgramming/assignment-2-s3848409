@@ -47,13 +47,14 @@ public class UpdateAccountAdminController implements Initializable {
     public void initialize(URL location, ResourceBundle resources){
         try {
             sceneController.getQuestion(secretQuestion);
-            adminObject = adminModel.getAdminDetail(UserSession.getUserName(), UserSession.getPassword());
+            adminObject = adminModel.getAccountDetail(UserSession.getUserName());
+            boolean admin = adminObject.get("admin").equals("1") || adminObject.get("admin").equals("true");
             txtFirstName.setText(adminObject.get("firstname"));
             txtLastName.setText(adminObject.get("lastname"));
             txtUsername.setText(adminObject.get("username"));
             txtPassword.setText(adminObject.get("password"));
             txtRole.setText(adminObject.get("role"));
-            chkAdmin.setSelected(Boolean.parseBoolean(adminObject.get("admin")));
+            chkAdmin.setSelected(admin);
             secretQuestion.setPromptText(adminObject.get("question"));
             secretQuestion.setValue(String.valueOf(adminObject.get("question")));
             txtAnswer.setText(adminObject.get("answer"));
@@ -63,7 +64,7 @@ public class UpdateAccountAdminController implements Initializable {
     }
 
     public void SaveChanges(ActionEvent event) throws Exception {
-        if(adminModel.UpdateDetail(txtFirstName.getText(), txtLastName.getText(), txtRole.getText(), txtUsername.getText(), txtPassword.getText(), chkAdmin.isSelected(), String.valueOf(secretQuestion.getValue()), txtAnswer.getText())){
+        if(adminModel.UpdateDetail(UserSession.getUserName(), txtFirstName.getText(), txtLastName.getText(), txtRole.getText(), txtUsername.getText(), txtPassword.getText(), chkAdmin.isSelected(), String.valueOf(secretQuestion.getValue()), txtAnswer.getText())){
             UserSession.getInstance(txtUsername.getText(), txtPassword.getText(), true);
             sceneController.showInfo("Success", "Your account detail has been changed.", btnSave, "ui/admin/AdminProfile.fxml");
         }else{
@@ -72,21 +73,25 @@ public class UpdateAccountAdminController implements Initializable {
     }
 
     public void DeleteAcc(ActionEvent event) throws Exception {
-        if(txtUsername.getText().equals(UserSession.getUserName())){
-            if(adminModel.DeleteAcc(txtUsername.getText())){
-                sceneController.openScene(btnDelete, "ui/Login.fxml");
-                UserSession.cleanUserSession();
+        boolean delete = sceneController.showConfirmation("Delete Account?", "Are you sure you want to delete this account?");
+        if(delete){
+            if(txtUsername.getText().equals(UserSession.getUserName())){
+                if(adminModel.DeleteAcc(txtUsername.getText())){
+                    sceneController.openScene(btnDelete, "ui/Login.fxml");
+                    UserSession.cleanUserSession();
+                }else{
+                    sceneController.showError("Error", "Unable to delete this account.");
+                }
             }else{
-                sceneController.showError("Error", "Unable to delete this account.");
-            }
-        }else{
-            if(adminModel.DeleteAcc(txtUsername.getText())){
-                UserSession.getInstance(txtUsername.getText(), txtPassword.getText(), true);
-                sceneController.openScene(btnDelete, "ui/admin/AdminProfile.fxml");
-            }else{
-                sceneController.showError("Error", "Unable to delete this account.");
+                if(adminModel.DeleteAcc(txtUsername.getText())){
+                    UserSession.getInstance(txtUsername.getText(), txtPassword.getText(), true);
+                    sceneController.openScene(btnDelete, "ui/admin/AdminProfile.fxml");
+                }else{
+                    sceneController.showError("Error", "Unable to delete this account.");
+                }
             }
         }
+
     }
 
     public void Cancel(ActionEvent event) throws Exception {

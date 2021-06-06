@@ -36,5 +36,4 @@ public final class UserSession {
         password = null;
         admin = false;
     }
-
 }

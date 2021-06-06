@@ -1,37 +1,46 @@
 package main.object;
 
-public final class UserObject {
-    private static UserObject user;
-    private static String userName;
-    private static String role;
-    private static boolean admin;
+public class UserObject {
+    private UserObject user;
+    private String firstName;
+    private String lastName;
+    private String userName;
+    private String role;
+    private boolean admin;
 
-    private UserObject(String userName, String role, boolean admin) {
-        UserObject.userName = userName;
-        UserObject.role = role;
-        UserObject.admin = admin;
+    public UserObject(String firstName, String lastName, String userName, String role, boolean admin) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.role = role;
+        this.admin = admin;
     }
 
-    public static UserObject getUser(String userName, String role, boolean admin) {
-        if(user == null) {
-            user = new UserObject(userName, role, admin);
-        }else{
-            UserObject.userName = userName;
-            UserObject.role = role;
-            UserObject.admin = admin;
-        }
-        return user;
-    }
+    public String getFirstName() { return firstName; }
 
-    public static String getUserName() { return userName; }
+    public String getLastName() { return lastName; }
 
-    public static String getRole() {
+    public String getUserName() { return userName; }
+
+    public String getRole() {
         return role;
     }
 
-    public static boolean getAdmin() { return admin; }
+    public Boolean getAdminAsBool() {
+        return admin;
+    }
 
-    public static void cleanUserSession() {
+    public String getAdmin() {
+        if(admin){
+            return "Admin";
+        }else{
+            return "User";
+        }
+    }
+
+    public void cleanUserSession() {
+        firstName = null;
+        lastName = null;
         userName = null;
         role = null;
         admin = false;
