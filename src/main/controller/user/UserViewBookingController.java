@@ -38,22 +38,27 @@ public class UserViewBookingController implements Initializable {
         TableColumn<BookingObject, Date> date = new TableColumn<>("Date");
         date.setCellValueFactory(new PropertyValueFactory<>("bookingDate"));
         date.setStyle( "-fx-alignment: CENTER;");
-        date.setPrefWidth(100);
+        date.setPrefWidth(90);
 
         TableColumn<BookingObject, String> seat = new TableColumn<>("Seat");
         seat.setCellValueFactory(new PropertyValueFactory<>("bookingSeat"));
         seat.setStyle( "-fx-alignment: CENTER;");
-        date.setPrefWidth(70);
+        seat.setPrefWidth(50);
 
         TableColumn<BookingObject, String> status = new TableColumn<>("Status");
         status.setCellValueFactory(new PropertyValueFactory<>("bookingStatus"));
         status.setStyle( "-fx-alignment: CENTER;");
-        date.setPrefWidth(100);
+        status.setPrefWidth(90);
+
+        TableColumn<BookingObject, String> checkIn = new TableColumn<>("Check-In");
+        checkIn.setCellValueFactory(new PropertyValueFactory<>("checkIn"));
+        checkIn.setStyle( "-fx-alignment: CENTER;");
+        checkIn.setPrefWidth(70);
 
         try {
             userObject = userModel.getUserDetail(UserSession.getUserName(), UserSession.getPassword());
             bookingObject = userViewBookingModel.getBookings(userObject.get("firstname") + " " + userObject.get("lastname"));
-            bookingViewTable.getColumns().addAll(date, seat, status);
+            bookingViewTable.getColumns().addAll(date, seat, status, checkIn);
             addButtonToTable();
             for (BookingObject object : bookingObject) {
                 bookingViewTable.getItems().add(object);
@@ -77,7 +82,7 @@ public class UserViewBookingController implements Initializable {
                         btn.setOnAction((ActionEvent event) -> {
                             try {
                                 BookingObject bookingItem = (BookingObject) getTableRow().getItem();
-                                BookingSession bookingSession = new BookingSession(bookingItem.getBookingSeat(), bookingItem.getBookingDate(), bookingItem.getBookingOwner(), bookingItem.getBookingStatusAsBool(), bookingItem.getBookingCheckIn());
+                                BookingSession bookingSession = new BookingSession(bookingItem.getBookingSeat(), bookingItem.getBookingDate(), bookingItem.getBookingOwner(), bookingItem.getBookingStatusAsBool(), bookingItem.getBookingCheckInAsBool());
                                 sceneController.openScene(btn, "ui/user/UserBookingItem.fxml");
                             } catch (IOException e) {
                                 e.printStackTrace();

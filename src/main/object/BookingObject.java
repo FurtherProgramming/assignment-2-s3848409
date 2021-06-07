@@ -34,18 +34,26 @@ public class BookingObject {
 
     public boolean getBookingStatusAsBool() { return bookingStatus; }
 
-    public boolean getBookingCheckIn() { return checkIn; }
+    public String getCheckIn() {
+        if(checkIn){
+            return "Yes";
+        }else{
+            return "No";
+        }
+    }
+
+    public boolean getBookingCheckInAsBool(){
+        return checkIn;
+    }
 
     public String getCovidLocked() { return covidLocked; }
 
     public String getBookingStatus() {
-        String bookingStatusAsString;
         if(bookingStatus){
-            bookingStatusAsString = "Approved";
+            return "Approved";
         }else{
-            bookingStatusAsString = "Not Approved";
+            return "Not Approved";
         }
-        return bookingStatusAsString;
     }
 
 }

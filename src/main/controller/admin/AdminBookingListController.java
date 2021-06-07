@@ -86,7 +86,7 @@ public class AdminBookingListController implements Initializable {
                         btn.setOnAction((ActionEvent event) -> {
                             try {
                                 BookingObject bookingItem = (BookingObject) getTableRow().getItem();
-                                BookingSession bookingSession = new BookingSession(bookingItem.getBookingSeat(), bookingItem.getBookingDate(), bookingItem.getBookingOwner(), bookingItem.getBookingStatusAsBool(), bookingItem.getBookingCheckIn());
+                                BookingSession bookingSession = new BookingSession(bookingItem.getBookingSeat(), bookingItem.getBookingDate(), bookingItem.getBookingOwner(), bookingItem.getBookingStatusAsBool(), bookingItem.getBookingCheckInAsBool());
                                 sceneController.openScene(btn, "ui/admin/AdminBookingItem.fxml");
                             } catch (IOException e) {
                                 e.printStackTrace();

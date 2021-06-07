@@ -37,7 +37,7 @@ public class UpdateAccountUserController implements Initializable {
     @FXML
     private TextField txtAnswer;
     @FXML
-    private Button btnSaveChanges;
+    private Button btnSave;
     @FXML
     private Button btnCancel;
 
@@ -78,7 +78,7 @@ public class UpdateAccountUserController implements Initializable {
         }else{
             if(userModel.UpdateDetail(firstName, lastName, role, userName, password, question, answer)){
                 UserSession.getInstance(userName, password, false);
-                sceneController.showInfo("Success", "Your account detail has been changed.", btnSaveChanges, "ui/user/UserProfile.fxml");
+                sceneController.showInfo("Success", "Your account detail has been changed.", btnSave, "ui/user/UserProfile.fxml");
             }else{
                 sceneController.showError("Error", "Unable to update your account details.");
             }
