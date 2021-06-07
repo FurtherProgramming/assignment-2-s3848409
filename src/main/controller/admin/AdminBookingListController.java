@@ -37,18 +37,22 @@ public class AdminBookingListController implements Initializable {
         TableColumn<BookingObject, String> date = new TableColumn<>("Date");
         date.setCellValueFactory(new PropertyValueFactory<>("bookingDate"));
         date.setStyle( "-fx-alignment: CENTER;");
+        date.setPrefWidth(85);
 
         TableColumn<BookingObject, String> seat = new TableColumn<>("Seat");
         seat.setCellValueFactory(new PropertyValueFactory<>("bookingSeat"));
         seat.setStyle( "-fx-alignment: CENTER;");
+        seat.setPrefWidth(45);
 
         TableColumn<BookingObject, String> owner = new TableColumn<>("Owner");
         owner.setCellValueFactory(new PropertyValueFactory<>("bookingOwner"));
         owner.setStyle( "-fx-alignment: CENTER;");
+        owner.setPrefWidth(120);
 
         TableColumn<BookingObject, String> status = new TableColumn<>("Status");
         status.setCellValueFactory(new PropertyValueFactory<>("bookingStatus"));
         status.setStyle( "-fx-alignment: CENTER;");
+        status.setPrefWidth(100);
 
         try {
             if(UserSession.getAdmin()){
@@ -71,7 +75,7 @@ public class AdminBookingListController implements Initializable {
     private void addButtonToTable() {
         TableColumn<BookingObject, Void> action = new TableColumn("Action");
         action.setStyle( "-fx-alignment: CENTER;");
-        action.setPrefWidth(90);
+        action.setPrefWidth(85);
 
         Callback<TableColumn<BookingObject, Void>, TableCell<BookingObject, Void>> cellFactory = new Callback<TableColumn<BookingObject, Void>, TableCell<BookingObject, Void>>() {
             @Override

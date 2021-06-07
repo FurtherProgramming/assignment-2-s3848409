@@ -5,8 +5,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="581.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.202-ea"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.admin.ManageBookingController">
+<AnchorPane prefHeight="581.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.202-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.admin.ManageBookingController">
    <Label layoutX="244.0" layoutY="14.0" text="Manage Bookings">
       <font>
          <Font name="System Bold" size="16.0" />
@@ -20,7 +19,10 @@
    <Line endX="198.0" endY="94.0" layoutX="368.0" layoutY="418.0" startX="200.5" startY="-98.5" AnchorPane.bottomAnchor="107.29289245605469" AnchorPane.leftAnchor="565.2928924560547" AnchorPane.rightAnchor="30.792892456054688" AnchorPane.topAnchor="318.7928924560547" />
    <Line endX="133.0" layoutX="433.0" layoutY="513.0" startX="-403.0" />
    <Line endX="-128.0" endY="239.0" layoutX="158.0" layoutY="274.0" startX="-128.0" startY="-211.0" AnchorPane.bottomAnchor="106.5" AnchorPane.leftAnchor="29.5" AnchorPane.rightAnchor="569.5" AnchorPane.topAnchor="62.5" />
-   <ToggleButton fx:id="btnSeat1" layoutX="53.0" layoutY="73.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="78.0" style="-fx-base: #11cb53;" text="1" toggleGroup="$seatGroup" />
+   <ToggleButton fx:id="btnSeat1" layoutX="53.0" layoutY="73.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="78.0" style="-fx-base: #11cb53;" text="1">
+      <toggleGroup>
+         <ToggleGroup fx:id="seatGroup" />
+      </toggleGroup></ToggleButton>
    <ToggleButton fx:id="btnSeat2" layoutX="172.0" layoutY="73.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="78.0" style="-fx-base: #11cb53;" text="2" toggleGroup="$seatGroup" />
    <ToggleButton fx:id="btnSeat3" layoutX="195.0" layoutY="155.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="72.0" rotate="90.0" style="-fx-base: #11cb53;" text="3" toggleGroup="$seatGroup" />
    <ToggleButton fx:id="btnSeat4" layoutX="195.0" layoutY="260.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="72.0" rotate="90.0" style="-fx-base: #11cb53;" text="4" toggleGroup="$seatGroup" />
@@ -57,26 +59,13 @@
          <Font size="15.0" />
       </font>
    </Label>
-   <Button layoutX="476.0" layoutY="176.0" mnemonicParsing="false"
-           prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #11cb53;"
-           AnchorPane.bottomAnchor="419.0" AnchorPane.leftAnchor="476.0" />
-   <Button layoutX="476.0" layoutY="222.0" mnemonicParsing="false"
-           prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #dc2430;"
-           AnchorPane.bottomAnchor="373.0" AnchorPane.leftAnchor="476.0" />
-   <Button layoutX="476.0" layoutY="268.0" mnemonicParsing="false"
-           prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #ff8c00;"
-           AnchorPane.bottomAnchor="327.0" AnchorPane.leftAnchor="476.0" />
+   <Button layoutX="476.0" layoutY="176.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #11cb53;" AnchorPane.bottomAnchor="419.0" AnchorPane.leftAnchor="476.0" />
+   <Button layoutX="476.0" layoutY="222.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #dc2430;" AnchorPane.bottomAnchor="373.0" AnchorPane.leftAnchor="476.0" />
+   <Button layoutX="476.0" layoutY="268.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #ff8c00;" AnchorPane.bottomAnchor="327.0" AnchorPane.leftAnchor="476.0" />
 
-   <Button fx:id="btnBack" layoutX="13.0" layoutY="570.0" mnemonicParsing="false"
-           onAction="#Back" prefHeight="36.0" prefWidth="80.0"
-           style="-fx-background-radius: 8; -fx-background-color: #dc2430; -fx-font-weight: bold;"
-           text="Back" textFill="WHITE" />
-   <Button fx:id="btnBookingList" layoutX="449.0" layoutY="63.0" mnemonicParsing="false"
-           onAction="#ViewBookingList" prefHeight="36.0" prefWidth="105.0"
-           style="-fx-background-radius: 8; -fx-background-color: #006fff; -fx-font-weight: bold;"
-           text="Booking List" textFill="WHITE" />
-   <Button fx:id="btnLockSeat" layoutX="495.0" layoutY="570.0" mnemonicParsing="false"
-           onAction="#LockSeat" prefHeight="36.0" prefWidth="80.0"
-           style="-fx-background-radius: 8; -fx-background-color: #006fff; -fx-font-weight: bold;"
-           text="Next" textFill="WHITE" />
+   <Button fx:id="btnBack" layoutX="33.0" layoutY="552.0" mnemonicParsing="false" onAction="#Back" prefHeight="36.0" prefWidth="80.0" style="-fx-background-radius: 8; -fx-background-color: #dc2430; -fx-font-weight: bold;" text="Back" textFill="WHITE" />
+   <Button fx:id="btnBookingList" layoutX="449.0" layoutY="63.0" mnemonicParsing="false" onAction="#ViewBookingList" prefHeight="36.0" prefWidth="105.0" style="-fx-background-radius: 8; -fx-background-color: #006fff; -fx-font-weight: bold;" text="Booking List" textFill="WHITE" />
+   <Button fx:id="btnLockSeat" layoutX="376.0" layoutY="552.0" mnemonicParsing="false" onAction="#LockSeat" prefHeight="36.0" prefWidth="80.0" style="-fx-background-radius: 8; -fx-background-color: #ff8c00; -fx-font-weight: bold;" text="Lock Seat" textFill="WHITE" />
+   <Button fx:id="btnUnlockSeat" layoutX="476.0" layoutY="552.0" mnemonicParsing="false" onAction="#UnlockSeat" prefHeight="36.0" prefWidth="90.0" style="-fx-background-radius: 8; -fx-background-color: #11cb53; -fx-font-weight: bold;" text="Unlock Seat" textFill="WHITE" />
+
 </AnchorPane>

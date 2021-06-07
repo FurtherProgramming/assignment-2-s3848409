@@ -9,9 +9,9 @@ public class BookingObject {
     String bookingOwner;
     boolean bookingStatus;
     boolean checkIn;
-    boolean covidLocked;
+    String covidLocked;
 
-    public BookingObject(String bookingSeat, String bookingDate, String bookingOwner, boolean bookingStatus, boolean checkIn, boolean covidLocked) throws ParseException {
+    public BookingObject(String bookingSeat, String bookingDate, String bookingOwner, boolean bookingStatus, boolean checkIn, String covidLocked) throws ParseException {
         this.bookingSeat = bookingSeat;
         this.bookingOwner = bookingOwner;
         this.bookingDate = Date.valueOf(bookingDate);
@@ -36,7 +36,7 @@ public class BookingObject {
 
     public boolean getBookingCheckIn() { return checkIn; }
 
-    public boolean getCovidLocked() { return covidLocked; }
+    public String getCovidLocked() { return covidLocked; }
 
     public String getBookingStatus() {
         String bookingStatusAsString;
@@ -46,13 +46,6 @@ public class BookingObject {
             bookingStatusAsString = "Not Approved";
         }
         return bookingStatusAsString;
-    }
-
-    public void deleteBookingObject() {
-        this.bookingSeat = null;
-        this.bookingDate = null;
-        this.bookingOwner = null;
-        this.bookingStatus = false;
     }
 
 }

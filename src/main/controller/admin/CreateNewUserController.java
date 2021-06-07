@@ -6,11 +6,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import main.controller.SceneController;
 import main.model.RegisterModel;
-import main.model.admin.AdminModel;
-import main.session.UserSession;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class CreateNewUserController implements Initializable {
@@ -38,7 +37,7 @@ public class CreateNewUserController implements Initializable {
     @FXML
     private Button btnCancel;
 
-    public void Create(ActionEvent event) throws IOException {
+    public void Create(ActionEvent event) throws IOException, SQLException {
         String firstName = txtFirstName.getText();
         String lastName = txtLastName.getText();
         String role = txtRole.getText();
@@ -53,6 +52,8 @@ public class CreateNewUserController implements Initializable {
             sceneController.showError("Missing uppercase letters.", "First Name, Last Name, and Role must have first uppercase letter.");
         }else if (password.length() < 5){
             sceneController.showError("Password is too short...", "Password must be more than five characters");
+        }else if (registerModel.accountExist(userName)){
+            sceneController.showError("Account already exists", "Sorry, an account with this user name is already exist");
         }else{
             if (registerModel.isRegistered(firstName, lastName, role, userName, password, admin, question, answer)){
                 sceneController.showInfo("Success", "This account has been created", btnCreate, "ui/admin/ManageUser.fxml");

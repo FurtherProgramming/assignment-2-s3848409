@@ -2,10 +2,7 @@ package main.model;
 
 import main.SQLConnection;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class BookingModel {
     Connection connection;
@@ -22,6 +19,30 @@ public class BookingModel {
         } catch(Exception e){
             return false;
         }
+    }
+
+    public boolean bookingExist(String owner, Date bookingDate) throws SQLException {
+        boolean found = false;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet=null;
+        String query = "select * from Booking where ownerName = ? and bookingDate= ?";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, owner);
+            preparedStatement.setString(2, String.valueOf(bookingDate));
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                found = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (preparedStatement != null && resultSet != null) {
+                preparedStatement.close();
+                resultSet.close();
+            }
+        }
+        return found;
     }
 
     public boolean isBooked(String seat, Date bookingDate, String ownerName) {

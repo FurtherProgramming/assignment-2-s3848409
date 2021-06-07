@@ -39,7 +39,7 @@ public class UserViewBookingModel {
                         resultSet.getString("ownerName"),
                         resultSet.getBoolean("status"),
                         resultSet.getBoolean("checkIn"),
-                        resultSet.getBoolean("covidLocked")));
+                        resultSet.getString("covidLocked")));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -99,7 +99,7 @@ public class UserViewBookingModel {
                         resultSet.getString("ownerName"),
                         resultSet.getBoolean("status"),
                         resultSet.getBoolean("checkIn"),
-                        resultSet.getBoolean("covidLocked")));
+                        resultSet.getString("covidLocked")));
             }
         } catch (Exception e) {
             e.printStackTrace();

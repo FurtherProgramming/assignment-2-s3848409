@@ -83,19 +83,22 @@ public class BookingController implements Initializable {
             try {
                 final ToggleButton[] seatButtons = {btnSeat1, btnSeat2, btnSeat3, btnSeat4, btnSeat5, btnSeat6, btnSeat7, btnSeat8,
                                                     btnSeat9, btnSeat10, btnSeat11, btnSeat12, btnSeat13, btnSeat14, btnSeat15};
+                bookingObject.clear();
                 bookingObject = userViewBookingModel.getAllBookingsOnDate(Date.valueOf(newValue));
+                for (ToggleButton seatButton : seatButtons) {
+                    seatButton.setStyle("-fx-base: #11cb53");
+                    seatButton.setDisable(false);
+                }
                 for (BookingObject object : bookingObject){
                     for(ToggleButton button : seatButtons){
                         if(object.getBookingSeat().equals(button.getText())) {
-                            if(object.getCovidLocked()){
+                            if(object.getCovidLocked().equals("1") || object.getCovidLocked().equals("true")){
                                 button.setStyle("-fx-base: #ff8c00");
+                                button.setDisable(true);
                             }else{
                                 button.setStyle("-fx-base: #dc2430");
+                                button.setDisable(true);
                             }
-                            button.setDisable(true);
-                        }else {
-                            button.setStyle("-fx-base: #11cb53");
-                            button.setDisable(false);
                         }
                     }
                 }

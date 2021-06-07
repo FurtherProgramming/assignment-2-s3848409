@@ -32,7 +32,7 @@ public class AdminViewBookingModel {
                         resultSet.getString("ownerName"),
                         resultSet.getBoolean("status"),
                         resultSet.getBoolean("checkIn"),
-                        resultSet.getBoolean("covidLocked")));
+                        resultSet.getString("covidLocked")));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,7 +59,7 @@ public class AdminViewBookingModel {
                         resultSet.getString("ownerName"),
                         resultSet.getBoolean("status"),
                         resultSet.getBoolean("checkIn"),
-                        resultSet.getBoolean("covidLocked")));
+                        resultSet.getString("covidLocked")));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -148,11 +148,11 @@ public class AdminViewBookingModel {
         return success;
     }
 
-    public boolean isLocked(String seat, Date bookingDate, String ownerName) {
+    public boolean isLocked(String seat, Date bookingDate, String ownerName, boolean lock) {
         boolean Success = false;
         try {
             Statement statement = connection.createStatement();
-            int status = statement.executeUpdate("insert into Booking (bookingDate, seat, ownerName, status, checkIn, covidLocked) values ('"+bookingDate+"','"+seat+"','"+ownerName+"','"+false+"','"+false+"','"+true+"') ");
+            int status = statement.executeUpdate("insert into Booking (bookingDate, seat, ownerName, status, checkIn, covidLocked) values ('"+bookingDate+"','"+seat+"','"+ownerName+"','"+false+"','"+false+"','"+lock+"') ");
             Success = status > 0;
         } catch (SQLException e) {
             e.printStackTrace();

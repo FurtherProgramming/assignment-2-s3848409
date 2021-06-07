@@ -20,6 +20,29 @@ public class RegisterModel {
         }
     }
 
+    public boolean accountExist(String username) throws SQLException {
+        boolean found = false;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet=null;
+        String query = "select * from Employee where username = ?";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, username);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                found = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (preparedStatement != null && resultSet != null) {
+                preparedStatement.close();
+                resultSet.close();
+            }
+        }
+        return found;
+    }
+
     public boolean isRegistered(String firstName, String lastName, String role, String userName, String password, boolean admin, String question, String answer) {
         boolean Success = false;
         try {

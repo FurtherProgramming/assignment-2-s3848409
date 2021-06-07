@@ -9,6 +9,7 @@ import main.session.UserSession;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
@@ -40,7 +41,7 @@ public class RegisterController implements Initializable {
         sceneController.getQuestion(txtQuestion);
     }
 
-    public void Register(ActionEvent event) throws IOException {
+    public void Register(ActionEvent event) throws IOException, SQLException {
         String firstName = txtFirstname.getText();
         String lastName = txtLastname.getText();
         String role = txtRole.getText();
@@ -56,6 +57,8 @@ public class RegisterController implements Initializable {
             sceneController.showError("Password is too short...", "Password must be more than five characters");
         }else if (!password.matches("^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]+$")){
             sceneController.showError("Password is too weak...", "Password must have at least a letter and a digit");
+        }else if (RegisterModel.accountExist(userName)){
+            sceneController.showError("Account already exists", "Sorry, an account with this user name is already exist");
         }else{
             UserSession.getInstance(txtUsername.getText(), txtPassword.getText(), false);
             if (RegisterModel.isRegistered(firstName, lastName, role, userName, password, UserSession.getAdmin(), question, answer)){

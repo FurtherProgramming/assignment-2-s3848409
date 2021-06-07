@@ -38,14 +38,17 @@ public class UserViewBookingController implements Initializable {
         TableColumn<BookingObject, Date> date = new TableColumn<>("Date");
         date.setCellValueFactory(new PropertyValueFactory<>("bookingDate"));
         date.setStyle( "-fx-alignment: CENTER;");
+        date.setPrefWidth(100);
 
         TableColumn<BookingObject, String> seat = new TableColumn<>("Seat");
         seat.setCellValueFactory(new PropertyValueFactory<>("bookingSeat"));
         seat.setStyle( "-fx-alignment: CENTER;");
+        date.setPrefWidth(70);
 
         TableColumn<BookingObject, String> status = new TableColumn<>("Status");
         status.setCellValueFactory(new PropertyValueFactory<>("bookingStatus"));
         status.setStyle( "-fx-alignment: CENTER;");
+        date.setPrefWidth(100);
 
         try {
             userObject = userModel.getUserDetail(UserSession.getUserName(), UserSession.getPassword());
@@ -63,7 +66,7 @@ public class UserViewBookingController implements Initializable {
     private void addButtonToTable() {
         TableColumn<BookingObject, Void> action = new TableColumn("Action");
         action.setStyle( "-fx-alignment: CENTER;");
-        action.setPrefWidth(102);
+        action.setPrefWidth(85);
 
         Callback<TableColumn<BookingObject, Void>, TableCell<BookingObject, Void>> cellFactory = new Callback<TableColumn<BookingObject, Void>, TableCell<BookingObject, Void>>() {
             @Override

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import main.controller.SceneController;
+import main.model.RegisterModel;
 import main.model.admin.AdminModel;
 import main.session.UserSession;
 
@@ -64,11 +65,29 @@ public class UpdateAccountAdminController implements Initializable {
     }
 
     public void SaveChanges(ActionEvent event) throws Exception {
-        if(adminModel.UpdateDetail(UserSession.getUserName(), txtFirstName.getText(), txtLastName.getText(), txtRole.getText(), txtUsername.getText(), txtPassword.getText(), chkAdmin.isSelected(), String.valueOf(secretQuestion.getValue()), txtAnswer.getText())){
-            UserSession.getInstance(txtUsername.getText(), txtPassword.getText(), true);
-            sceneController.showInfo("Success", "Your account detail has been changed.", btnSave, "ui/admin/AdminProfile.fxml");
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText();
+        String role = txtRole.getText();
+        String userName = txtUsername.getText();
+        String password = txtPassword.getText();
+        boolean admin = chkAdmin.isSelected();
+        String question = String.valueOf(secretQuestion.getValue());
+        String answer = txtAnswer.getText();
+        if(firstName.isEmpty() || lastName.isEmpty() || role.isEmpty() || userName.isEmpty() || password.isEmpty() || question.isEmpty() || answer.isEmpty()){
+            sceneController.showError("Some fields may be blank", "Please complete all fields to continue.");
+        }else if (!Character.isUpperCase(firstName.charAt(0)) || !Character.isUpperCase(lastName.charAt(0)) || !Character.isUpperCase(role.charAt(0)) ){
+            sceneController.showError("Missing uppercase letters.", "First Name, Last Name, and Role must have first uppercase letter.");
+        }else if (password.length() < 5){
+            sceneController.showError("Password is too short...", "Password must be more than five characters");
+        }else if (!password.matches("^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]+$")){
+            sceneController.showError("Password is too weak...", "Password must have at least a letter and a digit");
         }else{
-            sceneController.showError("Error", "Unable to update account detail at the moment.");
+            if(adminModel.UpdateDetail(UserSession.getUserName(), firstName, lastName, role, userName, password, admin, question, answer)){
+                UserSession.getInstance(userName, password, true);
+                sceneController.showInfo("Success", "Your account detail has been changed.", btnSave, "ui/admin/AdminProfile.fxml");
+            }else{
+                sceneController.showError("Error", "Unable to update your account details at the moment.");
+            }
         }
     }
 
