@@ -92,11 +92,28 @@ public class EditDeleteUserController implements Initializable {
     }
 
     public void SaveChanges(ActionEvent event) throws SQLException, IOException {
-        if(adminModel.UpdateDetail(TempUserSession.getUserName(), txtFirstName.getText(), txtLastName.getText(), txtRole.getText(), txtUsername.getText(),
-           txtPassword.getText(), chkAdmin.isSelected(), String.valueOf(secretQuestion.getValue()), txtAnswer.getText())){
-            sceneController.showInfo("Success", "This account detail has been changed.", btnSave, "ui/admin/ManageUser.fxml");
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText();
+        String role = txtRole.getText();
+        String userName = txtUsername.getText();
+        String password = txtPassword.getText();
+        boolean admin = chkAdmin.isSelected();
+        String question = String.valueOf(secretQuestion.getValue());
+        String answer = txtAnswer.getText();
+        if(firstName.isEmpty() || lastName.isEmpty() || role.isEmpty() || userName.isEmpty() || password.isEmpty() || question.isEmpty() || answer.isEmpty()){
+            sceneController.showError("Some fields may be blank", "Please complete all fields to continue.");
+        }else if (!Character.isUpperCase(firstName.charAt(0)) || !Character.isUpperCase(lastName.charAt(0)) || !Character.isUpperCase(role.charAt(0)) ){
+            sceneController.showError("Missing uppercase letters.", "First Name, Last Name, and Role must have first uppercase letter.");
+        }else if (password.length() < 5){
+            sceneController.showError("Password is too short...", "Password must be more than five characters");
+        }else if (!password.matches("^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]+$")){
+            sceneController.showError("Password is too weak...", "Password must have at least a letter and a digit");
         }else{
-            sceneController.showError("Error", "Unable to update account detail at the moment.");
+            if(adminModel.UpdateDetail(TempUserSession.getUserName(), firstName, lastName, role, userName, password, admin, question, answer)){
+                sceneController.showInfo("Success", "This account detail has been changed.", btnSave, "ui/admin/ManageUser.fxml");
+            }else{
+                sceneController.showError("Error", "Unable to update account detail at the moment.");
+            }
         }
     }
 }

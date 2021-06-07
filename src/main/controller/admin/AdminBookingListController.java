@@ -37,7 +37,7 @@ public class AdminBookingListController implements Initializable {
         TableColumn<BookingObject, String> date = new TableColumn<>("Date");
         date.setCellValueFactory(new PropertyValueFactory<>("bookingDate"));
         date.setStyle( "-fx-alignment: CENTER;");
-        date.setPrefWidth(85);
+        date.setPrefWidth(100);
 
         TableColumn<BookingObject, String> seat = new TableColumn<>("Seat");
         seat.setCellValueFactory(new PropertyValueFactory<>("bookingSeat"));

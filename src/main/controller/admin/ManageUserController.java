@@ -39,19 +39,23 @@ public class ManageUserController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         TableColumn<UserObject, String> firstName = new TableColumn<>("First Name");
         firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        firstName.setStyle( "-fx-alignment: CENTER-LEFT;");
+        firstName.setStyle( "-fx-alignment: CENTER;");
+        firstName.setPrefWidth(90);
 
         TableColumn<UserObject, String> lastName = new TableColumn<>("Last Name");
         lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        lastName.setStyle( "-fx-alignment: CENTER-LEFT;");
+        lastName.setStyle( "-fx-alignment: CENTER;");
+        lastName.setPrefWidth(90);
 
         TableColumn<UserObject, String> role = new TableColumn<>("Role");
         role.setCellValueFactory(new PropertyValueFactory<>("role"));
-        role.setStyle( "-fx-alignment: CENTER-LEFT;");
+        role.setStyle( "-fx-alignment: CENTER;");
+        role.setPrefWidth(90);
 
         TableColumn<UserObject, String> admin = new TableColumn<>("Admin");
         admin.setCellValueFactory(new PropertyValueFactory<>("admin"));
-        admin.setStyle( "-fx-alignment: CENTER-LEFT;");
+        admin.setStyle( "-fx-alignment: CENTER;");
+        admin.setPrefWidth(70);
 
         try {
             if(UserSession.getAdmin()){
@@ -66,7 +70,6 @@ public class ManageUserController implements Initializable {
                 sceneController.showError("Access Denied", "Sorry, you don't have access to this page");
                 sceneController.openScene(btnBack, "ui/admin/AdminProfile.fxml");
             }
-
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
@@ -75,7 +78,7 @@ public class ManageUserController implements Initializable {
     private void addButtonToTable() {
         TableColumn<UserObject, Void> action = new TableColumn("Action");
         action.setStyle( "-fx-alignment: CENTER;");
-        action.setPrefWidth(90);
+        action.setPrefWidth(85);
 
         Callback<TableColumn<UserObject, Void>, TableCell<UserObject, Void>> cellFactory = new Callback<TableColumn<UserObject, Void>, TableCell<UserObject, Void>>() {
             @Override
