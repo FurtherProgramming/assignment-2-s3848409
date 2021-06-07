@@ -75,8 +75,8 @@
            onAction="#ViewBookingList" prefHeight="36.0" prefWidth="105.0"
            style="-fx-background-radius: 8; -fx-background-color: #006fff; -fx-font-weight: bold;"
            text="Booking List" textFill="WHITE" />
-   <Button fx:id="btnNext" layoutX="495.0" layoutY="570.0" mnemonicParsing="false"
-           onAction="#BookingDetail" prefHeight="36.0" prefWidth="80.0"
+   <Button fx:id="btnLockSeat" layoutX="495.0" layoutY="570.0" mnemonicParsing="false"
+           onAction="#LockSeat" prefHeight="36.0" prefWidth="80.0"
            style="-fx-background-radius: 8; -fx-background-color: #006fff; -fx-font-weight: bold;"
            text="Next" textFill="WHITE" />
 </AnchorPane>

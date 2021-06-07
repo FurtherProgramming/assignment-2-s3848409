@@ -54,9 +54,11 @@ public class RegisterController implements Initializable {
             sceneController.showError("Missing uppercase letters.", "First Name, Last Name, and Role must have first uppercase letter.");
         }else if (password.length() < 5){
             sceneController.showError("Password is too short...", "Password must be more than five characters");
+        }else if (!password.matches("^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]+$")){
+            sceneController.showError("Password is too weak...", "Password must have at least a letter and a digit");
         }else{
-            if (RegisterModel.isRegistered(firstName, lastName, role, userName, password, question, answer)){
-                UserSession.getInstance(txtUsername.getText(), txtPassword.getText(), false);
+            UserSession.getInstance(txtUsername.getText(), txtPassword.getText(), false);
+            if (RegisterModel.isRegistered(firstName, lastName, role, userName, password, UserSession.getAdmin(), question, answer)){
                 sceneController.showInfo("Success", "Your account has been created", btnRegister, "ui/user/UserProfile.fxml");
             }else{
                 sceneController.showError("Error", "There is a problem when registering your account. Please try again...");

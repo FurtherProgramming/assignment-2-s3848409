@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import main.controller.SceneController;
+import main.model.BookingModel;
 import main.model.admin.AdminViewBookingModel;
 import main.object.BookingObject;
 import main.session.BookingSession;
@@ -28,7 +29,7 @@ public class ManageBookingController implements Initializable {
     @FXML
     private Button btnBack;
     @FXML
-    private Button btnNext;
+    private Button btnLockSeat;
     @FXML
     private Button btnBookingList;
     @FXML
@@ -80,7 +81,6 @@ public class ManageBookingController implements Initializable {
                 final ToggleButton[] seatButtons = {btnSeat1, btnSeat2, btnSeat3, btnSeat4, btnSeat5, btnSeat6, btnSeat7, btnSeat8,
                                                     btnSeat9, btnSeat10, btnSeat11, btnSeat12, btnSeat13, btnSeat14, btnSeat15};
                 bookingObject = adminViewBookingModel.getAllBookingsOnDate(Date.valueOf(newValue));
-                System.out.println(bookingObject.size());
                 for (BookingObject object : bookingObject){
                     for(ToggleButton button : seatButtons){
                         if(object.getBookingSeat().equals(button.getText())) {
@@ -89,7 +89,7 @@ public class ManageBookingController implements Initializable {
                             }else{
                                 button.setStyle("-fx-base: #dc2430");
                             }
-                        }else {
+                        }else{
                             button.setStyle("-fx-base: #11cb53");
                         }
                     }
@@ -108,11 +108,22 @@ public class ManageBookingController implements Initializable {
         sceneController.openScene(btnBookingList, "ui/admin/BookingList.fxml");
     }
 
-    public void BookingDetail(ActionEvent event) throws IOException {
+    public void LockSeat(ActionEvent event) throws IOException {
         ToggleButton selectedToggleButton = (ToggleButton) seatGroup.getSelectedToggle();
         if (selectedToggleButton != null && bookDatePicker.getValue() != null){
-            bookingSession = new BookingSession(selectedToggleButton.getText(), Date.valueOf(bookDatePicker.getValue()), UserSession.getUserName(), false, false);
-//            sceneController.openScene(btnNext, "ui/user/UserConfirmBooking.fxml");
+            boolean lock = sceneController.showConfirmation("Lock this seat?","Do you want to lock this seat?");
+            if(lock){
+                bookingSession = new BookingSession(selectedToggleButton.getText(), Date.valueOf(bookDatePicker.getValue()), UserSession.getUserName(), false, false);
+                try{
+                    if(adminViewBookingModel.isLocked(BookingSession.getBookingSeat(), BookingSession.getBookingDate(), BookingSession.getBookingOwner())){
+                        BookingSession.deleteBookingObject();
+                    }else{
+                        sceneController.showError("Error", "Failed to lock this seat");
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
         }else{
             sceneController.showError("Error", "Please select a seat and date.");
         }

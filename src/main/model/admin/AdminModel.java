@@ -5,7 +5,13 @@ import main.object.BookingObject;
 import main.object.UserObject;
 import main.session.TempUserSession;
 import main.session.UserSession;
+import org.omg.CORBA.Environment;
 
+import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -122,16 +128,43 @@ public class AdminModel {
         return success;
     }
 
-    public boolean CreateAccount(String firstName, String lastName, String role, String userName, String password, boolean admin, String question, String answer) {
-        boolean Success = false;
+    public boolean GenerateUsertoCsv(String fileName) throws IOException, SQLException {
+        boolean success = false;
+        String admin = "";
+        BufferedWriter fileWriter = new BufferedWriter(new FileWriter(fileName));
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        fileWriter.write("FirstName, LastName, UserName, Role, Admin");
+        String query = "SELECT * FROM Employee";
         try {
-            Statement statement = connection.createStatement();
-            int status = statement.executeUpdate("insert into Employee (firstname, lastname, role, username, password, admin, question, answer) values ('"+firstName+"','"+lastName+"','"+role+"','"+userName+"','"+password+"','"+admin+"','"+question+"','"+answer+"') ");
-            Success = status > 0;
-        } catch (SQLException e) {
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String firstName = resultSet.getString("firstname");
+                String lastName = resultSet.getString("lastname");
+                String userName = resultSet.getString("username");
+                String role = resultSet.getString("role");
+                boolean boolAdmin = resultSet.getBoolean("admin");
+                if(boolAdmin){
+                    admin = "Admin";
+                }else {
+                    admin = "User";
+                }
+                String line = String.format("%s,%s,%s,%s,%s", firstName, lastName, userName, role, admin);
+                fileWriter.newLine();
+                fileWriter.write(line);
+            }
+            success = true;
+        } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (preparedStatement != null && resultSet != null) {
+                fileWriter.close();
+                preparedStatement.close();
+                resultSet.close();
+            }
         }
-        return Success;
+        return success;
     }
 
 }

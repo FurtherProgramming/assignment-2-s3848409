@@ -4,6 +4,9 @@ import main.SQLConnection;
 import main.object.BookingObject;
 import main.session.UserSession;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

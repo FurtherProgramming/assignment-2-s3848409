@@ -55,7 +55,6 @@ public class AdminBookingListController implements Initializable {
                 bookingObject = adminViewBookingModel.getAllBookings();
                 bookingListTable.getColumns().addAll(date, seat, owner, status);
                 addButtonToTable();
-
                 for (BookingObject object : bookingObject) {
                     bookingListTable.getItems().add(object);
                 }

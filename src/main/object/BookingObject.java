@@ -1,11 +1,9 @@
 package main.object;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.sql.Date;
 
 public class BookingObject {
-    SimpleDateFormat newFormat = new SimpleDateFormat("dd MMM yyyy");
     String bookingSeat;
     Date bookingDate;
     String bookingOwner;

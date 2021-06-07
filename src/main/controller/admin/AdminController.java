@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import main.controller.SceneController;
 import main.session.UserSession;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -24,6 +26,8 @@ public class AdminController implements Initializable {
     private Button btnUpdateAcc;
     @FXML
     private Button btnSignOut;
+    @FXML
+    private Button btnGenReport;
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
@@ -49,5 +53,9 @@ public class AdminController implements Initializable {
     public void SignOut(ActionEvent event) throws Exception {
         UserSession.cleanUserSession();
         sceneController.openScene(btnSignOut, "ui/Login.fxml");
+    }
+
+    public void GenerateReport(ActionEvent event) throws IOException {
+        sceneController.openScene(btnGenReport, "ui/admin/GenerateReport.fxml");
     }
 }

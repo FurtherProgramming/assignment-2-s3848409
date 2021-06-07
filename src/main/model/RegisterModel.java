@@ -20,11 +20,11 @@ public class RegisterModel {
         }
     }
 
-    public boolean isRegistered(String firstName, String lastName, String role, String userName, String password, String question, String answer) {
+    public boolean isRegistered(String firstName, String lastName, String role, String userName, String password, boolean admin, String question, String answer) {
         boolean Success = false;
         try {
             Statement statement = connection.createStatement();
-            int status = statement.executeUpdate("insert into Employee (firstname, lastname, role, username, password, admin, question, answer) values ('"+firstName+"','"+lastName+"','"+role+"','"+userName+"','"+password+"','"+false+"','"+question+"','"+answer+"') ");
+            int status = statement.executeUpdate("insert into Employee (firstname, lastname, role, username, password, admin, question, answer) values ('"+firstName+"','"+lastName+"','"+role+"','"+userName+"','"+password+"','"+admin+"','"+question+"','"+answer+"') ");
             Success = status > 0;
         } catch (SQLException e) {
             e.printStackTrace();

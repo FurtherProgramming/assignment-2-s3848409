@@ -3,12 +3,11 @@ package main.model.admin;
 import main.SQLConnection;
 import main.object.BookingObject;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.*;
 import java.util.ArrayList;
-import java.sql.Date;
 
 public class AdminViewBookingModel {
     ArrayList<BookingObject> bookingObject = new ArrayList<>();
@@ -104,6 +103,61 @@ public class AdminViewBookingModel {
             System.out.println(e.getMessage());
         }
         return success;
+    }
+
+    public boolean GenerateBookingtoCsv(String fileName) throws IOException, SQLException {
+        boolean success = false;
+        String status = "";
+        String checkIn = "";
+        String covidLocked = "";
+        BufferedWriter fileWriter = new BufferedWriter(new FileWriter(fileName));
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        fileWriter.write("BookingDate, Seat, OwnerName, Status, CheckIn, COVIDLocked");
+        String query = "SELECT * FROM Booking";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String bookingDate = resultSet.getString("bookingDate");
+                String seat = resultSet.getString("seat");
+                String ownerName = resultSet.getString("ownerName");
+                boolean boolStatus = resultSet.getBoolean("status");
+                boolean boolCheckIn = resultSet.getBoolean("checkIn");
+                boolean boolCovidLocked = resultSet.getBoolean("covidLocked");
+                if(boolStatus){ status = "Approved"; }
+                else { status = "Not Approved"; }
+                if(boolCheckIn){ checkIn = "Yes"; }
+                else{ checkIn = "No"; }
+                if(boolCovidLocked){ covidLocked = "Yes"; }
+                else { covidLocked = "No"; }
+                String line = String.format("%s,%s,%s,%s,%s,%s", bookingDate, seat, ownerName, status, checkIn, covidLocked);
+                fileWriter.newLine();
+                fileWriter.write(line);
+            }
+            success = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (preparedStatement != null && resultSet != null) {
+                fileWriter.close();
+                preparedStatement.close();
+                resultSet.close();
+            }
+        }
+        return success;
+    }
+
+    public boolean isLocked(String seat, Date bookingDate, String ownerName) {
+        boolean Success = false;
+        try {
+            Statement statement = connection.createStatement();
+            int status = statement.executeUpdate("insert into Booking (bookingDate, seat, ownerName, status, checkIn, covidLocked) values ('"+bookingDate+"','"+seat+"','"+ownerName+"','"+false+"','"+false+"','"+true+"') ");
+            Success = status > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Success;
     }
 
 }

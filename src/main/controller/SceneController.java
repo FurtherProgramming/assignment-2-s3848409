@@ -1,13 +1,12 @@
 package main.controller;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.Main;
@@ -73,6 +72,13 @@ public class SceneController {
         }
     }
 
+    public void showInfoOnly(String headerText, String contentText) throws IOException {
+        Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+        successAlert.setHeaderText(headerText);
+        successAlert.setContentText(contentText);
+        successAlert.showAndWait();
+    }
+
     public boolean showConfirmation(String headerText, String contentText) {
         Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmAlert.setHeaderText(headerText);
@@ -80,4 +86,18 @@ public class SceneController {
         final Optional<ButtonType> result = confirmAlert.showAndWait();
         return ((Optional<?>) result).isPresent() && result.get() == ButtonType.OK;
     }
+
+    public String showDialog(String headerText, String contentText){
+        TextInputDialog textDialog = new TextInputDialog();
+        textDialog.setHeaderText(headerText);
+        textDialog.setContentText(contentText);
+        Optional<String> result = textDialog.showAndWait();
+        if(!((Optional<?>) result).isPresent()){
+            textDialog.close();
+            return null;
+        }else{
+            return textDialog.getEditor().getText();
+        }
+    }
+
 }
