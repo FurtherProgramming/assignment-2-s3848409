@@ -50,11 +50,11 @@
             <Font size="15.0" />
         </font>
     </Label>
-    <TextField fx:id="txtFirstname" layoutX="213.0" layoutY="93.0" promptText="First Name" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="90.0" />
-    <TextField fx:id="txtLastname" layoutX="213.0" layoutY="143.0" promptText="Last Name" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="140.0" />
+    <TextField fx:id="txtFirstname" layoutX="213.0" layoutY="93.0" prefHeight="27.0" prefWidth="161.0" promptText="First Name" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="90.0" />
+    <TextField fx:id="txtLastname" layoutX="213.0" layoutY="143.0" prefHeight="27.0" prefWidth="161.0" promptText="Last Name" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="140.0" />
     <TextField fx:id="txtRole" layoutX="213.0" layoutY="193.0" prefHeight="27.0" prefWidth="161.0" promptText="Role" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="190.0" />
-    <TextField fx:id="txtUsername" layoutX="213.0" layoutY="244.0" promptText="Username" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="240.0" />
-    <PasswordField fx:id="txtPassword" layoutX="213.0" layoutY="293.0" promptText="Password" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="290.0" />
+    <TextField fx:id="txtUsername" layoutX="213.0" layoutY="244.0" prefHeight="27.0" prefWidth="161.0" promptText="Username" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="240.0" />
+    <PasswordField fx:id="txtPassword" layoutX="213.0" layoutY="293.0" prefHeight="27.0" prefWidth="161.0" promptText="Password" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="290.0" />
     <ComboBox fx:id="txtQuestion" layoutX="213.0" layoutY="343.0" prefHeight="27.0" prefWidth="161.0" promptText="Choose one" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="340.0" />
     <TextField fx:id="txtAnswer" layoutX="213.0" layoutY="393.0" prefHeight="27.0" prefWidth="161.0" promptText="Answer" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="390.0" />
     <Button fx:id="btnRegister" layoutX="213.0" layoutY="443.0" mnemonicParsing="false" onAction="#Register" prefHeight="35.0" prefWidth="80.0" style="-fx-background-radius: 8; -fx-background-color: #006fff; -fx-font-weight: bold;" text="Register" textFill="WHITE" AnchorPane.topAnchor="440.0" />

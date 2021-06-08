@@ -123,17 +123,10 @@ public class ManageBookingController implements Initializable {
                 bookingSession = new BookingSession(selectedToggleButton.getText(), Date.valueOf(bookDatePicker.getValue()), UserSession.getUserName(), false, false);
                 if(adminViewBookingModel.seatNotEmpty(BookingSession.getBookingSeat(), BookingSession.getBookingDate())){
                     if(sceneController.showConfirmation("Booking Found", "Would you like to delete the booking and lock this seat?")){
-                        try{
-                            if(adminViewBookingModel.isLocked(BookingSession.getBookingSeat(), BookingSession.getBookingDate(), "COVID_Locked", true)){
-                                BookingSession.deleteBookingObject();
-                                initButtons();
-                            }else{
-                                sceneController.showError("Error", "Failed to lock this seat");
-                            }
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
+                        setLockToSeat();
                     }
+                } else {
+                    setLockToSeat();
                 }
             }
         }else{
@@ -141,25 +134,50 @@ public class ManageBookingController implements Initializable {
         }
     }
 
-    public void UnlockSeat(ActionEvent event) {
+    private void setLockToSeat(){
+        try{
+            if(adminViewBookingModel.DenyBooking(BookingSession.getBookingSeat(), BookingSession.getBookingDate())){
+                if(adminViewBookingModel.isLocked(BookingSession.getBookingSeat(), BookingSession.getBookingDate(), "COVID_Locked", true)){
+                    BookingSession.deleteBookingObject();
+                    initButtons();
+                }else{
+                    sceneController.showError("Error", "Failed to lock this seat");
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void UnlockSeat(ActionEvent event) throws SQLException {
         ToggleButton selectedToggleButton = (ToggleButton) seatGroup.getSelectedToggle();
         if (selectedToggleButton != null && bookDatePicker.getValue() != null){
             boolean unlock = sceneController.showConfirmation("Unlock this seat?","Do you want to unlock this seat?");
             if(unlock){
                 bookingSession = new BookingSession(selectedToggleButton.getText(), Date.valueOf(bookDatePicker.getValue()), UserSession.getUserName(), false, false);
-                try{
-                    if(adminViewBookingModel.DenyBooking(BookingSession.getBookingSeat(), BookingSession.getBookingDate())){
-                        BookingSession.deleteBookingObject();
-                        initButtons();
-                    }else{
-                        sceneController.showError("Error", "Failed to unlock this seat");
+                if(adminViewBookingModel.seatNotEmpty(BookingSession.getBookingSeat(), BookingSession.getBookingDate())){
+                    if(sceneController.showConfirmation("Booking Found", "Would you like to delete the booking and unlock this seat?")){
+                        removeLockToSeat();
                     }
-                }catch (Exception e){
-                    e.printStackTrace();
+                } else {
+                    removeLockToSeat();
                 }
             }
         }else{
             sceneController.showError("Error", "Please select a seat and date.");
+        }
+    }
+
+    private void removeLockToSeat(){
+        try{
+            if(adminViewBookingModel.DenyBooking(BookingSession.getBookingSeat(), BookingSession.getBookingDate())){
+                BookingSession.deleteBookingObject();
+                initButtons();
+            }else{
+                sceneController.showError("Error", "Failed to unlock this seat");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

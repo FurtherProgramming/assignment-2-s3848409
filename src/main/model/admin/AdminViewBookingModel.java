@@ -170,8 +170,8 @@ public class AdminViewBookingModel {
             preparedStatement.setString(1, seat);
             preparedStatement.setString(2, String.valueOf(bookingDate));
             resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                found = true;
+            if(resultSet.next()) {
+                found = !resultSet.getString("ownerName").equals("COVID_Locked");
             }
         } catch (Exception e) {
             e.printStackTrace();

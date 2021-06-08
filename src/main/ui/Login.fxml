@@ -4,21 +4,28 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="loginScene" prefHeight="327.0" prefWidth="383.0" xmlns="http://javafx.com/javafx/8.0.202-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.LoginController">
-    <children>
-        <Label fx:id="isConnected" alignment="CENTER" layoutY="243.0" prefHeight="17.0" prefWidth="383.0" text="Status" textAlignment="CENTER" />
-        <TextField fx:id="txtUsername" layoutX="118.0" layoutY="101.0" prefHeight="30.0" prefWidth="150.0" promptText="Username" />
-        <PasswordField fx:id="txtPassword" layoutX="118.0" layoutY="149.0" prefHeight="30.0" prefWidth="150.0" promptText="Password" />
+<AnchorPane fx:id="loginScene" prefHeight="327.0" prefWidth="383.0" xmlns="http://javafx.com/javafx/8.0.202-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.LoginController">
+    <Label fx:id="isConnected" alignment="CENTER" layoutY="243.0" prefHeight="17.0" prefWidth="383.0" text="Status"
+           textAlignment="CENTER"/>
+    <TextField fx:id="txtUsername" layoutX="118.0" layoutY="101.0" prefHeight="30.0" prefWidth="150.0"
+               promptText="Username"/>
+    <PasswordField fx:id="txtPassword" layoutX="118.0" layoutY="149.0" prefHeight="30.0" prefWidth="150.0"
+                   promptText="Password"/>
 
-        <Label alignment="CENTER" layoutX="67.0" layoutY="22.0" prefHeight="45.0" prefWidth="253.0" text="HotDesk Booking" textAlignment="CENTER">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-        </Label>
+    <Label alignment="CENTER" layoutX="67.0" layoutY="22.0" prefHeight="45.0" prefWidth="253.0" text="HotDesk Booking"
+           textAlignment="CENTER">
+        <font>
+        <Font name="System Bold" size="18.0"/>
+        </font>
+    </Label>
 
-        <Button fx:id="btnLogin" layoutX="152.0" layoutY="195.0" mnemonicParsing="false" onAction="#Login" prefHeight="36.0" prefWidth="80.0" style="-fx-background-radius: 8; -fx-background-color: #3ab63e; -fx-font-weight: bold;" text="Login" textFill="WHITE" AnchorPane.leftAnchor="152.0" AnchorPane.topAnchor="195.0" />
-        <Button fx:id="btnResetPassword" layoutX="270.0" layoutY="288.0" mnemonicParsing="false" onAction="#ResetPassword" style="-fx-background-color: transparent;" text="Reset Password" textFill="#006fff" />
-        <Button fx:id="btnRegister" layoutX="14.0" layoutY="288.0" mnemonicParsing="false" onAction="#Register" style="-fx-background-color: transparent;" text="Not a user?" textFill="#006fff" />
+    <Button fx:id="btnLogin" layoutX="152.0" layoutY="195.0" mnemonicParsing="false" onAction="#Login" prefHeight="35.0"
+            prefWidth="80.0" style="-fx-background-radius: 8; -fx-background-color: #3ab63e; -fx-font-weight: bold;"
+            text="Login" textFill="WHITE" AnchorPane.leftAnchor="152.0" AnchorPane.topAnchor="195.0"/>
+    <Button fx:id="btnResetPassword" layoutX="270.0" layoutY="288.0" mnemonicParsing="false" onAction="#ResetPassword"
+            style="-fx-background-color: transparent;" text="Reset Password" textFill="#006fff"/>
+    <Button fx:id="btnRegister" layoutX="14.0" layoutY="288.0" mnemonicParsing="false" onAction="#Register"
+            style="-fx-background-color: transparent;" text="Not a user?" textFill="#006fff"/>
 
-    </children>
 </AnchorPane>

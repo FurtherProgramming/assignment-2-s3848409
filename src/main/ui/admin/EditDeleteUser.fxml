@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="590.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.admin.EditDeleteUserController">
+<AnchorPane prefHeight="590.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.202-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.admin.EditDeleteUserController">
     <Label alignment="CENTER" layoutX="161.0" layoutY="33.0" prefHeight="45.0" prefWidth="198.0" text="Update User's Detail" textAlignment="CENTER">
         <font>
             <Font name="System Bold" size="18.0" />
@@ -50,11 +50,11 @@
             <Font size="15.0" />
         </font>
     </Label>
-    <TextField fx:id="txtFirstName" layoutX="213.0" layoutY="93.0" promptText="First Name" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="90.0" />
-    <TextField fx:id="txtLastName" layoutX="213.0" layoutY="143.0" promptText="Last Name" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="140.0" />
+    <TextField fx:id="txtFirstName" layoutX="213.0" layoutY="93.0" prefHeight="27.0" prefWidth="161.0" promptText="First Name" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="90.0" />
+    <TextField fx:id="txtLastName" layoutX="213.0" layoutY="143.0" prefHeight="27.0" prefWidth="161.0" promptText="Last Name" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="140.0" />
     <TextField fx:id="txtRole" layoutX="213.0" layoutY="193.0" prefHeight="27.0" prefWidth="161.0" promptText="Role" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="190.0" />
-    <TextField fx:id="txtUsername" layoutX="213.0" layoutY="244.0" promptText="Username" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="240.0" />
-    <PasswordField fx:id="txtPassword" layoutX="213.0" layoutY="293.0" promptText="Password" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="290.0" />
+    <TextField fx:id="txtUsername" layoutX="213.0" layoutY="244.0" prefHeight="27.0" prefWidth="161.0" promptText="Username" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="240.0" />
+    <PasswordField fx:id="txtPassword" layoutX="213.0" layoutY="293.0" prefHeight="27.0" prefWidth="161.0" promptText="Password" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="290.0" />
     <ComboBox fx:id="secretQuestion" layoutX="213.0" layoutY="343.0" prefHeight="27.0" prefWidth="161.0" promptText="Choose one" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="340.0" />
     <TextField fx:id="txtAnswer" layoutX="213.0" layoutY="393.0" prefHeight="27.0" prefWidth="161.0" promptText="Answer" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="390.0" />
     <CheckBox fx:id="chkAdmin" layoutX="204.0" layoutY="440.0" mnemonicParsing="false" text="Make Admin" AnchorPane.topAnchor="440.0" />

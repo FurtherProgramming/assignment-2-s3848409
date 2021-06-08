@@ -5,66 +5,103 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="620.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.202-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.user.BookingController">
-   <children>
-      <Label layoutX="244.0" layoutY="14.0" text="Choose your seat">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <fx:define>
-         <ToggleGroup fx:id="seatGroup"/>
-      </fx:define>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="450.0" layoutX="30.0" layoutY="63.0" stroke="WHITE" strokeType="INSIDE" width="237.0" AnchorPane.bottomAnchor="107.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="333.0" AnchorPane.topAnchor="63.0" />
-      <Line endX="230.5" layoutX="36.0" layoutY="63.0" startX="-6.0" AnchorPane.bottomAnchor="556.5" AnchorPane.leftAnchor="29.5" AnchorPane.rightAnchor="333.0" AnchorPane.topAnchor="62.5" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="194.0" layoutX="262.0" layoutY="319.0" stroke="WHITE" strokeType="INSIDE" width="307.0" />
-      <Line endX="-87.20709228515625" endY="247.25" layoutX="355.0" layoutY="72.0" startX="-89.0" startY="-8.5" AnchorPane.bottomAnchor="300.04289150238037" AnchorPane.rightAnchor="331.49998474121094" AnchorPane.topAnchor="62.792893409729004" />
-      <Line endX="171.0" layoutX="397.0" layoutY="319.0" startX="-127.5" AnchorPane.bottomAnchor="300.5" AnchorPane.leftAnchor="269.0" AnchorPane.rightAnchor="31.5" AnchorPane.topAnchor="318.5" />
-      <Line endX="198.0" endY="94.0" layoutX="368.0" layoutY="418.0" startX="200.5" startY="-98.5" AnchorPane.bottomAnchor="107.29289245605469" AnchorPane.leftAnchor="565.2928924560547" AnchorPane.rightAnchor="30.792892456054688" AnchorPane.topAnchor="318.7928924560547" />
-      <Line endX="133.0" layoutX="433.0" layoutY="513.0" startX="-403.0" />
-      <Line endX="-128.0" endY="239.0" layoutX="158.0" layoutY="274.0" startX="-128.0" startY="-211.0" AnchorPane.bottomAnchor="106.5" AnchorPane.leftAnchor="29.5" AnchorPane.rightAnchor="569.5" AnchorPane.topAnchor="62.5" />
-      <ToggleButton fx:id="btnSeat1" toggleGroup="$seatGroup" layoutX="53.0" layoutY="73.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="78.0" style="-fx-base: #11cb53;" text="1" />
-      <ToggleButton fx:id="btnSeat2" toggleGroup="$seatGroup" layoutX="172.0" layoutY="73.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="78.0" style="-fx-base: #11cb53;" text="2" />
-      <ToggleButton fx:id="btnSeat3" toggleGroup="$seatGroup" layoutX="195.0" layoutY="155.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="72.0" rotate="90.0" style="-fx-base: #11cb53;" text="3" />
-      <ToggleButton fx:id="btnSeat4" toggleGroup="$seatGroup" layoutX="195.0" layoutY="260.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="72.0" rotate="90.0" style="-fx-base: #11cb53;" text="4" />
-      <ToggleButton fx:id="btnSeat5" toggleGroup="$seatGroup" layoutX="269.0" layoutY="335.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="78.0" style="-fx-base: #11cb53;" text="5" />
-      <ToggleButton fx:id="btnSeat6" toggleGroup="$seatGroup" layoutX="389.0" layoutY="335.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="78.0" style="-fx-base: #11cb53;" text="6" />
-      <ToggleButton fx:id="btnSeat7" toggleGroup="$seatGroup" layoutX="499.0" layoutY="350.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" rotate="90.0" style="-fx-base: #11cb53;" text="7" />
-      <ToggleButton fx:id="btnSeat8" toggleGroup="$seatGroup" layoutX="500.0" layoutY="448.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" rotate="90.0" style="-fx-base: #11cb53;" text="8" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="30.0" />
-      <ToggleButton fx:id="btnSeat9" toggleGroup="$seatGroup" layoutX="389.0" layoutY="461.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="78.0" style="-fx-base: #11cb53;" text="9" />
-      <ToggleButton fx:id="btnSeat10" toggleGroup="$seatGroup" layoutX="269.0" layoutY="461.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="78.0" style="-fx-base: #11cb53;" text="10" />
-      <ToggleButton fx:id="btnSeat11" toggleGroup="$seatGroup" layoutX="141.0" layoutY="461.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="78.0" style="-fx-base: #11cb53;" text="11" />
-      <ToggleButton fx:id="btnSeat12" toggleGroup="$seatGroup" layoutX="37.0" layoutY="445.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="72.0" rotate="90.0" style="-fx-base: #11cb53;" text="12" />
-      <ToggleButton fx:id="btnSeat13" toggleGroup="$seatGroup" layoutX="37.0" layoutY="348.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="72.0" rotate="90.0" style="-fx-base: #11cb53;" text="13" />
-      <ToggleButton fx:id="btnSeat14" toggleGroup="$seatGroup" layoutX="37.0" layoutY="249.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="72.0" rotate="90.0" style="-fx-base: #11cb53;" text="14" />
-      <ToggleButton fx:id="btnSeat15" toggleGroup="$seatGroup" layoutX="37.0" layoutY="155.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="72.0" rotate="90.0" style="-fx-base: #11cb53;" text="15" />
-      <DatePicker fx:id="bookDatePicker" layoutX="380.0" layoutY="75.0" />
-      
-      <Label layoutX="296.0" layoutY="77.0" text="Select Date:">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="289.0" layoutY="141.0" text="Available" AnchorPane.bottomAnchor="450.0" AnchorPane.leftAnchor="300.0">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="289.0" layoutY="201.0" text="Unavailable" AnchorPane.bottomAnchor="390.0" AnchorPane.leftAnchor="300.0">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="293.0" layoutY="263.0" text="COVID-Locked" AnchorPane.bottomAnchor="330.0" AnchorPane.leftAnchor="300.0">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Button layoutX="415.0" layoutY="147.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #11cb53;" AnchorPane.bottomAnchor="448.0" AnchorPane.leftAnchor="420.0" />
-      <Button layoutX="415.0" layoutY="207.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #dc2430;" AnchorPane.bottomAnchor="388.0" AnchorPane.leftAnchor="420.0" />
-      <Button layoutX="415.0" layoutY="267.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #ff8c00;" AnchorPane.bottomAnchor="328.0" AnchorPane.leftAnchor="420.0" />
+<AnchorPane prefHeight="620.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.202-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.user.BookingController">
+   <Label layoutX="244.0" layoutY="14.0" text="Choose your seat">
+      <font>
+         <Font name="System Bold" size="16.0"/>
+      </font>
+   </Label>
+   <fx:define>
+      <ToggleGroup fx:id="seatGroup"/>
+   </fx:define>
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="450.0" layoutX="30.0" layoutY="63.0" stroke="WHITE"
+              strokeType="INSIDE" width="237.0" AnchorPane.bottomAnchor="107.0" AnchorPane.leftAnchor="30.0"
+              AnchorPane.rightAnchor="333.0" AnchorPane.topAnchor="63.0"/>
+   <Line endX="230.5" layoutX="36.0" layoutY="63.0" startX="-6.0" AnchorPane.bottomAnchor="556.5"
+         AnchorPane.leftAnchor="29.5" AnchorPane.rightAnchor="333.0" AnchorPane.topAnchor="62.5"/>
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="194.0" layoutX="262.0" layoutY="319.0" stroke="WHITE"
+              strokeType="INSIDE" width="307.0"/>
+   <Line endX="-87.20709228515625" endY="247.25" layoutX="355.0" layoutY="72.0" startX="-89.0" startY="-8.5"
+         AnchorPane.bottomAnchor="300.04289150238037" AnchorPane.rightAnchor="331.49998474121094"
+         AnchorPane.topAnchor="62.792893409729004"/>
+   <Line endX="171.0" layoutX="397.0" layoutY="319.0" startX="-127.5" AnchorPane.bottomAnchor="300.5"
+         AnchorPane.leftAnchor="269.0" AnchorPane.rightAnchor="31.5" AnchorPane.topAnchor="318.5"/>
+   <Line endX="198.0" endY="94.0" layoutX="368.0" layoutY="418.0" startX="200.5" startY="-98.5"
+         AnchorPane.bottomAnchor="107.29289245605469" AnchorPane.leftAnchor="565.2928924560547"
+         AnchorPane.rightAnchor="30.792892456054688" AnchorPane.topAnchor="318.7928924560547"/>
+   <Line endX="133.0" layoutX="433.0" layoutY="513.0" startX="-403.0"/>
+   <Line endX="-128.0" endY="239.0" layoutX="158.0" layoutY="274.0" startX="-128.0" startY="-211.0"
+         AnchorPane.bottomAnchor="106.5" AnchorPane.leftAnchor="29.5" AnchorPane.rightAnchor="569.5"
+         AnchorPane.topAnchor="62.5"/>
+   <ToggleButton fx:id="btnSeat1" toggleGroup="$seatGroup" layoutX="53.0" layoutY="73.0" mnemonicParsing="false"
+                 prefHeight="40.0" prefWidth="78.0" style="-fx-base: #11cb53;" text="1"/>
+   <ToggleButton fx:id="btnSeat2" toggleGroup="$seatGroup" layoutX="172.0" layoutY="73.0" mnemonicParsing="false"
+                 prefHeight="40.0" prefWidth="78.0" style="-fx-base: #11cb53;" text="2"/>
+   <ToggleButton fx:id="btnSeat3" toggleGroup="$seatGroup" layoutX="195.0" layoutY="155.0" mnemonicParsing="false"
+                 prefHeight="40.0" prefWidth="72.0" rotate="90.0" style="-fx-base: #11cb53;" text="3"/>
+   <ToggleButton fx:id="btnSeat4" toggleGroup="$seatGroup" layoutX="195.0" layoutY="260.0" mnemonicParsing="false"
+                 prefHeight="40.0" prefWidth="72.0" rotate="90.0" style="-fx-base: #11cb53;" text="4"/>
+   <ToggleButton fx:id="btnSeat5" toggleGroup="$seatGroup" layoutX="269.0" layoutY="335.0" mnemonicParsing="false"
+                 prefHeight="40.0" prefWidth="78.0" style="-fx-base: #11cb53;" text="5"/>
+   <ToggleButton fx:id="btnSeat6" toggleGroup="$seatGroup" layoutX="389.0" layoutY="335.0" mnemonicParsing="false"
+                 prefHeight="40.0" prefWidth="78.0" style="-fx-base: #11cb53;" text="6"/>
+   <ToggleButton fx:id="btnSeat7" toggleGroup="$seatGroup" layoutX="499.0" layoutY="350.0" mnemonicParsing="false"
+                 prefHeight="40.0" prefWidth="70.0" rotate="90.0" style="-fx-base: #11cb53;" text="7"/>
+   <ToggleButton fx:id="btnSeat8" toggleGroup="$seatGroup" layoutX="500.0" layoutY="448.0" mnemonicParsing="false"
+                 prefHeight="40.0" prefWidth="70.0" rotate="90.0" style="-fx-base: #11cb53;" text="8"
+                 AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="30.0"/>
+   <ToggleButton fx:id="btnSeat9" toggleGroup="$seatGroup" layoutX="389.0" layoutY="461.0" mnemonicParsing="false"
+                 prefHeight="40.0" prefWidth="78.0" style="-fx-base: #11cb53;" text="9"/>
+   <ToggleButton fx:id="btnSeat10" toggleGroup="$seatGroup" layoutX="269.0" layoutY="461.0" mnemonicParsing="false"
+                 prefHeight="40.0" prefWidth="78.0" style="-fx-base: #11cb53;" text="10"/>
+   <ToggleButton fx:id="btnSeat11" toggleGroup="$seatGroup" layoutX="141.0" layoutY="461.0" mnemonicParsing="false"
+                 prefHeight="40.0" prefWidth="78.0" style="-fx-base: #11cb53;" text="11"/>
+   <ToggleButton fx:id="btnSeat12" toggleGroup="$seatGroup" layoutX="37.0" layoutY="445.0" mnemonicParsing="false"
+                 prefHeight="40.0" prefWidth="72.0" rotate="90.0" style="-fx-base: #11cb53;" text="12"/>
+   <ToggleButton fx:id="btnSeat13" toggleGroup="$seatGroup" layoutX="37.0" layoutY="348.0" mnemonicParsing="false"
+                 prefHeight="40.0" prefWidth="72.0" rotate="90.0" style="-fx-base: #11cb53;" text="13"/>
+   <ToggleButton fx:id="btnSeat14" toggleGroup="$seatGroup" layoutX="37.0" layoutY="249.0" mnemonicParsing="false"
+                 prefHeight="40.0" prefWidth="72.0" rotate="90.0" style="-fx-base: #11cb53;" text="14"/>
+   <ToggleButton fx:id="btnSeat15" toggleGroup="$seatGroup" layoutX="37.0" layoutY="155.0" mnemonicParsing="false"
+                 prefHeight="40.0" prefWidth="72.0" rotate="90.0" style="-fx-base: #11cb53;" text="15"/>
+   <DatePicker fx:id="bookDatePicker" layoutX="380.0" layoutY="75.0"/>
 
-      <Button fx:id="btnBack" layoutX="30.0" layoutY="570.0" mnemonicParsing="false" onAction="#Back" prefHeight="36.0" prefWidth="105.0" style="-fx-background-radius: 8; -fx-background-color: #dc2430; -fx-font-weight: bold;" text="Back" textFill="WHITE" />
-      <Button fx:id="btnNext" layoutX="465.0" layoutY="570.0" mnemonicParsing="false" onAction="#GoToConfirmBooking" prefHeight="36.0" prefWidth="105.0" style="-fx-background-radius: 8; -fx-background-color: #006fff; -fx-font-weight: bold;" text="Next" textFill="WHITE" />
-   </children>
+   <Label layoutX="296.0" layoutY="77.0" text="Select Date:">
+      <font>
+         <Font size="15.0"/>
+      </font>
+   </Label>
+   <Label layoutX="289.0" layoutY="141.0" text="Available" AnchorPane.bottomAnchor="450.0"
+          AnchorPane.leftAnchor="300.0">
+      <font>
+         <Font size="15.0"/>
+      </font>
+   </Label>
+   <Label layoutX="289.0" layoutY="201.0" text="Unavailable" AnchorPane.bottomAnchor="390.0"
+          AnchorPane.leftAnchor="300.0">
+      <font>
+         <Font size="15.0"/>
+      </font>
+   </Label>
+   <Label layoutX="293.0" layoutY="263.0" text="COVID-Locked" AnchorPane.bottomAnchor="330.0"
+          AnchorPane.leftAnchor="300.0">
+      <font>
+         <Font size="15.0"/>
+      </font>
+   </Label>
+   <Button layoutX="415.0" layoutY="147.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0"
+           style="-fx-background-color: #11cb53;" AnchorPane.bottomAnchor="448.0" AnchorPane.leftAnchor="420.0"/>
+   <Button layoutX="415.0" layoutY="207.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0"
+           style="-fx-background-color: #dc2430;" AnchorPane.bottomAnchor="388.0" AnchorPane.leftAnchor="420.0"/>
+   <Button layoutX="415.0" layoutY="267.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0"
+           style="-fx-background-color: #ff8c00;" AnchorPane.bottomAnchor="328.0" AnchorPane.leftAnchor="420.0"/>
+
+   <Button fx:id="btnBack" layoutX="30.0" layoutY="570.0" mnemonicParsing="false" onAction="#Back" prefHeight="36.0"
+           prefWidth="105.0" style="-fx-background-radius: 8; -fx-background-color: #0f73fb; -fx-font-weight: bold;"
+           text="Back" textFill="WHITE"/>
+   <Button fx:id="btnNext" layoutX="465.0" layoutY="570.0" mnemonicParsing="false" onAction="#GoToConfirmBooking"
+           prefHeight="36.0" prefWidth="105.0"
+           style="-fx-background-radius: 8; -fx-background-color: #006fff; -fx-font-weight: bold;" text="Next"
+           textFill="WHITE"/>
 </AnchorPane>

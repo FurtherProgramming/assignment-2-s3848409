@@ -28,9 +28,9 @@ public class GenerateReportController {
 
     public void BookingToCsv(ActionEvent event) throws SQLException, IOException {
         String filename = sceneController.showDialog("Bookings To CSV", "Please enter the file name you want to save.");
-        if(filename.trim().isEmpty()){
+        if(filename != null && filename.trim().isEmpty()){
             sceneController.showError("Error", "File name must not be empty.");
-        }else{
+        }else if(filename == null){ }else{
             boolean success = adminViewBookingModel.GenerateBookingtoCsv(filename + ".csv");
             if(success){
                 sceneController.showInfoOnly("Success", "Your bookings report has been generated.\nFile name is: " + filename + ".csv");
@@ -42,9 +42,9 @@ public class GenerateReportController {
 
     public void UserToCsv(ActionEvent event) throws SQLException, IOException {
         String filename = sceneController.showDialog("Users to CSV", "Please enter the file name you want to save.");
-        if(filename.trim().isEmpty()){
+        if(filename != null && filename.trim().isEmpty()){
             sceneController.showError("Error", "File name must not be empty.");
-        }else{
+        }else if(filename == null){ }else{
             boolean success = adminModel.GenerateUsertoCsv(filename + ".csv");
             if(success){
                 sceneController.showInfoOnly("Success", "Your users report has been generated.\nFile name is: " + filename + ".csv");
