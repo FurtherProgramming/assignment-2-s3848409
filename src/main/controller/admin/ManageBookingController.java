@@ -78,29 +78,33 @@ public class ManageBookingController implements Initializable {
             }
         });
         bookDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
-            try {
-                final ToggleButton[] seatButtons = {btnSeat1, btnSeat2, btnSeat3, btnSeat4, btnSeat5, btnSeat6, btnSeat7, btnSeat8,
-                                                    btnSeat9, btnSeat10, btnSeat11, btnSeat12, btnSeat13, btnSeat14, btnSeat15};
-                bookingObject.clear();
-                bookingObject = adminViewBookingModel.getAllBookingsOnDate(Date.valueOf(bookDatePicker.getValue()));
-                for (ToggleButton seatButton : seatButtons) {
-                    seatButton.setStyle("-fx-base: #11cb53");
-                }
-                for (BookingObject object : bookingObject){
-                    for(ToggleButton button : seatButtons){
-                        if(object.getBookingSeat().equals(button.getText())) {
-                            if(object.getCovidLocked().equals("1") || object.getCovidLocked().equals("true")){
-                                button.setStyle("-fx-base: #ff8c00");
-                            }else{
-                                button.setStyle("-fx-base: #dc2430");
-                            }
+            initButtons();
+        });
+    }
+
+    private void initButtons(){
+        try {
+            final ToggleButton[] seatButtons = {btnSeat1, btnSeat2, btnSeat3, btnSeat4, btnSeat5, btnSeat6, btnSeat7, btnSeat8,
+                    btnSeat9, btnSeat10, btnSeat11, btnSeat12, btnSeat13, btnSeat14, btnSeat15};
+            bookingObject.clear();
+            bookingObject = adminViewBookingModel.getAllBookingsOnDate(Date.valueOf(bookDatePicker.getValue()));
+            for (ToggleButton seatButton : seatButtons) {
+                seatButton.setStyle("-fx-base: #11cb53");
+            }
+            for (BookingObject object : bookingObject){
+                for(ToggleButton button : seatButtons){
+                    if(object.getBookingSeat().equals(button.getText())) {
+                        if(object.getCovidLocked().equals("1") || object.getCovidLocked().equals("true")){
+                            button.setStyle("-fx-base: #ff8c00");
+                        }else{
+                            button.setStyle("-fx-base: #dc2430");
                         }
                     }
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
-        });
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void Back(ActionEvent event) throws IOException {
@@ -111,21 +115,25 @@ public class ManageBookingController implements Initializable {
         sceneController.openScene(btnBookingList, "ui/admin/BookingList.fxml");
     }
 
-    public void LockSeat(ActionEvent event) throws IOException {
+    public void LockSeat(ActionEvent event) throws IOException, SQLException {
         ToggleButton selectedToggleButton = (ToggleButton) seatGroup.getSelectedToggle();
         if (selectedToggleButton != null && bookDatePicker.getValue() != null){
-            boolean lock = sceneController.showConfirmation("Lock this seat?","Do you want to lock this seat?");
+            boolean lock = sceneController.showConfirmation("Lock seat?","Would you like to lock this seat?");
             if(lock){
                 bookingSession = new BookingSession(selectedToggleButton.getText(), Date.valueOf(bookDatePicker.getValue()), UserSession.getUserName(), false, false);
-                try{
-                    if(adminViewBookingModel.isLocked(BookingSession.getBookingSeat(), BookingSession.getBookingDate(), "COVID_Locked", true)){
-                        BookingSession.deleteBookingObject();
-                        sceneController.showInfo("Success", "This seat is now locked", btnLockSeat, "ui/admin/ManageBooking.fxml");
-                    }else{
-                        sceneController.showError("Error", "Failed to lock this seat");
+                if(adminViewBookingModel.seatNotEmpty(BookingSession.getBookingSeat(), BookingSession.getBookingDate())){
+                    if(sceneController.showConfirmation("Booking Found", "Would you like to delete the booking and lock this seat?")){
+                        try{
+                            if(adminViewBookingModel.isLocked(BookingSession.getBookingSeat(), BookingSession.getBookingDate(), "COVID_Locked", true)){
+                                BookingSession.deleteBookingObject();
+                                initButtons();
+                            }else{
+                                sceneController.showError("Error", "Failed to lock this seat");
+                            }
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
                     }
-                }catch (Exception e){
-                    e.printStackTrace();
                 }
             }
         }else{
@@ -142,7 +150,7 @@ public class ManageBookingController implements Initializable {
                 try{
                     if(adminViewBookingModel.DenyBooking(BookingSession.getBookingSeat(), BookingSession.getBookingDate())){
                         BookingSession.deleteBookingObject();
-                        sceneController.showInfo("Success", "This seat is now unlocked", btnUnlockSeat, "ui/admin/ManageBooking.fxml");
+                        initButtons();
                     }else{
                         sceneController.showError("Error", "Failed to unlock this seat");
                     }

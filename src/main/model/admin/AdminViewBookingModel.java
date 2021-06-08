@@ -160,4 +160,28 @@ public class AdminViewBookingModel {
         return Success;
     }
 
+    public boolean seatNotEmpty(String seat, Date bookingDate) throws SQLException {
+        boolean found = false;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet=null;
+        String query = "select * from Booking where seat = ? and bookingDate= ?";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, seat);
+            preparedStatement.setString(2, String.valueOf(bookingDate));
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                found = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (preparedStatement != null && resultSet != null) {
+                preparedStatement.close();
+                resultSet.close();
+            }
+        }
+        return found;
+    }
+
 }
