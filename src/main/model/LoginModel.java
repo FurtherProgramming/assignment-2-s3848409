@@ -25,6 +25,7 @@ public class LoginModel {
         }
     }
 
+    //compare user name and password with db
     public Boolean isLogin(String user, String pass) throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet=null;

@@ -17,6 +17,7 @@ public class UserModel {
             System.exit(1);
     }
 
+    //get user account detail and return as hash map
     public Map<String, String> getUserDetail(String user, String pass) throws SQLException {
         Map<String, String> userObject = new HashMap<>();
         PreparedStatement preparedStatement = null;
@@ -48,6 +49,7 @@ public class UserModel {
         return userObject;
     }
 
+    //check if user name already exists
     public boolean userNameExist(String username) throws SQLException {
         boolean found = false;
         PreparedStatement preparedStatement = null;
@@ -71,6 +73,7 @@ public class UserModel {
         return found;
     }
 
+    //check if id already exists
     public boolean idExist(int id) throws SQLException {
         boolean found = false;
         PreparedStatement preparedStatement = null;
@@ -94,6 +97,7 @@ public class UserModel {
         return found;
     }
 
+    //update account detail
     public boolean UpdateDetail(int id, String firstName, String lastName, String role, String userName, String password, String question, String answer) throws SQLException {
         boolean Success = false;
         String user = UserSession.getUserName();

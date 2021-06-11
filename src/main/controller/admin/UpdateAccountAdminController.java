@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import main.controller.SceneController;
-import main.model.RegisterModel;
 import main.model.admin.AdminModel;
 import main.model.user.UserModel;
 import main.session.UserSession;

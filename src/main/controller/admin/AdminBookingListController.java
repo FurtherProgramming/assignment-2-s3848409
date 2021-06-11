@@ -72,7 +72,7 @@ public class AdminBookingListController implements Initializable {
             }
 
         } catch (SQLException | IOException e) {
-            e.printStackTrace();
+            sceneController.showError("Something went wrong", e.getMessage());
         }
     }
 
@@ -95,7 +95,7 @@ public class AdminBookingListController implements Initializable {
                                 BookingSession bookingSession = new BookingSession(bookingItem.getBookingSeat(), bookingItem.getBookingDate(), bookingItem.getBookingOwner(), bookingItem.getBookingStatusAsBool(), bookingItem.getBookingCheckInAsBool());
                                 sceneController.openScene(btn, "ui/admin/AdminBookingItem.fxml");
                             } catch (IOException e) {
-                                e.printStackTrace();
+                                sceneController.showError("Something went wrong", e.getMessage());
                             }
                         });
                     }

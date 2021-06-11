@@ -20,6 +20,7 @@ public class ResetPasswordModel {
             System.exit(1);
     }
 
+    //check if user exists before continue
     public Boolean userFound(String user) throws SQLException {
         boolean userFound = false;
         PreparedStatement preparedStatement = null;
@@ -44,6 +45,7 @@ public class ResetPasswordModel {
         return userFound;
     }
 
+    //get secret question from db and return
     public String getSecretQuestion() throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet=null;
@@ -67,6 +69,7 @@ public class ResetPasswordModel {
         return secretQuestion;
     }
 
+    //compare answers to secret question
     public Boolean compareAnswer(String answer) throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -87,6 +90,7 @@ public class ResetPasswordModel {
         }
     }
 
+    //return newly generated password
     public String getNewPassword() throws SQLException {
         String username = UserSession.getUserName();
         String newPassword = generatePassword();
@@ -102,6 +106,7 @@ public class ResetPasswordModel {
         return newPassword;
     }
 
+    //generate new password using random function from lib
     public String generatePassword() {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&()[{]}<>/?";
         return RandomStringUtils.random( 10, characters );

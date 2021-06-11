@@ -20,6 +20,7 @@ public class BookingModel {
         }
     }
 
+    //check if a user already booked a seat
     public boolean bookingExist(String owner) throws SQLException {
         boolean found = false;
         boolean status = false;
@@ -49,6 +50,7 @@ public class BookingModel {
         return found;
     }
 
+    //check if booking success
     public boolean isBooked(String seat, Date bookingDate, String ownerName) {
         boolean Success = false;
         try {

@@ -20,6 +20,7 @@ public class RegisterModel {
         }
     }
 
+    //check for account with same user name and id
     public boolean accountExist(int id, String username) throws SQLException {
         boolean found = false;
         PreparedStatement preparedStatement = null;
@@ -44,6 +45,7 @@ public class RegisterModel {
         return found;
     }
 
+    //register an account and return a boolean
     public boolean isRegistered(int id, String firstName, String lastName, String role, String userName, String password, boolean admin, String question, String answer) {
         boolean Success = false;
         try {

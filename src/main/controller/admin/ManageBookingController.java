@@ -110,7 +110,7 @@ public class ManageBookingController implements Initializable {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            sceneController.showError("Something went wrong", e.getMessage());
         }
     }
 
@@ -154,7 +154,7 @@ public class ManageBookingController implements Initializable {
                 }
             }
         }catch (Exception e){
-            e.printStackTrace();
+            sceneController.showError("Something went wrong", e.getMessage());
         }
     }
 
@@ -210,7 +210,7 @@ public class ManageBookingController implements Initializable {
                 sceneController.showError("Error", "Failed to unlock this seat");
             }
         }catch (Exception e){
-            e.printStackTrace();
+            sceneController.showError("Something went wrong", e.getMessage());
         }
     }
 }

@@ -21,6 +21,7 @@ public class AdminModel {
             System.exit(1);
     }
 
+    //get an account detail from db and add to hash map and return it
     public Map<String, String> getAccountDetail(String userName) throws SQLException {
         Map<String, String> accountObject = new HashMap<>();
         PreparedStatement preparedStatement = null;
@@ -52,6 +53,7 @@ public class AdminModel {
         return accountObject;
     }
 
+    //update query for specific user or admin
     public boolean UpdateDetail(String thisUser, int id, String firstName, String lastName, String role, String userName, String password, Boolean admin, String question, String answer) throws SQLException {
         boolean Success = false;
         String sql = "UPDATE Employee SET id = ? , "
@@ -85,6 +87,7 @@ public class AdminModel {
         return Success;
     }
 
+    //get all user from database and return as arraylist
     public ArrayList<UserObject> getAllUsers () throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -111,6 +114,7 @@ public class AdminModel {
         return userObject;
     }
 
+    //delete account using user name
     public boolean DeleteAcc(String userName){
         boolean success = false;
         String sql = "DELETE FROM Employee WHERE username = ?";
@@ -125,6 +129,7 @@ public class AdminModel {
         return success;
     }
 
+    //generate all users to csv using buffered writer
     public boolean GenerateUsertoCsv(String fileName) throws IOException, SQLException {
         boolean success = false;
         String admin = "";

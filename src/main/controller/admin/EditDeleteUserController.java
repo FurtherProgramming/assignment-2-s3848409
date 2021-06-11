@@ -115,6 +115,7 @@ public class EditDeleteUserController implements Initializable {
                 }
             }else{
                 if(adminModel.DeleteAcc(txtUsername.getText())){
+                    TempUserSession.cleanUserSession();
                     sceneController.showInfo("Success", "This account has been deleted!", btnDelete, "ui/admin/ManageUser.fxml");
                 }else{
                     sceneController.showError("Error", "Unable to delete this account.");
@@ -124,6 +125,7 @@ public class EditDeleteUserController implements Initializable {
     }
 
     public void Cancel(ActionEvent event) throws IOException {
+        TempUserSession.cleanUserSession();
         sceneController.openScene(btnCancel, "ui/admin/ManageUser.fxml");
     }
 
@@ -154,6 +156,7 @@ public class EditDeleteUserController implements Initializable {
                     sceneController.showError("Invalid Value", "Employee ID must be bigger than '0' ");
                 }else{
                     if(adminModel.UpdateDetail(TempUserSession.getUserName(), employeeId, firstName, lastName, role, userName, password, admin, question, answer)){
+                        TempUserSession.cleanUserSession();
                         sceneController.showInfo("Success", "This account detail has been changed.", btnSave, "ui/admin/ManageUser.fxml");
                     }else{
                         sceneController.showError("Error", "Unable to update account detail at the moment.");

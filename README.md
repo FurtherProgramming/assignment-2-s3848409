@@ -22,7 +22,7 @@ such as user's credentials, booking, and more.
    - Object oriented design
    - Code reuse
    
-# Lesson Learnt
+# Lesson learnt
 - So far, I have gained massive knowledge towards Java, SQL, and MVC design.
 - I would say, this course has taught me
   a lot in writing defensive programming language and handling errors. 
@@ -55,7 +55,7 @@ Packaging for test:
 2. Open project via IntelliJ, and build the project
 
 
-3. Go to directory `~/src/main/main.java`
+3. Go to directory `/src/main/main.java`
 
 
 4. Right click on `main.java` and select `Run`
@@ -78,3 +78,9 @@ Password: test
 2. Close IntelliJ Idea, and you should be good to go.
 
 
+## Screenshots
+
+- To avoid flooding README file, please refer to project directory for screenshots of the app running
+
+
+- You can find them at `/screenshots`

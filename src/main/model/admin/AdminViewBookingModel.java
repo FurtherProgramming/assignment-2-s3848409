@@ -19,6 +19,7 @@ public class AdminViewBookingModel {
             System.exit(1);
     }
 
+    //get all bookings from db and add to arraylist
     public ArrayList<BookingObject> getAllBookings () throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -45,6 +46,7 @@ public class AdminViewBookingModel {
         return bookingObject;
     }
 
+    //get bookings on specific date
     public ArrayList<BookingObject> getAllBookingsOnDate (Date bookingDate) throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -72,6 +74,7 @@ public class AdminViewBookingModel {
         return bookingObject;
     }
 
+    //deny booking on specific seat and date
     public boolean DenyBooking(String seat, Date bookingDate){
         boolean success = false;
         java.sql.Date sqlDate = new java.sql.Date(bookingDate.getTime());
@@ -88,6 +91,7 @@ public class AdminViewBookingModel {
         return success;
     }
 
+    //approve booking on specific date and seat
     public boolean ApproveBooking(String seat, Date bookingDate){
         boolean success = false;
         java.sql.Date sqlDate = new java.sql.Date(bookingDate.getTime());
@@ -105,6 +109,7 @@ public class AdminViewBookingModel {
         return success;
     }
 
+    //generate all bookings to csv using buffered writer
     public boolean GenerateBookingtoCsv(String fileName) throws IOException, SQLException {
         boolean success = false;
         String status = "";
@@ -148,6 +153,7 @@ public class AdminViewBookingModel {
         return success;
     }
 
+    //lock specific seat
     public boolean isLocked(String seat, Date bookingDate, String ownerName, boolean lock) {
         boolean Success = false;
         try {
@@ -160,6 +166,7 @@ public class AdminViewBookingModel {
         return Success;
     }
 
+    //check if seat has booking and return boolean
     public boolean seatNotEmpty(String seat, Date bookingDate) throws SQLException {
         boolean found = false;
         PreparedStatement preparedStatement = null;

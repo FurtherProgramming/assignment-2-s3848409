@@ -34,7 +34,7 @@ public class AdminController implements Initializable {
         try{
             adminName.setText(UserSession.getUserName() + " (Admin)");
         }catch (NullPointerException e){
-            e.printStackTrace();
+            sceneController.showError("Something went wrong", e.getMessage());
         }
     }
 
