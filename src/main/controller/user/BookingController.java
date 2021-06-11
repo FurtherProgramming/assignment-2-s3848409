@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import main.controller.SceneController;
-import main.model.admin.AdminViewBookingModel;
 import main.model.user.UserViewBookingModel;
 import main.object.BookingObject;
 import main.session.BookingSession;
@@ -23,13 +22,13 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class BookingController implements Initializable {
-    Map<String, String> userObject = new HashMap<>();
     UserViewBookingModel userViewBookingModel = new UserViewBookingModel();
     SceneController sceneController = new SceneController();
-    ArrayList<BookingObject> bookingObject = new ArrayList<>();
     UserModel userModel = new UserModel();
     BookingSession bookingSession;
     UserSession userSession;
+    Map<String, String> userObject = new HashMap<>();
+    ArrayList<BookingObject> bookingObject = new ArrayList<>();
 
     @FXML
     private Button btnBack;
@@ -72,6 +71,7 @@ public class BookingController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //set date picker to current date
         bookDatePicker.setDayCellFactory(picker -> new DateCell() {
             public void updateItem(LocalDate date, boolean empty) {
                 super.updateItem(date, empty);
@@ -79,6 +79,7 @@ public class BookingController implements Initializable {
                 setDisable(empty || date.compareTo(today) < 0 );
             }
         });
+        //listen for new value
         bookDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
             initButtons(Date.valueOf(newValue));
         });
@@ -90,10 +91,12 @@ public class BookingController implements Initializable {
                     btnSeat9, btnSeat10, btnSeat11, btnSeat12, btnSeat13, btnSeat14, btnSeat15};
             bookingObject.clear();
             bookingObject = userViewBookingModel.getAllBookingsOnDate(dateValue);
+            //get all bookings based on date and add to visual booking tables
             for (ToggleButton seatButton : seatButtons) {
                 seatButton.setStyle("-fx-base: #11cb53");
                 seatButton.setDisable(false);
             }
+            //iterate through all bookings on that date and disable buttons if it's been booked
             for (BookingObject object : bookingObject){
                 for(ToggleButton button : seatButtons) {
                     if (object.getBookingSeat().equals(button.getText())) {
@@ -108,15 +111,17 @@ public class BookingController implements Initializable {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            sceneController.showError("Something went wrong", e.getMessage());
         }
     }
 
     public void GoToConfirmBooking(ActionEvent event) throws Exception {
         ToggleButton selectedToggleButton = (ToggleButton) seatGroup.getSelectedToggle();
         if (selectedToggleButton != null && bookDatePicker.getValue() != null){
+            //create new booking session and commit to another page
             userObject = userModel.getUserDetail(UserSession.getUserName(), UserSession.getPassword());
-            bookingSession = new BookingSession(selectedToggleButton.getText(), Date.valueOf(bookDatePicker.getValue()), userObject.get("firstname") + " " + userObject.get("lastname"), false, false);
+            bookingSession = new BookingSession(selectedToggleButton.getText(), Date.valueOf(bookDatePicker.getValue()),
+                    userObject.get("firstname") + " " + userObject.get("lastname"), false, false);
             sceneController.openScene(btnNext, "ui/user/UserConfirmBooking.fxml");
         }else{
             sceneController.showError("Error", "Please select a seat and date.");

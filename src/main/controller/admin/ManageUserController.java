@@ -35,6 +35,7 @@ public class ManageUserController implements Initializable {
     @FXML
     private TableView<UserObject> userListTable;
 
+    //same as manage user, I created a table and initiate the columns
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         TableColumn<UserObject, String> firstName = new TableColumn<>("First Name");
@@ -57,12 +58,14 @@ public class ManageUserController implements Initializable {
         admin.setStyle( "-fx-alignment: CENTER;");
         admin.setPrefWidth(70);
 
+        //check if current user is admin and proceed to get table data via arraylist
         try {
             if(UserSession.getAdmin()){
                 userObject = adminModel.getAllUsers();
                 userListTable.getColumns().addAll(firstName, lastName, role, admin);
                 addButtonToTable();
 
+                //iterate through object and add to table
                 for (UserObject object : userObject) {
                     userListTable.getItems().add(object);
                 }
@@ -71,10 +74,11 @@ public class ManageUserController implements Initializable {
                 sceneController.openScene(btnBack, "ui/admin/AdminProfile.fxml");
             }
         } catch (SQLException | IOException e) {
-            e.printStackTrace();
+            sceneController.showError("Something went wrong", e.getMessage());
         }
     }
 
+    //add button action to table cell
     private void addButtonToTable() {
         TableColumn<UserObject, Void> action = new TableColumn("Action");
         action.setStyle( "-fx-alignment: CENTER;");
@@ -92,7 +96,7 @@ public class ManageUserController implements Initializable {
                                 tempUserSession = new TempUserSession(editUserObject.getUserName(), editUserObject.getAdminAsBool());
                                 sceneController.openScene(btn, "ui/admin/EditDeleteUser.fxml");
                             } catch (IOException e) {
-                                e.printStackTrace();
+                                sceneController.showError("Something went wrong", e.getMessage());
                             }
                         });
                     }

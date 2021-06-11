@@ -34,7 +34,7 @@ public class UserController implements Initializable {
             String currentUserName = UserSession.getUserName();
             userName.setText(currentUserName);
         }catch (NullPointerException e){
-            e.printStackTrace();
+            sceneController.showError("Something went wrong", e.getMessage());
         }
     }
 

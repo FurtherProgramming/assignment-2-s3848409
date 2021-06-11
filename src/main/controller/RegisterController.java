@@ -52,6 +52,7 @@ public class RegisterController implements Initializable {
         String password = txtPassword.getText();
         String question = String.valueOf(txtQuestion.getValue());
         String answer = txtAnswer.getText();
+        //check for possible errors before adding to db
         if(id.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || role.isEmpty() || userName.isEmpty() || password.isEmpty() || question.isEmpty() || answer.isEmpty()){
             sceneController.showError("Some fields may be blank", "Please complete all fields to continue.");
         }else if (!Character.isUpperCase(firstName.charAt(0)) || !Character.isUpperCase(lastName.charAt(0)) || !Character.isUpperCase(role.charAt(0)) ){
@@ -65,6 +66,7 @@ public class RegisterController implements Initializable {
                 int employeeId = Integer.parseInt(id);
                 if(employeeId <= 0){
                     sceneController.showError("Invalid Value", "Employee ID must be bigger than '0' ");
+                    //check for user name and id already exists
                 }else if (RegisterModel.accountExist(employeeId, userName)){
                     sceneController.showError("Account already exists", "Sorry, an account with this user name or ID is already exist");
                 }else{

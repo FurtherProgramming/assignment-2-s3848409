@@ -30,9 +30,10 @@ public class AnswerSecretQuestionController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources){
         try {
+            //get user's secret question from backend
             txtQuestion.setText(resetPasswordModel.getSecretQuestion());
         } catch (SQLException e) {
-            e.printStackTrace();
+            sceneController.showError("Something went wrong", e.getMessage());
         }
     }
 
@@ -42,6 +43,7 @@ public class AnswerSecretQuestionController implements Initializable {
 
     public void Done(ActionEvent event) throws Exception {
         try {
+            //when user click done, the backend will compare the answers if they matches
             if (resetPasswordModel.compareAnswer(txtAnswer.getText())){
                 TextArea textArea = new TextArea("Your new password is:  " + resetPasswordModel.getNewPassword());
                 textArea.setEditable(false);
@@ -64,8 +66,7 @@ public class AnswerSecretQuestionController implements Initializable {
                 sceneController.showError("Error", "Incorrect Answer to your secret question.");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            sceneController.showError("Error", "Unable to change your password.");
+            sceneController.showError("Unable to change your password", e.getMessage());
         }
     }
 }

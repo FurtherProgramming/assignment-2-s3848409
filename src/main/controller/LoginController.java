@@ -47,7 +47,9 @@ public class LoginController implements Initializable {
 
     public void Login(ActionEvent event){
         try {
+            //compare user name and password
             if (loginModel.isLogin(txtUsername.getText(), txtPassword.getText())){
+                //if admin is true, it will open admin profile
                 if (loginModel.admin){
                     userSession = UserSession.getInstance(txtUsername.getText(), txtPassword.getText(), true);
                     sceneController.openScene(btnLogin, "ui/admin/AdminProfile.fxml");
@@ -61,7 +63,7 @@ public class LoginController implements Initializable {
                 sceneController.showError("Error", "Username or Password is incorrect, please try again.");
             }
         } catch (SQLException | IOException e) {
-            e.printStackTrace();
+            sceneController.showError("Something went wrong", e.getMessage());
         }
     }
 

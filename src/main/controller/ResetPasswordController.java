@@ -27,13 +27,14 @@ public class ResetPasswordController {
 
     public void Continue(ActionEvent event) throws Exception {
         try {
+            //check if this user name exists
             if (resetPasswordModel.userFound(txtUsername.getText())){
                 sceneController.openScene(btnContinue, "ui/AnswerSecretQuestion.fxml");
             }else{
                 sceneController.showError("Error", "Username not found, please try again.");
             }
         } catch (SQLException | IOException e) {
-            e.printStackTrace();
+            sceneController.showError("Something went wrong", e.getMessage());
         }
     }
 }

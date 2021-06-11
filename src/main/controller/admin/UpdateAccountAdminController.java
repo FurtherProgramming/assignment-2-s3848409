@@ -21,7 +21,9 @@ public class UpdateAccountAdminController implements Initializable {
     AdminModel adminModel = new AdminModel();
     UserModel userModel = new UserModel();
     UserSession userSession;
+    //get user detail from backend using hash map
     Map<String, String> adminObject = new HashMap<>();
+    //boolean to check for same id and user name
     boolean idAvailable = true;
     boolean userNameAvailable = true;
 
@@ -53,6 +55,7 @@ public class UpdateAccountAdminController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources){
         try {
+            //get admin detail and set it to text field
             sceneController.getQuestion(secretQuestion);
             adminObject = adminModel.getAccountDetail(UserSession.getUserName());
             boolean admin = adminObject.get("admin").equals("1") || adminObject.get("admin").equals("true");
@@ -67,6 +70,7 @@ public class UpdateAccountAdminController implements Initializable {
             secretQuestion.setValue(String.valueOf(adminObject.get("question")));
             txtAnswer.setText(adminObject.get("answer"));
 
+            //scanning for changes to text field
             txtId.textProperty().addListener((observable, oldValue, newValue) -> {
                 if(!oldValue.equals(newValue)){
                     try{
@@ -105,6 +109,7 @@ public class UpdateAccountAdminController implements Initializable {
         boolean admin = chkAdmin.isSelected();
         String question = String.valueOf(secretQuestion.getValue());
         String answer = txtAnswer.getText();
+        //check for errors before adding to db
         if(id.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || role.isEmpty() || userName.isEmpty() || password.isEmpty() || question.isEmpty() || answer.isEmpty()){
             sceneController.showError("Some fields may be blank", "Please complete all fields to continue.");
         }else if (!Character.isUpperCase(firstName.charAt(0)) || !Character.isUpperCase(lastName.charAt(0)) || !Character.isUpperCase(role.charAt(0)) ){

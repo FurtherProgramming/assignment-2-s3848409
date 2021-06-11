@@ -14,7 +14,6 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class UserBookingItemController implements Initializable {

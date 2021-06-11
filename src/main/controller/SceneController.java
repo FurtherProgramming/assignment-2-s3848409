@@ -1,7 +1,5 @@
 package main.controller;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +14,7 @@ import java.util.Optional;
 
 public class SceneController {
 
+    //open new scene function, reusable code
     public void openScene(Button btn, String resource) throws IOException {
         try {
             Stage window = (Stage) btn.getScene().getWindow();
@@ -29,23 +28,7 @@ public class SceneController {
         }
     }
 
-    public void openSceneNewWindow(String resource) throws IOException {
-        try {
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource(resource));
-            Stage stage = new Stage(StageStyle.DECORATED);
-            stage.setScene(new Scene(loader.load()));
-            stage.show();
-        }catch (IOException e){
-            showError("Error", "Cannot open requested scene at the moment.");
-        }
-
-    }
-
-    public void closeScene(Button btn){
-        Stage stage = (Stage) btn.getScene().getWindow();
-        stage.close();
-    }
-
+    //generate secret questions
     @FXML
     public void getQuestion(ComboBox<String> secretQuestions) {
         secretQuestions.getItems().add("What was your childhood nickname?");
@@ -55,6 +38,7 @@ public class SceneController {
         secretQuestions.getItems().add("How old were you when you started your first job?");
     }
 
+    //create and show error alert
     public void showError(String headerText, String contentText){
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
         errorAlert.setHeaderText(headerText);
@@ -62,6 +46,7 @@ public class SceneController {
         errorAlert.showAndWait();
     }
 
+    //create and show info alert with button and scene opener
     public void showInfo(String headerText, String contentText, Button btn, String resource) throws IOException {
         Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
         successAlert.setHeaderText(headerText);
@@ -72,6 +57,7 @@ public class SceneController {
         }
     }
 
+    //create and show info alert only
     public void showInfoOnly(String headerText, String contentText) throws IOException {
         Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
         successAlert.setHeaderText(headerText);
@@ -79,6 +65,7 @@ public class SceneController {
         successAlert.showAndWait();
     }
 
+    //create and show confirmation alert
     public boolean showConfirmation(String headerText, String contentText) {
         Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmAlert.setHeaderText(headerText);
@@ -87,6 +74,7 @@ public class SceneController {
         return ((Optional<?>) result).isPresent() && result.get() == ButtonType.OK;
     }
 
+    //create and show text dialog and return string of text
     public String showDialog(String headerText, String contentText){
         TextInputDialog textDialog = new TextInputDialog();
         textDialog.setHeaderText(headerText);

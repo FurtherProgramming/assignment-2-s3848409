@@ -29,6 +29,7 @@ public class ConfirmBookingController implements Initializable {
     @FXML
     private Label lblOwner;
 
+    //initialise booking detail that user selected
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lblOwner.setText(BookingSession.getBookingOwner());
@@ -42,6 +43,7 @@ public class ConfirmBookingController implements Initializable {
 
     public void ConfirmBooking(ActionEvent event) throws Exception {
         try{
+            //check if user already booked a seat
             if(bookingModel.bookingExist(BookingSession.getBookingOwner())){
                 sceneController.showError("Error", "Sorry, you have booked a seat already.");
             }else{
@@ -53,7 +55,7 @@ public class ConfirmBookingController implements Initializable {
                 }
             }
         }catch (Exception e){
-            e.printStackTrace();
+            sceneController.showError("Something went wrong", e.getMessage());
         }
 
     }

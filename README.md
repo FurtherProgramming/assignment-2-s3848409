@@ -3,6 +3,7 @@
 - Name: Monkolsophearith Prum (s3848409)
 - Tutor: Estrid He
 - Lecturer: Amir Homayoon Ashrafzadeh
+- Assignment 2 Project
 
 # Design
 - MVC Pattern
@@ -22,8 +23,11 @@ such as user's credentials, booking, and more.
    - Code reuse
    
 # Lesson Learnt
-- So far, I have gained massive knowledge towards Java, SQL, and MVC design. I would say, this course has taught me
-a lot in writing defensive programming language and handling errors. 
+- So far, I have gained massive knowledge towards Java, SQL, and MVC design.
+- I would say, this course has taught me
+  a lot in writing defensive programming language and handling errors. 
+- Moreover, I was able to applied techniques and
+  theories on concepts such as encapsulation, inheritance and polymorphism.
 
 # Packaging
 The main class is Main.java
@@ -44,32 +48,20 @@ Packaging for classes:
 Packaging for test:
  - src.test
 
-## How to clone the project using intelliJIDEA and RUN the application
-1- Download IntelliJ IDEA Ultimate Version (You had to apply for student license)
+## How to run the app
+1. Have IntelliJ Idea ready, clone or download the project
 
-2- Open IntelliJ IDEA, select "File" from the top menu, select "New" and select "Project from Version Control"  
 
-3- Copy your Github classroom repository and paste into URL, click on "Clone".
- Your project will be cloned and open in your IntelliJ IDEA window.
- 
- However, you still need to add the SQLite jar file to your project so you can have access to your database. Follow next steps for adding the Jar file:
- 
-1- Download the SQLite JDBC jar file from week 7 Canvas module.
+2. Open project via IntelliJ, and build the project
 
-2- In your project under project root, make a new directory called lib and move the jar file into lib folder
 
-3- Open IntelliJ IDEA, click on "File", open "Project Structure"
+3. Go to directory `~/src/main/main.java`
 
-4- Under "Project Setting", select "Libraries"
 
-5- Click + button, choose Java, and navigate to your project folder, then Lib folder, choose "sqlite-jdbc-3.34.0.jar", and click on "open"
+4. Right click on `main.java` and select `Run`
 
-6- Click on Apply and then OK to close the window
 
-Now you are ready to Run the Application.
-
-Simply right click on Main.java and choose Run.
-Congratulations!
+5. Now you should be able to see the login Page
 
 ```
 Login info:
@@ -78,27 +70,11 @@ Username: test
 Password: test
 ```
 
-## Prepare other content
+## How to clean up
 
-Readme files are made for developers (including you), but also could be used for the final users.
-So while you are writing your readme files please consider a few things:
+1. Simply click the red button on IntelliJ Idea or on the program
 
-1. What is about?
-    - Your name and student number and course name on the top
-    - Describe the content of your project or repository
-    - Explain things the users would have a hard time understanding right away
-2. What steps need to be taken?
-    - Any specific steps for running your application, what is the main class?
-    - Is there any requirements or dependencies?
-    - After the installation, how they compile or run the code?
-3. Execution examples
-    - You could provide examples of execution with code and screenshots
-    
 
-other things you could add:
+2. Close IntelliJ Idea, and you should be good to go.
 
-- Table of content
-- Test cases
-- Know bugs
-- Things that have not been working or complete
 

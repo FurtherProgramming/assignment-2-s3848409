@@ -64,7 +64,7 @@ public class UserViewBookingController implements Initializable {
                 bookingViewTable.getItems().add(object);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            sceneController.showError("Something went wrong", e.getMessage());
         }
     }
 
@@ -85,7 +85,7 @@ public class UserViewBookingController implements Initializable {
                                 BookingSession bookingSession = new BookingSession(bookingItem.getBookingSeat(), bookingItem.getBookingDate(), bookingItem.getBookingOwner(), bookingItem.getBookingStatusAsBool(), bookingItem.getBookingCheckInAsBool());
                                 sceneController.openScene(btn, "ui/user/UserBookingItem.fxml");
                             } catch (IOException e) {
-                                e.printStackTrace();
+                                sceneController.showError("Something went wrong", e.getMessage());
                             }
                         });
                     }
