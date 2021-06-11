@@ -14,10 +14,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdminBookingItemController implements Initializable {
+    //instantiate objects for usage later
     AdminViewBookingModel adminViewBookingModel = new AdminViewBookingModel();
     SceneController sceneController = new SceneController();
     BookingSession bookingSession;
 
+    //ui buttons and labels
     @FXML
     private Button btnApprove;
     @FXML
@@ -35,6 +37,7 @@ public class AdminBookingItemController implements Initializable {
     @FXML
     private Label lblCheckIn;
 
+    //initiate booking info to labels
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if(BookingSession.getBookingStatus()){
@@ -47,11 +50,13 @@ public class AdminBookingItemController implements Initializable {
         lblCheckIn.setText(lblCheckIn.getText() + "  " + BookingSession.getCheckInAsString());
     }
 
+    //back to booking list
     public void Back(ActionEvent event) throws IOException {
         sceneController.openScene(btnBack, "ui/admin/BookingList.fxml");
         BookingSession.deleteBookingObject();
     }
 
+    //approve booking, ask for confirmation and commit action
     public void ApproveBooking(ActionEvent event) throws IOException {
         boolean approve = sceneController.showConfirmation("Approve Booking?", "Do you want to approve this booking?");
         if(approve){
@@ -63,6 +68,7 @@ public class AdminBookingItemController implements Initializable {
         }
     }
 
+    //deny booking, ask for confirmation and commit action
     public void DenyBooking(ActionEvent event) throws IOException {
         boolean deny = sceneController.showConfirmation("Deny Booking?", "Do you want to deny this booking?");
         if(deny){

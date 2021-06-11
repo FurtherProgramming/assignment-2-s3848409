@@ -65,6 +65,7 @@
 
    <Button fx:id="btnBack" layoutX="33.0" layoutY="552.0" mnemonicParsing="false" onAction="#Back" prefHeight="36.0" prefWidth="80.0" style="-fx-background-radius: 8; -fx-background-color: #dc2430; -fx-font-weight: bold;" text="Back" textFill="WHITE" />
    <Button fx:id="btnBookingList" layoutX="449.0" layoutY="63.0" mnemonicParsing="false" onAction="#ViewBookingList" prefHeight="36.0" prefWidth="105.0" style="-fx-background-radius: 8; -fx-background-color: #006fff; -fx-font-weight: bold;" text="Booking List" textFill="WHITE" />
+   <Button fx:id="btnLockAllSeat" layoutX="276.0" layoutY="552.0" mnemonicParsing="false" onAction="#LockAllSeat" prefHeight="36.0" prefWidth="80.0" style="-fx-background-radius: 8; -fx-background-color: #ff8c00; -fx-font-weight: bold;" text="Lock All" textFill="WHITE" />
    <Button fx:id="btnLockSeat" layoutX="376.0" layoutY="552.0" mnemonicParsing="false" onAction="#LockSeat" prefHeight="36.0" prefWidth="80.0" style="-fx-background-radius: 8; -fx-background-color: #ff8c00; -fx-font-weight: bold;" text="Lock Seat" textFill="WHITE" />
    <Button fx:id="btnUnlockSeat" layoutX="476.0" layoutY="552.0" mnemonicParsing="false" onAction="#UnlockSeat" prefHeight="36.0" prefWidth="90.0" style="-fx-background-radius: 8; -fx-background-color: #11cb53; -fx-font-weight: bold;" text="Unlock Seat" textFill="WHITE" />
 

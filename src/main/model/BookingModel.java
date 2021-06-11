@@ -1,7 +1,6 @@
 package main.model;
 
 import main.SQLConnection;
-
 import java.sql.*;
 
 public class BookingModel {
@@ -21,18 +20,23 @@ public class BookingModel {
         }
     }
 
-    public boolean bookingExist(String owner, Date bookingDate) throws SQLException {
+    public boolean bookingExist(String owner) throws SQLException {
         boolean found = false;
+        boolean status = false;
+        boolean checkIn = false;
         PreparedStatement preparedStatement = null;
-        ResultSet resultSet=null;
-        String query = "select * from Booking where ownerName = ? and bookingDate= ?";
+        ResultSet resultSet = null;
+        String query = "select * from Booking where ownerName = ?";
         try {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, owner);
-            preparedStatement.setString(2, String.valueOf(bookingDate));
             resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                found = true;
+            while (resultSet.next()) {
+                status = resultSet.getBoolean("status");
+                checkIn = resultSet.getBoolean("checkIn");
+                if (!status || !checkIn){
+                    found = true;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

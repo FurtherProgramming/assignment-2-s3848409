@@ -17,6 +17,8 @@ public class CreateNewUserController implements Initializable {
     RegisterModel registerModel = new RegisterModel();
 
     @FXML
+    private TextField txtId;
+    @FXML
     private TextField txtFirstName;
     @FXML
     private TextField txtLastName;
@@ -38,6 +40,8 @@ public class CreateNewUserController implements Initializable {
     private Button btnCancel;
 
     public void Create(ActionEvent event) throws IOException, SQLException {
+        //get all text field data
+        String id = txtId.getText();
         String firstName = txtFirstName.getText();
         String lastName = txtLastName.getText();
         String role = txtRole.getText();
@@ -46,19 +50,31 @@ public class CreateNewUserController implements Initializable {
         boolean admin = chkAdmin.isSelected();
         String question = String.valueOf(secretQuestion.getValue());
         String answer = txtAnswer.getText();
-        if(firstName.isEmpty() || lastName.isEmpty() || role.isEmpty() || userName.isEmpty() || password.isEmpty() || question.isEmpty() || answer.isEmpty()){
+        //check for possible errors
+        if(id.isEmpty() ||firstName.isEmpty() || lastName.isEmpty() || role.isEmpty() || userName.isEmpty() || password.isEmpty() || question.isEmpty() || answer.isEmpty()){
             sceneController.showError("Some fields may be blank", "Please complete all fields to continue.");
         }else if (!Character.isUpperCase(firstName.charAt(0)) || !Character.isUpperCase(lastName.charAt(0)) || !Character.isUpperCase(role.charAt(0)) ){
             sceneController.showError("Missing uppercase letters.", "First Name, Last Name, and Role must have first uppercase letter.");
         }else if (password.length() < 5){
             sceneController.showError("Password is too short...", "Password must be more than five characters");
-        }else if (registerModel.accountExist(userName)){
-            sceneController.showError("Account already exists", "Sorry, an account with this user name is already exist");
         }else{
-            if (registerModel.isRegistered(firstName, lastName, role, userName, password, admin, question, answer)){
-                sceneController.showInfo("Success", "This account has been created", btnCreate, "ui/admin/ManageUser.fxml");
-            }else{
-                sceneController.showError("Error", "There is a problem when creating this account.");
+            try {
+                int employeeId = Integer.parseInt(id);
+                if(employeeId <= 0){
+                    sceneController.showError("Invalid Value", "Employee ID must be bigger than '0' ");
+                    //check for same id or name in database
+                }else if (registerModel.accountExist(employeeId, userName)){
+                    sceneController.showError("Account already exists", "Sorry, an account with this user name or ID is already exist");
+                }else{
+                    //register to database
+                    if (registerModel.isRegistered(employeeId, firstName, lastName, role, userName, password, admin, question, answer)){
+                        sceneController.showInfo("Success", "This account has been created", btnCreate, "ui/admin/ManageUser.fxml");
+                    }else{
+                        sceneController.showError("Error", "There is a problem when creating this account.");
+                    }
+                }
+            }catch (NumberFormatException e){
+                sceneController.showError("Wrong Format", "Please enter numbers only for Employee ID");
             }
         }
     }

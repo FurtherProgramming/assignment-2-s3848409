@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AdminBookingListController implements Initializable {
+    //instantiate objects for usage later
     SceneController sceneController = new SceneController();
     AdminViewBookingModel adminViewBookingModel = new AdminViewBookingModel();
     UserSession userSession;
@@ -32,6 +33,7 @@ public class AdminBookingListController implements Initializable {
     @FXML
     private TableView<BookingObject> bookingListTable;
 
+    //initiate table view, start by creating columns, then retrieve object from backend, and fill data
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         TableColumn<BookingObject, String> date = new TableColumn<>("Date");
@@ -56,9 +58,11 @@ public class AdminBookingListController implements Initializable {
 
         try {
             if(UserSession.getAdmin()){
+                //retrieve all bookings
                 bookingObject = adminViewBookingModel.getAllBookings();
                 bookingListTable.getColumns().addAll(date, seat, owner, status);
                 addButtonToTable();
+                //fill data to table
                 for (BookingObject object : bookingObject) {
                     bookingListTable.getItems().add(object);
                 }
@@ -72,6 +76,7 @@ public class AdminBookingListController implements Initializable {
         }
     }
 
+    //create action button to table column
     private void addButtonToTable() {
         TableColumn<BookingObject, Void> action = new TableColumn("Action");
         action.setStyle( "-fx-alignment: CENTER;");
@@ -85,6 +90,7 @@ public class AdminBookingListController implements Initializable {
                     {
                         btn.setOnAction((ActionEvent event) -> {
                             try {
+                                //get table row and item and create a booking session using that info so we can use it in the next scene
                                 BookingObject bookingItem = (BookingObject) getTableRow().getItem();
                                 BookingSession bookingSession = new BookingSession(bookingItem.getBookingSeat(), bookingItem.getBookingDate(), bookingItem.getBookingOwner(), bookingItem.getBookingStatusAsBool(), bookingItem.getBookingCheckInAsBool());
                                 sceneController.openScene(btn, "ui/admin/AdminBookingItem.fxml");
@@ -110,6 +116,7 @@ public class AdminBookingListController implements Initializable {
         bookingListTable.getColumns().add(action);
     }
 
+    //back to manage booking scene
     public void Back(ActionEvent event) throws IOException {
         sceneController.openScene(btnBack, "ui/admin/ManageBooking.fxml");
     }

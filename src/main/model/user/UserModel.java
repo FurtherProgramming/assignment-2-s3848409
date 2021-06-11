@@ -28,6 +28,7 @@ public class UserModel {
             preparedStatement.setString(2, pass);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
+                userObject.put("id", resultSet.getString("id"));
                 userObject.put("firstname", resultSet.getString("firstname"));
                 userObject.put("lastname", resultSet.getString("lastname"));
                 userObject.put("username", resultSet.getString("username"));
@@ -47,10 +48,57 @@ public class UserModel {
         return userObject;
     }
 
-    public boolean UpdateDetail(String firstName, String lastName, String role, String userName, String password, String question, String answer) throws SQLException {
+    public boolean userNameExist(String username) throws SQLException {
+        boolean found = false;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet=null;
+        String query = "select * from Employee where username = ?";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, username);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                found = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (preparedStatement != null && resultSet != null) {
+                preparedStatement.close();
+                resultSet.close();
+            }
+        }
+        return found;
+    }
+
+    public boolean idExist(int id) throws SQLException {
+        boolean found = false;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet=null;
+        String query = "select * from Employee where id = ?";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                found = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (preparedStatement != null && resultSet != null) {
+                preparedStatement.close();
+                resultSet.close();
+            }
+        }
+        return found;
+    }
+
+    public boolean UpdateDetail(int id, String firstName, String lastName, String role, String userName, String password, String question, String answer) throws SQLException {
         boolean Success = false;
         String user = UserSession.getUserName();
-        String sql = "UPDATE Employee SET firstname = ? , "
+        String sql = "UPDATE Employee SET id = ? , "
+                + "firstname = ?, "
                 + "lastname = ?, "
                 + "role = ?, "
                 + "username = ?, "
@@ -61,14 +109,15 @@ public class UserModel {
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, firstName);
-            statement.setString(2, lastName);
-            statement.setString(3, role);
-            statement.setString(4, userName);
-            statement.setString(5, password);
-            statement.setString(6, question);
-            statement.setString(7, answer);
-            statement.setString(8, user);
+            statement.setInt(1, id);
+            statement.setString(2, firstName);
+            statement.setString(3, lastName);
+            statement.setString(4, role);
+            statement.setString(5, userName);
+            statement.setString(6, password);
+            statement.setString(7, question);
+            statement.setString(8, answer);
+            statement.setString(9, user);
 
             statement.executeUpdate();
             Success = true;

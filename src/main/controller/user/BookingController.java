@@ -95,12 +95,12 @@ public class BookingController implements Initializable {
                 seatButton.setDisable(false);
             }
             for (BookingObject object : bookingObject){
-                for(ToggleButton button : seatButtons){
-                    if(object.getBookingSeat().equals(button.getText())) {
-                        if(object.getCovidLocked().equals("1") || object.getCovidLocked().equals("true")){
+                for(ToggleButton button : seatButtons) {
+                    if (object.getBookingSeat().equals(button.getText())) {
+                        if (object.getCovidLocked().equals("1") || object.getCovidLocked().equals("true")) {
                             button.setStyle("-fx-base: #ff8c00");
                             button.setDisable(true);
-                        }else{
+                        } else {
                             button.setStyle("-fx-base: #dc2430");
                             button.setDisable(true);
                         }

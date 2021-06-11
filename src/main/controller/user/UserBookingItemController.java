@@ -12,6 +12,7 @@ import main.session.BookingSession;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.ResourceBundle;
@@ -55,16 +56,20 @@ public class UserBookingItemController implements Initializable {
         }
     }
 
-    public void CheckInBooking(ActionEvent event) throws IOException {
+    public void CheckInBooking(ActionEvent event) throws IOException, SQLException {
         Date today = Date.valueOf(LocalDate.now());
         boolean checkIn = sceneController.showConfirmation("Check-In", "Do you want to check-in this booking?");
         if(checkIn){
             int status = today.compareTo(BookingSession.getBookingDate());
             if(status == 0){
-                if(userViewBookingModel.CheckInBooking(BookingSession.getBookingSeat(), BookingSession.getBookingDate())){
-                    sceneController.showInfo("Success", "You have checked-in this booking", btnCheckIn, "ui/user/UserViewBooking.fxml");
-                }else {
-                    sceneController.showError("Database Error", "Cannot check-in at the moment");
+                if(userViewBookingModel.bookingApproved(BookingSession.getBookingSeat(), BookingSession.getBookingDate())){
+                    if(userViewBookingModel.CheckInBooking(BookingSession.getBookingSeat(), BookingSession.getBookingDate())){
+                        sceneController.showInfo("Success", "You have checked-in this booking", btnCheckIn, "ui/user/UserViewBooking.fxml");
+                    }else {
+                        sceneController.showError("Database Error", "Cannot check-in at the moment");
+                    }
+                }else{
+                    sceneController.showError("Not Approved", "The admin haven't approved your booking yet.");
                 }
             }else if(status > 0){
                 sceneController.showError("Old Booking", "Sorry, this booking is in the past");

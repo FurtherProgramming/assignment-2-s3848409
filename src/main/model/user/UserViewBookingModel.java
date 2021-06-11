@@ -4,9 +4,6 @@ import main.SQLConnection;
 import main.object.BookingObject;
 import main.session.UserSession;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -66,6 +63,32 @@ public class UserViewBookingModel {
             System.out.println(e.getMessage());
         }
         return success;
+    }
+
+    public boolean bookingApproved(String seat, Date bookingDate) throws SQLException {
+        boolean found = false;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String query = "select * from Booking where seat = ? and bookingDate = ?";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, seat);
+            preparedStatement.setString(2, String.valueOf(bookingDate));
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                if (resultSet.getBoolean("status")){
+                    found = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (preparedStatement != null && resultSet != null) {
+                preparedStatement.close();
+                resultSet.close();
+            }
+        }
+        return found;
     }
 
     public boolean CheckInBooking(String seat, Date bookingDate){

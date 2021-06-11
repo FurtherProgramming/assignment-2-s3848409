@@ -42,8 +42,8 @@ public class ConfirmBookingController implements Initializable {
 
     public void ConfirmBooking(ActionEvent event) throws Exception {
         try{
-            if(bookingModel.bookingExist(BookingSession.getBookingOwner(), BookingSession.getBookingDate())){
-                sceneController.showError("Error", "Sorry, you have booked a seat for this date already.");
+            if(bookingModel.bookingExist(BookingSession.getBookingOwner())){
+                sceneController.showError("Error", "Sorry, you have booked a seat already.");
             }else{
                 if(bookingModel.isBooked(BookingSession.getBookingSeat(), BookingSession.getBookingDate(), BookingSession.getBookingOwner())){
                     sceneController.showInfo("Success","Your booking has been made...", btnConfirmBooking, "ui/user/UserProfile.fxml");

@@ -37,6 +37,7 @@ public class AdminModel {
             preparedStatement.setString(1, userName);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
+                accountObject.put("id", resultSet.getString("id"));
                 accountObject.put("firstname", resultSet.getString("firstname"));
                 accountObject.put("lastname", resultSet.getString("lastname"));
                 accountObject.put("role", resultSet.getString("role"));
@@ -57,10 +58,10 @@ public class AdminModel {
         return accountObject;
     }
 
-    public boolean UpdateDetail(String thisUser, String firstName, String lastName, String role, String userName, String password, Boolean admin, String question, String answer) throws SQLException {
+    public boolean UpdateDetail(String thisUser, int id, String firstName, String lastName, String role, String userName, String password, Boolean admin, String question, String answer) throws SQLException {
         boolean Success = false;
-
-        String sql = "UPDATE Employee SET firstname = ? , "
+        String sql = "UPDATE Employee SET id = ? , "
+                + "firstname = ?, "
                 + "lastname = ?, "
                 + "role = ?, "
                 + "username = ?, "
@@ -72,15 +73,16 @@ public class AdminModel {
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, firstName);
-            statement.setString(2, lastName);
-            statement.setString(3, role);
-            statement.setString(4, userName);
-            statement.setString(5, password);
-            statement.setBoolean(6, admin);
-            statement.setString(7, question);
-            statement.setString(8, answer);
-            statement.setString(9, thisUser);
+            statement.setInt(1, id);
+            statement.setString(2, firstName);
+            statement.setString(3, lastName);
+            statement.setString(4, role);
+            statement.setString(5, userName);
+            statement.setString(6, password);
+            statement.setBoolean(7, admin);
+            statement.setString(8, question);
+            statement.setString(9, answer);
+            statement.setString(10, thisUser);
             statement.executeUpdate();
             Success = true;
         } catch (SQLException e) {
@@ -97,7 +99,8 @@ public class AdminModel {
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                userObject.add(new UserObject(resultSet.getString("firstname"),
+                userObject.add(new UserObject(
+                        resultSet.getString("firstname"),
                         resultSet.getString("lastname"),
                         resultSet.getString("username"),
                         resultSet.getString("role"),
@@ -134,12 +137,13 @@ public class AdminModel {
         BufferedWriter fileWriter = new BufferedWriter(new FileWriter(fileName));
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        fileWriter.write("FirstName, LastName, UserName, Role, Admin");
+        fileWriter.write("EmployeeID, FirstName, LastName, UserName, Role, Admin");
         String query = "SELECT * FROM Employee";
         try {
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
+                String id = resultSet.getString("id");
                 String firstName = resultSet.getString("firstname");
                 String lastName = resultSet.getString("lastname");
                 String userName = resultSet.getString("username");
@@ -150,7 +154,7 @@ public class AdminModel {
                 }else {
                     admin = "User";
                 }
-                String line = String.format("%s,%s,%s,%s,%s", firstName, lastName, userName, role, admin);
+                String line = String.format("%s,%s,%s,%s,%s,%s", id, firstName, lastName, userName, role, admin);
                 fileWriter.newLine();
                 fileWriter.write(line);
             }

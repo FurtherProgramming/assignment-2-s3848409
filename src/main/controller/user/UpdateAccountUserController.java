@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import main.controller.SceneController;
-import main.model.RegisterModel;
 import main.model.user.UserModel;
 import main.session.UserSession;
 
@@ -21,7 +20,11 @@ public class UpdateAccountUserController implements Initializable {
     Map<String, String> userObject = new HashMap<>();
     UserModel userModel = new UserModel();
     UserSession userSession;
+    boolean idAvailable = true;
+    boolean userNameAvailable = true;
 
+    @FXML
+    private TextField txtId;
     @FXML
     private TextField txtFirstName;
     @FXML
@@ -46,6 +49,7 @@ public class UpdateAccountUserController implements Initializable {
         try {
             sceneController.getQuestion(secretQuestion);
             userObject = userModel.getUserDetail(UserSession.getUserName(), UserSession.getPassword());
+            txtId.setText(userObject.get("id"));
             txtFirstName.setText(userObject.get("firstname"));
             txtLastName.setText(userObject.get("lastname"));
             txtUsername.setText(userObject.get("username"));
@@ -54,12 +58,37 @@ public class UpdateAccountUserController implements Initializable {
             secretQuestion.setPromptText(userObject.get("question"));
             secretQuestion.setValue(String.valueOf(userObject.get("question")));
             txtAnswer.setText(userObject.get("answer"));
+
+            txtId.textProperty().addListener((observable, oldValue, newValue) -> {
+                if(!oldValue.equals(newValue)){
+                    try{
+                        int employeeId = Integer.parseInt(newValue);
+                        if(employeeId <= 0){
+                            sceneController.showError("Invalid Value", "Employee ID must be bigger than '0' ");
+                        }else{
+                            idAvailable = !userModel.idExist(employeeId);
+                        }
+                    }catch (NumberFormatException | SQLException e){
+                        sceneController.showError("Wrong Format", "Please enter numbers only for Employee ID");
+                    }
+                }
+            });
+            txtUsername.textProperty().addListener((observable, oldValue, newValue) -> {
+                if(!oldValue.equals(newValue)){
+                    try {
+                        userNameAvailable = !userModel.userNameExist(newValue);
+                    } catch (SQLException e) {
+                        sceneController.showError("Something went wrong", e.getMessage());
+                    }
+                }
+            });
         } catch (SQLException e) {
-            e.printStackTrace();
+            sceneController.showError("Something went wrong", e.getMessage());
         }
     }
 
     public void SaveChanges(ActionEvent event) throws Exception {
+        String id = txtId.getText();
         String firstName = txtFirstName.getText();
         String lastName = txtLastName.getText();
         String role = txtRole.getText();
@@ -67,7 +96,7 @@ public class UpdateAccountUserController implements Initializable {
         String password = txtPassword.getText();
         String question = String.valueOf(secretQuestion.getValue());
         String answer = txtAnswer.getText();
-        if(firstName.isEmpty() || lastName.isEmpty() || role.isEmpty() || userName.isEmpty() || password.isEmpty() || question.isEmpty() || answer.isEmpty()){
+        if(id.isEmpty()|| firstName.isEmpty() || lastName.isEmpty() || role.isEmpty() || userName.isEmpty() || password.isEmpty() || question.isEmpty() || answer.isEmpty()){
             sceneController.showError("Some fields may be blank", "Please complete all fields to continue.");
         }else if (!Character.isUpperCase(firstName.charAt(0)) || !Character.isUpperCase(lastName.charAt(0)) || !Character.isUpperCase(role.charAt(0)) ){
             sceneController.showError("Missing uppercase letters.", "First Name, Last Name, and Role must have first uppercase letter.");
@@ -75,12 +104,23 @@ public class UpdateAccountUserController implements Initializable {
             sceneController.showError("Password is too short...", "Password must be more than five characters");
         }else if (!password.matches("^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]+$")){
             sceneController.showError("Password is too weak...", "Password must have at least a letter and a digit");
+        }else if (!idAvailable || !userNameAvailable){
+            sceneController.showError("Duplicate User Name or ID", "Sorry, this user name or ID is taken");
         }else{
-            if(userModel.UpdateDetail(firstName, lastName, role, userName, password, question, answer)){
-                UserSession.getInstance(userName, password, false);
-                sceneController.showInfo("Success", "Your account detail has been changed.", btnSave, "ui/user/UserProfile.fxml");
-            }else{
-                sceneController.showError("Error", "Unable to update your account details.");
+            try{
+                int employeeId = Integer.parseInt(id);
+                if(employeeId <= 0){
+                    sceneController.showError("Invalid Value", "Employee ID must be bigger than '0' ");
+                }else{
+                    if (userModel.UpdateDetail(employeeId, firstName, lastName, role, userName, password, question, answer)){
+                        UserSession.getInstance(userName, password, false);
+                        sceneController.showInfo("Success", "Your account detail has been changed.", btnSave, "ui/user/UserProfile.fxml");
+                    }else{
+                        sceneController.showError("Error", "There is a problem when registering your account. Please try again...");
+                    }
+                }
+            }catch (NumberFormatException e){
+                sceneController.showError("Wrong Format", "Please enter numbers only for Employee ID");
             }
         }
     }

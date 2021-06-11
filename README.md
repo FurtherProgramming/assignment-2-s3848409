@@ -1,16 +1,48 @@
-# Readme
+# COSC2391 Further Programming Project
 
-This README should be completed by the student
+- Name: Monkolsophearith Prum (s3848409)
+- Tutor: Estrid He
+- Lecturer: Amir Homayoon Ashrafzadeh
+
+# Design
+- MVC Pattern
+- Singleton Pattern
+
+By using MVC pattern, I was able to achieved great length with the project. However, to overcome user data passing from 
+one controller to another, I had to implement another pattern called 'Singleton' and by using that object to store info
+such as user's credentials, booking, and more.
+
+# Difficulties
+- While developing the app, I have faced challenges in using Java and SQL such as:
+   - Converting date between SQL and Java
+   - Working with tables and data
+   - Realtime changes (For example: When locking and unlocking seats).
+   - Defense mechanism against user's input 
+   - Object oriented design
+   - Code reuse
+   
+# Lesson Learnt
+- So far, I have gained massive knowledge towards Java, SQL, and MVC design. I would say, this course has taught me
+a lot in writing defensive programming language and handling errors. 
 
 # Packaging
 The main class is Main.java
 
 Packaging for classes:
  - main.controller
+   - user
+   - admin
  - main.model
+    - user
+    - admin
+ - main.object
+ - main.session
  - main.ui
+   - user
+   - admin
+
 Packaging for test:
- - test.model
+ - src.test
 
 ## How to clone the project using intelliJIDEA and RUN the application
 1- Download IntelliJ IDEA Ultimate Version (You had to apply for student license)
@@ -39,12 +71,12 @@ Now you are ready to Run the Application.
 Simply right click on Main.java and choose Run.
 Congratulations!
 
+```
 Login info:
 
 Username: test
-
 Password: test
-
+```
 
 ## Prepare other content
 
@@ -70,13 +102,3 @@ other things you could add:
 - Know bugs
 - Things that have not been working or complete
 
-
-
-### References and tutorials for Readme (Markdown)
-- **IntelliJ IDEA MarkDown guide**. jetbrains.com/help/idea/markdown.html
-- **Choose an open source license**. Github. Available at: https://choosealicense.com/
-- **Getting started with writing and formatting on Github**. Github. Available at: https://help.github.com/articles/getting-started-with-writing-and-formatting-on-github/
-- **Markdown here cheatsheet**. Markdown Here Wiki. Available at: https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet
-- **Markdown quick reference**. Wordpress. Available at: https://en.support.wordpress.com/markdown-quick-reference/
-- **readme-template**. Dan Bader. Github. Available at: https://github.com/dbader/readme-template
-- Writing READMEs. **Udacity**. Available at: https://classroom.udacity.com/courses/ud777/

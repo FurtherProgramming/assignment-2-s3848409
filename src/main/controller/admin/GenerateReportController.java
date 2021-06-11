@@ -26,10 +26,14 @@ public class GenerateReportController {
         sceneController.openScene(btnBack, "ui/admin/AdminProfile.fxml");
     }
 
+    //generate bookings to csv
     public void BookingToCsv(ActionEvent event) throws SQLException, IOException {
+        //prompt for filename
         String filename = sceneController.showDialog("Bookings To CSV", "Please enter the file name you want to save.");
+        //check for errors
         if(filename != null && filename.trim().isEmpty()){
             sceneController.showError("Error", "File name must not be empty.");
+            //check for null because when admin click cancel, it will return null
         }else if(filename == null){ }else{
             boolean success = adminViewBookingModel.GenerateBookingtoCsv(filename + ".csv");
             if(success){
@@ -40,6 +44,7 @@ public class GenerateReportController {
         }
     }
 
+    //generate users to csv, similar to above
     public void UserToCsv(ActionEvent event) throws SQLException, IOException {
         String filename = sceneController.showDialog("Users to CSV", "Please enter the file name you want to save.");
         if(filename != null && filename.trim().isEmpty()){
